@@ -34,6 +34,16 @@ Create a `project.json` file as follows:
 }
 ```
 
+Then, go to the debug and run screen, click on `create a launch file`, and then on `BitMagic X16 ASM Debugger`.
+
+![Debug and Run](Images/DebugAndRun.png)
+
+This will create a `launch.json`. Hit `F5` to run, and type `project.json`. A emulator window should then appear and VSCode should give you an interactive debugging session.
+
+If you don't want to enter the filename of what to debug each time, change the `program` entry in `project.json` by replacing `${command:AskForProgramName}` with the initial filename.
+
+![Debugger Running](Images/DebuggerRunning.png)
+
 ## Features
 
 The following features are not yet implemented but are planned to be:
