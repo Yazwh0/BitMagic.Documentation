@@ -33,3 +33,21 @@ Create a `project.json` file as follows:
     "ramBankNames" : [ "Kernel_Ram" ]
 }
 ```
+
+## Features
+
+The following features are not yet implemented but are planned to be:
+
+- Use StdIn\Out so an instance doesn't need to be running.
+- File system hooks so the a `.prg` can be loaded via the kernel and debugged as you'd expect.
+- Improved SDCard support inline with the Emulator.
+- Step Out.
+- Watches.
+- Breakpoints on data changes.
+- Conditional Breakpoints.
+- Template Engine support.
+- Cartridge support.
+
+## Known Issues
+
+The disassembled memory doesn't update when it should.
