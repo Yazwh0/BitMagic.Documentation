@@ -1,2 +1,3 @@
-# BitMagic.Documentation
+# BitMagic
+
 Documentation for the BitMagic project
