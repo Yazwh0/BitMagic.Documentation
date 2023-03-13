@@ -133,7 +133,3 @@ The following features are not yet implemented but are planned to be:
 - Conditional Breakpoints.
 - Template Engine support.
 - Cartridge support.
-
-## Known Issues
-
-The disassembled memory doesn't update when it should.
