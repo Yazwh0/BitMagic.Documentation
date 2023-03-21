@@ -1,8 +1,39 @@
 # BitMagic - The Emulator
 
-The Emulator emulates the Commander X16 for general use.
+[![Build](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml/badge.svg)](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml)
+
+Emulating the Commander X16 for general use.
+
+## Prerequisites
 
 Before you can run the emulator, you will need to obtain a copy of the [Rom](Rom.md).
+
+## Emulator State
+
+The emulator is currently not complete, with features being added continually. It is advised to check back regularly for updates as there is currently no automatic update mechanism.
+
+### Not Yet Implemented
+
+The following features are not yet implemented in the Emulator. If you want to use these then please try the official emulator, or Box 16.
+
+- VERA PCM Audio + IRQ
+- VERA PSG Audio
+- YM Audio
+- BCD
+- RTC
+- Joysticks
+
+### Not Yet 100% Complete
+
+Tile rendering and its access to VRAM is not yet 'cycle accurate', which can lead to slight differences between BitMagic and hardware.
+
+Various changes to VERA after December 2022 have not yet been included.
+
+The SMC module doesn't support writing config to the PS2, or reading its state. It also doesn't implement the 'echo' functionality.
+
+Frame syncing isn't great, its based on the machine monitor refresh.
+
+The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required.
 
 ## Command Line Arguments
 
