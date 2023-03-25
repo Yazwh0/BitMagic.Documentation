@@ -20,7 +20,7 @@ The following features are not yet implemented in the Emulator. If you want to u
 - VERA PSG Audio
 - YM Audio
 - BCD
-- RTC
+- RTC Clock
 - Joysticks
 
 ### Not Yet 100% Complete
