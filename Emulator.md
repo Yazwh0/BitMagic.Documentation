@@ -34,6 +34,8 @@ Frame syncing isn't great, its based on the machine monitor refresh.
 
 The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required.
 
+Files on the SDCard will be changed to 8.3 filenames if brought in from the local file system.
+
 ## Command Line Arguments
 
 | Argument               | Description|
