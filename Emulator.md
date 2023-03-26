@@ -16,11 +16,11 @@ The emulator is currently not complete, with features being added continually. I
 
 The following features are not yet implemented in the Emulator. If you want to use these then please try the official emulator, or Box 16.
 
-- VERA PCM Audio + IRQ
-- VERA PSG Audio
-- YM Audio
-- RTC Clock
-- Joysticks
+- [VERA PCM Audio + IRQ](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/5)
+- [VERA PSG Audio](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/6)
+- [YM Audio](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/7)
+- [RTC Clock](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/8)
+- [Joysticks](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/9)
 
 ### Not Yet 100% Complete
 
@@ -28,13 +28,13 @@ Tile rendering and its access to VRAM is not yet 'cycle accurate', which can lea
 
 Various changes to VERA after December 2022 have not yet been included.
 
-The SMC module doesn't support writing config to the PS2, or reading its state. It also doesn't implement the 'echo' functionality.
+The SMC module doesn't support writing config to the PS2, or reading its state. It also doesn't implement the 'echo' functionality. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/13)
 
-Frame syncing isn't great, its based on the machine monitor refresh.
+Frame syncing isn't great, its based on the machine monitor refresh. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/12)
 
-The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required.
+The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/11)
 
-Files on the SDCard will be changed to 8.3 filenames if brought in from the local file system.
+Files on the SDCard will be changed to 8.3 filenames if brought in from the local file system. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/10)
 
 ## Command Line Arguments
 
