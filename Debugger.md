@@ -16,6 +16,12 @@ Clone the [VSC Extension](https://github.com/Yazwh0/BitMagic.VSC) project.
 
 At this point you can either open the VSC Extension within VSCode and run it. It will spawn another VSCode instance in which you can try out the debugger. Or run the batch app `create_extension.bat` which will build and install the `.vsix` to your copy of VSCode.
 
+## Download
+
+Currently the best way to download the debugger is via the latest version from the build process, which is available [here](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheDebugger.zip).
+
+Alternatively you can clone the whole repository, and load in the debugger project.
+
 ## Getting Started
 
 Currently the debugger only works via TCP/IP, so it needs to be started manually. This will change in later version, but it helps with debugging the debugger.

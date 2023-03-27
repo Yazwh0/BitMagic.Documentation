@@ -4,6 +4,12 @@
 
 Emulating the Commander X16 for general use.
 
+## Download
+
+Currently the best way to download the emulator is via the latest version from the build process, which is available [here](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.zip).
+
+Alternatively you can clone the whole repository, and load in the emulator project.
+
 ## Prerequisites
 
 Before you can run the emulator, you will need to obtain a copy of the [Rom](Rom.md).
