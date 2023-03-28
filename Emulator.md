@@ -34,13 +34,13 @@ Tile rendering and its access to VRAM is not yet 'cycle accurate', which can lea
 
 Various changes to VERA after December 2022 have not yet been included.
 
-The SMC module doesn't support writing config to the PS2, or reading its state. It also doesn't implement the 'echo' functionality. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/13)
+The SMC module doesn't support writing config to the PS2, or reading its state. It also doesn't implement the 'echo' functionality.
 
-Frame syncing isn't great, its based on the machine monitor refresh. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/12)
+Frame syncing isn't great, its based on the machine monitor refresh. [Issue](https://github.com/Yazwh0/BitMagic/issues/10)
 
-The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/11)
+The mouse movements are generated from the host system, and could well overwhelm the X16. A buffer is required. [Issue](https://github.com/Yazwh0/BitMagic/issues/11)
 
-Files on the SDCard will be changed to 8.3 filenames if brought in from the local file system. [Issue](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/10)
+Files on the SDCard will be changed to 8.3 filenames if brought in from the local file system. [Issue](https://github.com/Yazwh0/BitMagic/issues/12)
 
 ## Command Line Arguments
 

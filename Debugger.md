@@ -276,13 +276,13 @@ public class RangeDefinition
 
 The following features are not yet implemented but are planned to be:
 
-- Use StdIn\Out so an instance doesn't need to be running. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/1)
-- File system hooks so the a `.prg` can be loaded via the kernel and debugged as you'd expect. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/2)
+- Use StdIn\Out so an instance doesn't need to be running. [Issue](https://github.com/Yazwh0/BitMagic/issues/8)
+- File system hooks so the a `.prg` can be loaded via the kernel and debugged as you'd expect. [Issue](https://github.com/Yazwh0/BitMagic/issues/7)
 - Improved SDCard support inline with the Emulator.
-- Step Out. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/3)
-- Watches. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/4)
+- Step Out. [Issue](https://github.com/Yazwh0/BitMagic/issues/6)
+- Watches. [Issue](https://github.com/Yazwh0/BitMagic/issues/5)
 - Breakpoints on data changes. (Need to explore how we'd do this with DAP.)
-- Conditional Breakpoints. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/5)
-- Logpoints. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/6)
-- Template Engine support. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/7)
-- Cartridge support. [Issue](https://github.com/Yazwh0/BitMagic.X16Debugger/issues/8)
+- Conditional Breakpoints. [Issue](https://github.com/Yazwh0/BitMagic/issues/4)
+- Logpoints. [Issue](https://github.com/Yazwh0/BitMagic/issues/3)
+- Template Engine support. [Issue](https://github.com/Yazwh0/BitMagic/issues/2)
+- Cartridge support. [Issue](hhttps://github.com/Yazwh0/BitMagic/issues/1)
