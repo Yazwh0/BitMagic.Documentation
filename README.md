@@ -1,6 +1,6 @@
 # BitMagic
 
-BitMagic is a project the aim of which is to create a single Commander X16 Development Suite using VSCode.
+BitMagic is a project with the aim to create a single Commander X16 Development Suite using VSCode.
 
 It is comprised of four parts:
 

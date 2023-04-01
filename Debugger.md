@@ -4,6 +4,8 @@
 
 The debugger is an application that supports [DAP](https://microsoft.github.io/debug-adapter-protocol/overview) to allows developers to use applications such as VSCode to develop applications for the Commander X16.
 
+Currently only Windows is supported. In theory this could run on any x64 system which dotnet can target, but without the ability to test on these machines I cannot offer support to them currently.
+
 ## Installation
 
 You can obtain the VSCode extension from the extensions market place. Simply search for `BitMagic` and click install.
