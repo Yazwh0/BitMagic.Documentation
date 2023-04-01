@@ -6,33 +6,13 @@ The debugger is an application that supports [DAP](https://microsoft.github.io/d
 
 ## Installation
 
-As the VSCode extension is not yet published, the steps are a little more complex than they will eventually be.
+You can obtain the VSCode extension from the extensions market place. Simply search for `BitMagic` and click install.
 
-Download the Debugger from the latest build action on [Github](https://github.com/Yazwh0/BitMagic/actions).
-
-Obtain a copy of the [Rom](Rom.md).
-
-Clone the [VSC Extension](https://github.com/Yazwh0/BitMagic.VSC) project.
-
-At this point you can either open the VSC Extension within VSCode and run it. It will spawn another VSCode instance in which you can try out the debugger. Or run the batch app `create_extension.bat` which will build and install the `.vsix` to your copy of VSCode.
-
-## Download
-
-Currently the best way to download the debugger is via the latest version from the build process, which is available [here](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheDebugger.zip).
-
-Alternatively you can clone the whole repository, and load in the debugger project.
+For legal reasons, you will need to obtain your own copy of the [Rom](Rom.md).
 
 ## Getting Started
 
-Currently the debugger only works via TCP/IP, so it needs to be started manually. This will change in later version, but it helps with debugging the debugger.
-
-To do this use:
-
-`x16d --port 2563`
-
-We now need a project to run. Open VSCode in an empty folder.
-
-Create a `project.json` file as follows:
+The easiest way to get something working is to create a `project.json` file as follows:
 
 ```json
 {
@@ -129,7 +109,7 @@ If the symbols are in `c:\Documents\Source\x16-rom\build\x16`, then you can repl
 
 ## Project File
 
-The best way to start the debugger is to pass it a project file, and example of which is above. This is a `.json` file that defines how the debugger sets up the system.
+While its possible to start debug a `.bmasm` file directly, it is better to use a project file. This is a `.json` file that defines how the debugger sets up the system for you're requirements.
 
 The schema is below:
 
@@ -149,7 +129,7 @@ public class X16DebugProject
     public string Source { get; set; } = "";
 
     /// <summary>
-    /// Start address. If ommitted or -1, will start the ROM normally from the vector at $fffc.
+    /// Start address. If omitted or -1, will start the ROM normally from the vector at $fffc.
     /// </summary>
     [JsonProperty("startAddress", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public int StartAddress { get; set; } = -1;
@@ -266,7 +246,7 @@ public class RangeDefinition
     public string End { get; set; } = "";
 
     /// <summary>
-    /// Type of defintion, supported : 'jumptable'
+    /// Type of definition, supported : 'jumptable'
     /// </summary>
     public string Type { get; set; } = "jumptable";
 }
@@ -276,7 +256,6 @@ public class RangeDefinition
 
 The following features are not yet implemented but are planned to be:
 
-- Use StdIn\Out so an instance doesn't need to be running. [Issue](https://github.com/Yazwh0/BitMagic/issues/8)
 - File system hooks so the a `.prg` can be loaded via the kernel and debugged as you'd expect. [Issue](https://github.com/Yazwh0/BitMagic/issues/7)
 - Improved SDCard support inline with the Emulator.
 - Step Out. [Issue](https://github.com/Yazwh0/BitMagic/issues/6)
