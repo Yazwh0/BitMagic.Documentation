@@ -26,7 +26,6 @@ The following features are not yet implemented in the Emulator. If you want to u
 - [VERA PSG Audio](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/6)
 - [YM Audio](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/7)
 - [RTC Clock](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/8)
-- [Joysticks](https://github.com/Yazwh0/BitMagic.X16Emulator/issues/9)
 
 ### Not Yet 100% Complete
 
