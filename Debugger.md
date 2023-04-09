@@ -131,6 +131,16 @@ public class X16DebugProject
     public string Source { get; set; } = "";
 
     /// <summary>
+    /// Directly run the compiled code, or if false compile the source and add it as a file to the SDCard.
+    /// </summary>
+    public bool RunSource { get; set; } = false;
+
+    /// <summary>
+    /// Location to save the .prg from the source file on the host. (Not on the sdcard.)
+    /// </summary>
+    public string SourcePrg { get; set; } = "";
+
+    /// <summary>
     /// Start address. If omitted or -1, will start the ROM normally from the vector at $fffc.
     /// </summary>
     [JsonProperty("startAddress", DefaultValueHandling = DefaultValueHandling.Ignore)]
