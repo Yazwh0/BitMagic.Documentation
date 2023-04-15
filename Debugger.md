@@ -270,9 +270,6 @@ The following features are not yet implemented but are planned to be:
 
 - File system hooks so the a `.prg` can be loaded via the kernel and debugged as you'd expect. [Issue](https://github.com/Yazwh0/BitMagic/issues/7)
 - Improved SDCard support inline with the Emulator.
-- Watches. [Issue](https://github.com/Yazwh0/BitMagic/issues/5)
 - Breakpoints on data changes. (Need to explore how we'd do this with DAP.)
-- Conditional Breakpoints. [Issue](https://github.com/Yazwh0/BitMagic/issues/4)
-- Logpoints. [Issue](https://github.com/Yazwh0/BitMagic/issues/3)
 - Template Engine support. [Issue](https://github.com/Yazwh0/BitMagic/issues/2)
 - Cartridge support. [Issue](hhttps://github.com/Yazwh0/BitMagic/issues/1)
