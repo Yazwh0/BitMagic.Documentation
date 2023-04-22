@@ -198,6 +198,11 @@ public class X16DebugProject
     /// Files to add to the root directory of the SDCard. Wildcards accepted.
     /// </summary>
     public string[] SdCardFiles = new string[] { };
+
+    /// <summary>
+    /// Capture changes between every time the emulator is paused. (Eg breakpoints or stepping)
+    /// </summary>
+    public bool CaptureChanges { get; set; } = false;    
 }
 
 public class RtcNvram
