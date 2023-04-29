@@ -34,7 +34,7 @@ If you don't want to enter the filename of what to debug each time, change the `
 
 ![Debugger Running](Images/DebuggerRunning.png)
 
-## Watches and Breakpoint
+## Watches and Breakpoints
 
 BitMagic has support for conditional breakpoints, log points, hit count breakpoints and extensive Watches.
 
