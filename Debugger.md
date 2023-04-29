@@ -34,6 +34,14 @@ If you don't want to enter the filename of what to debug each time, change the `
 
 ![Debugger Running](Images/DebuggerRunning.png)
 
+## Watches and Breakpoint
+
+BitMagic has support for conditional breakpoints, log points, hit count breakpoints and extensive Watches.
+
+Please see the [Watches and Breakpoints](Debugger/WatchesBreakpoints.md) page for more information.
+
+![LogPoint](Images/Logpoint.gif)
+
 ## Kernel Symbols
 
 The best way to run the debugger is with Kernel symbols. To do this, you'll need to get hold of them but they should be included with whichever means you've obtained the Rom.
