@@ -80,7 +80,6 @@ In normal operation there is a set scope hexarchy of `App:Main:Proc:Constant`, f
 .proc test
 .const something $1234
 .endproc
-
 ```
 
 In this case `something` can be thought of as `App:Main:test:something`. The `:` is a separator between the different levels of the hierarchy. As procedures can't be nested, this hierarchy will always hold true unless the `scope` keyword is used.
@@ -114,9 +113,6 @@ To find a constant BitMagic uses the current scope as the highest level of prece
 If no match, it will move up to the parent and then check the child scopes for an exact match which includes the full scope string.
 
 If no match, it will perform the same operation at the parent scope.
-
-If there is still no match then a search is applied at the top `App` level which is less strict where wildcards can be used. A wildcard must match on only one name to match, otherwise the looking is considered to be a failure.
-
 
 ### Labels
 
@@ -157,7 +153,6 @@ For example
 .loop:          ; C
     ...
 .loop:          ; D
-
 ``````
 
 ## Expressions
@@ -182,7 +177,6 @@ Constants such as labels or defined constants can be used within expressions, fo
 
 .data:
     .byte $00, $11, $12, $13, $14
-
 ```
 
 Constants are of course bound by their [scope](#scopes).
