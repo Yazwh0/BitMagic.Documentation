@@ -20,7 +20,7 @@ The easiest way to get something working is to create a `project.json` file as f
 {
     "source": "",
     "machine" : "CommanderX16R42",
-    "ramBankNames" : [ "Kernel_Ram" ]
+    "emulatorDirectory" : "c:\\x16emu"
 }
 ```
 
@@ -44,78 +44,11 @@ Please see the [Watches and Breakpoints](Debugger/WatchesBreakpoints.md) page fo
 
 ## Kernel Symbols
 
-The best way to run the debugger is with Kernel symbols. To do this, you'll need to get hold of them but they should be included with whichever means you've obtained the Rom.
+The best way to run the debugger is with Kernel symbols.
 
-If the symbols are in `c:\Documents\Source\x16-rom\build\x16`, then you can replace your `project.json` with the follow which will decorate the disassembled code with symbols, making Rom debugging much easier!
+By setting the `EmulatorDirectory` to the folder containing the official emulator, the symbols will be set up automatically.
 
-```json
-{
-    "source": "",
-    "machine" : "CommanderX16R42",
-    "ramBankNames" : [ "Kernel_Ram" ],
-    "romFile" : "C:\\Documents\\Source\\x16-rom\\build\\x16\\rom.bin",
-    "symbols": [
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\kernal.sym",
-            "romBank": 0,
-            "RangeDefinitions" : [
-                {
-                    "type" : "jumpTable",
-                    "Start" : "0xFEBD",
-                    "End" : "0xFF80"                    
-                },                
-                {
-                    "Start" : "0xFF81",
-                    "End" : "0xFFF6"
-                }
-            ]
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\keymap.sym",
-            "romBank": 1
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\dos.sym",
-            "romBank": 2,
-            "RangeDefinitions" : [
-                {
-                    "type" : "jumpTable",
-                    "Start" : "0xc000",
-                    "End" : "0xc036"
-                }
-            ]
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\geos.sym",
-            "romBank": 3
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\basic.sym",
-            "romBank": 4
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\monitor.sym",
-            "romBank": 5
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\charset.sym",
-            "romBank": 6
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\codex.sym",
-            "romBank": 7
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\graph.sym",
-            "romBank": 8
-        },
-        {
-            "name": "C:\\Documents\\Source\\x16-rom\\build\\x16\\audio.sym",
-            "romBank": 10
-        }
-    ]
-}
-```
+If you want to run a custom ROM, then the symbols are overridable via the `project.json`.
 
 ## Project File
 
@@ -124,8 +57,6 @@ While its possible to start debug a `.bmasm` file directly, it is better to use 
 The schema is below:
 
 ```c#
-public class X16DebugProject
-{
 public class X16DebugProject
 {
     /// <summary>
@@ -163,56 +94,84 @@ public class X16DebugProject
     public string RomFile { get; set; } = "";
 
     /// <summary>
+    /// Folder for the official X16 Emulator.
+    /// The rom.bin file from this directory will be used if not set by RomFile.
+    /// Symbols for the ROM banks will also be loaded from here, using the names from RomBankNames + .sym extension.
+    /// </summary>
+    [JsonProperty("emulatorDirectory", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public string EmulatorDirectory { get; set; } = "";
+
+    /// <summary>
     /// List of files that can be imported for symbols.
     /// </summary>
     [JsonProperty("symbols", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public SymbolsFile[] Symbols { get; set; } = Array.Empty<SymbolsFile>();
 
     /// <summary>
-    /// Show DAP messages between calling host and debugger.
-    /// </summary>
-    [JsonProperty("showDAPMessage", DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public bool ShowDAPMessages { get; set; } = false;
-
-    /// <summary>
     /// Display names for the Rom banks.
     /// </summary>
-    public string[] RomBankNames { get; set; } = new string[] { "Kernel", "Keyboard", "Dos", "Geos", "Basic", "Monitor", "Charset", "Codex", "Graph", "Demo", "Audio" };
+    [JsonProperty("romBankNames", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public string[] RomBankNames { get; set; } = new string[] { "Kernal", "Keymap", "Dos", "Fat32", "Basic", "Monitor", "Charset", "Codex", "Graph", "Demo", "Audio", "Util", "Bannex", "X16Edit1", "X16Edit2" };
 
     /// <summary>
     /// Display names for the Ram banks.
     /// </summary>
+    [JsonProperty("ramBankNames", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public string[] RamBankNames { get; set; } = Array.Empty<string>();
 
     /// <summary>
     /// Machine to load globals from if there is no bmasm source.
     /// </summary>
+    [JsonProperty("machine", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public string Machine { get; set; } = "";
 
     /// <summary>
     /// Prefill the keyboard buffer with this data. 16bytes max, rest are discarded.
     /// </summary>
+    [JsonProperty("keyboardBuffer", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public byte[] KeyboardBuffer { get; set; } = new byte[] { };
 
     /// <summary>
     /// Prefill the mouse buffer with this data. 8bytes max, rest are discarded.
     /// </summary>
+    [JsonProperty("mouseBuffer", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public byte[] MouseBuffer { get; set; } = new byte[] { };
 
     /// <summary>
     /// RTC NvRam Data
     /// </summary>
+    [JsonProperty("nvRam", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public RtcNvram NvRam { get; set; } = new RtcNvram();
 
     /// <summary>
     /// Files to add to the root directory of the SDCard. Wildcards accepted.
     /// </summary>
-    public string[] SdCardFiles = new string[] { };
+    [JsonProperty("sdCardFiles", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public string[] SdCardFiles { get; set; } = new string[] { };
 
     /// <summary>
     /// Capture changes between every time the emulator is paused. (Eg breakpoints or stepping)
     /// </summary>
-    public bool CaptureChanges { get; set; } = false;    
+    [JsonProperty("captureChanges", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public bool CaptureChanges { get; set; } = false;
+
+    /// <summary>
+    /// Cartridge file to load
+    /// </summary>
+    [JsonProperty("cartridge", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public string Cartridge { get; set; } = "";
+
+    /// <summary>
+    /// Display Segments
+    /// </summary>
+    [JsonProperty("compileOptions", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public CompileOptions? CompileOptions { get; set; } = null;
+
+    /// <summary>
+    /// Value to fill CPU RAM and VRAM with at startup.
+    /// </summary>
+    [JsonProperty("memoryFillValue", DefaultValueHandling = DefaultValueHandling.Ignore)]
+    public byte MemoryFillValue { get; set; } = 0;
 }
 
 public class RtcNvram
