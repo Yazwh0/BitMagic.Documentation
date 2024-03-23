@@ -1,12 +1,12 @@
 # BitMagic - The Compiler
 
-The Compiler can compile assembly code `.bmasm` files into `.prg` or `.bin` files which can be used by the Commander X16.
+The Compiler can compile assembly code `.bmasm` text files into `.prg` or `.bin` files which can be used by the Commander X16.
 
 ## 65c02 Syntax
 
 The compiler accepts standard 6502\65c02 syntax.
 
-It is enhanced by macros written in c#, which can be used like macros in those in other assemblers to generate code before it is compiled. Please see the [Template Engine](TemplateEngine.md) section for more details.
+It is enhanced by macros written in c#. These can be used like macros in those in other assemblers to generate code before it is compiled. Please see the [Template Engine](TemplateEngine.md) section for more details.
 
 For 65c02 code, each line can either start with a valid opcode or start with a period to denote a compiler instruction. Otherwise it is assumed to be part of a C# macro.
 
@@ -18,7 +18,7 @@ BitMagic uses `;` to define the start of a comment if the line starts with a `.`
 
 ## Compiler Instructions
 
-If the instruction ends with a semicolon and isn't a defined keyword, then the compiler will evaluate it as a [label](#labels).
+Labels are single words which start with `.` and end with a `:`. There can't be anything before the first period, but commends are allowed after the colon. Opcodes are not allowed after the label definition. See [label](#labels) for more information.
 
 The instructions supported are below with their parameters defined in the table below.
 
