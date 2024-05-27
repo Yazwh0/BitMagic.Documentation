@@ -53,7 +53,7 @@ Files are added in order that they are included within the `project.json` file.
 | -- | -- | -- |
 | Symbols | string | Filename for the symbols file. |
 | RomBank | int? | ROM bank that the symbols are for. Omit if not a rombank file. If set any symbols in the ROM area will be discarded. |
-| RamBank | int? | RAM bank that the symbols are for. Omit if not a rambank file. if set any symbols in the RAM area will be discarded. |
+| RamBank | int? | RAM bank that the symbols are for. Omit if not a rambank file. If set any symbols in the RAM area will be discarded. |
 | Filename | string | X16 Filename that the symbols are for. Omit if not a X16 binary. |
 | RangeDefinitions | [RangeDefinition](#range-definition)[] | Range of memory that is a jump table. Used to create extra symbols. |
 
