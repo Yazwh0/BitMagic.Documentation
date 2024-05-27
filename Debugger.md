@@ -19,7 +19,6 @@ The easiest way to get something working is to create a `project.json` file as f
 ```json
 {
     "source": "",
-    "machine" : "CommanderX16R42",
     "emulatorDirectory" : "c:\\x16emu"
 }
 ```
@@ -177,12 +176,12 @@ public class X16DebugProject
     /// </summary>
     [JsonProperty("memoryFillValue", DefaultValueHandling = DefaultValueHandling.Ignore)]
     public byte MemoryFillValue { get; set; } = 0;
-    
+
     /// <summary>
     /// Base Path, should try to use this for all other paths
     /// </summary>
     [JsonProperty("basePath", DefaultValueHandling = DefaultValueHandling.Ignore)]
-    public string BasePath { get; set; } = "";    
+    public string BasePath { get; set; } = "";
 }
 
 public class RtcNvram
