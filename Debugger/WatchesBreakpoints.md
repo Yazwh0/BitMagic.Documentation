@@ -1,4 +1,11 @@
+---
+layout: page
+title: Watches and Breakpoints
+permalink: /debugger/watchesandbreakpoints
+---
 # Watches and Breakpoints
+
+**Please note the documentation is a currently a work in progress while the old docs are brought up to date.**
 
 Expressions are used while debugging to show the state of the machine in the Watch window, to set [conditional and hit-count breakpoints](https://code.visualstudio.com/docs/editor/debugging#_conditional-breakpoints), along with setting [logpoints](https://code.visualstudio.com/docs/editor/debugging#_logpoints).
 

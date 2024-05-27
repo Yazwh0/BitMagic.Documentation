@@ -5,6 +5,8 @@ permalink: /compiler
 ---
 # BitMagic - The Compiler
 
+**Please note the documentation is a currently a work in progress while the old docs are brought up to date.**
+
 The Compiler can compile assembly code `.bmasm` text files into `.prg` or `.bin` files which can be used by the Commander X16.
 
 ## 65c02 Syntax

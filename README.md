@@ -2,23 +2,14 @@
 layout: page
 permalink: /
 ---
-# BitMagic
+# What is BitMagic?
 
-BitMagic is a project with the aim to create a single Commander X16 Development Suite using VSCode.
+BitMagic is a project whose aim is to create a Commander X16 Development Suite based within VSCode. It has a good compatibility with the X16, although not 100%. You can follow compatibility issues on [GitHub](https://github.com/Yazwh0/BitMagic/issues).
 
-It is comprised of four parts:
+The debugger includes a fully featured compiler that includes a macro language that can do everything a developer couple possibly want.
 
-- [Template Engine](/TemplateEngine)
-- [Compiler](/Compiler)
-- [Debugger](/Debugger)
-- [Emulator](/Emulator)
+From within VSCode you can develop and debug like you would with any modern language.
 
-Generally you'll want to start with either the Debugger or the Emulators, so please follow those links for more information!
-
-Please note, this is not an 'official' application that is endorsed by the Commander X16 team.
-
-It is also a work in progress, for development you may find the [Official Emulator](https://github.com/X16Community/x16-emulator) or [Box16](https://github.com/indigodarkwolf/box16) a better choice.
-
-You will need to obtain a R46 (or later) [Rom](/Rom).
+BitMagic rounds off the sharp corners of 65c02 development, making the retro dev fun!
 
 ![Debugger Example](/Images/DebuggerExample.png?raw=true)

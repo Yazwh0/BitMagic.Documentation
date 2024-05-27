@@ -5,6 +5,8 @@ permalink: /rom
 ---
 # Obtaining a Rom
 
+**Please note the documentation is a currently a work in progress while the old docs are brought up to date.**
+
 As the Commander X16 Rom containers licensed code, it cannot be distributed with the BitMagic binaries.
 
 It needs a ROM version of 'R46' or later.

@@ -7,6 +7,8 @@ permalink: /emulator
 
 [![Build](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml/badge.svg)](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml)
 
+**Please note the documentation is a currently a work in progress while the old docs are brought up to date.**
+
 Emulating the Commander X16 for general use.
 
 ## Download
