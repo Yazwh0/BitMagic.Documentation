@@ -1,3 +1,8 @@
+---
+layout: page
+title: Debugger
+permalink: /debugger
+---
 # BitMagic - The Debugger
 
 [![Build](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml/badge.svg)](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml)
@@ -10,7 +15,7 @@ Currently only Windows is supported. In theory this could run on any x64 system 
 
 You can obtain the VSCode extension from the extensions market place. Simply search for `BitMagic` and click install.
 
-For legal reasons, you will need to obtain your own copy of the [Rom](Rom.md).
+For legal reasons, you will need to obtain your own copy of the [Rom](/Rom).
 
 ## Getting Started
 
@@ -37,7 +42,7 @@ If you don't want to enter the filename of what to debug each time, change the `
 
 BitMagic has support for conditional breakpoints, log points, hit count breakpoints and extensive Watches.
 
-Please see the [Watches and Breakpoints](Debugger/WatchesBreakpoints.md) page for more information.
+Please see the [Watches and Breakpoints](Debugger/WatchesBreakpoints) page for more information.
 
 ![LogPoint](Images/Logpoint.gif)
 

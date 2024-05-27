@@ -1,3 +1,8 @@
+---
+layout: page
+title: Emulator
+permalink: /emulator
+---
 # BitMagic - The Emulator
 
 [![Build](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml/badge.svg)](https://github.com/Yazwh0/BitMagic/actions/workflows/build-test.yml)

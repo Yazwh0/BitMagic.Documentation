@@ -1,3 +1,8 @@
+---
+layout: page
+title: Rom
+permalink: /rom
+---
 # Obtaining a Rom
 
 As the Commander X16 Rom containers licensed code, it cannot be distributed with the BitMagic binaries.
