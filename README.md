@@ -15,6 +15,6 @@ Please note, this is not an 'official' application that is endorsed by the Comma
 
 It is also a work in progress, for development you may find the [Official Emulator](https://github.com/X16Community/x16-emulator) or [Box16](https://github.com/indigodarkwolf/box16) a better choice.
 
-You will need to obtain a R43 (or later) [Rom](/Rom.md).
+You will need to obtain a R46 (or later) [Rom](/Rom.md).
 
 ![Debugger Example](/Images/DebuggerExample.png?raw=true)
