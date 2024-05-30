@@ -1,7 +1,7 @@
 ---
-layout: page
+layout: home
 title: Compiler
-permalink: /compiler
+permalink: /compiler/
 ---
 # BitMagic - The Compiler
 
