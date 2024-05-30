@@ -4,11 +4,13 @@ layout: page
 permalink: /debugger/projectfile
 ---
 
+## Project File
+
 Using a project file is the easiest way to control your project.
 
 It is a standard `json` file. The extension has embedded json schema definition to aid editing.
 
-# Definition
+## Definition
 
 The following properties can be used:
 
@@ -37,7 +39,7 @@ The following properties can be used:
 | BasePath | string | Base Path, should try to use this for all other paths. |
 | Files | [DebugProjectFile](#debug-project-file) | Files to be debugged. |
 
-## SD Card File
+### SD Card File
 
 Files are added in order that they are included within the `project.json` file.
 
@@ -47,7 +49,7 @@ Files are added in order that they are included within the `project.json` file.
 | Dest | string | Location on the SDCard to place the files. |
 | AllowOverwrite | bool | Allow overwriting of files on the SDCard. |
 
-## Symbols File
+### Symbols File
 
 | Name | Type | Description |
 | -- | -- | -- |
@@ -57,7 +59,7 @@ Files are added in order that they are included within the `project.json` file.
 | Filename | string | X16 Filename that the symbols are for. Omit if not a X16 binary. |
 | RangeDefinitions | [RangeDefinition](#range-definition)[] | Range of memory that is a jump table. Used to create extra symbols. |
 
-## Range Definition
+### Range Definition
 
 | Name | Type | Description |
 | -- | -- | -- |
@@ -65,7 +67,7 @@ Files are added in order that they are included within the `project.json` file.
 | End | string | End address of the jump table. |
 | Type | string | Type of definition, supported : 'jumptable' |
 
-## Rtc Nvram
+### Rtc Nvram
 
 | Name | Type | Description |
 | -- | -- | -- |
@@ -73,18 +75,18 @@ Files are added in order that they are included within the `project.json` file.
 | Data | byte[] | Data to load into 0x00 -> 0x60 in the RTCs NVRAM. |
 | WriteFile | string | Filename to store the RTCs NVRAM in. This will overwrite. |
 
-## Debug Project File
+### Debug Project File
 
 Debug Project Files have different properties depending on the `Type`.
 
-### Bitmagic Input File
+#### Bitmagic Input File
 
 | Name | Type | Description |
 | -- | -- | -- |
 | Type | **bitmagic** | Defines the input file as a BitMagic input file. |
 | Filename | string | Filename of the `.bmasm` file. |
 
-### Cc65 Input File
+#### Cc65 Input File
 
 | Name | Type | Description |
 | -- | -- | -- |
@@ -97,7 +99,7 @@ Debug Project Files have different properties depending on the `Type`.
 | Includes | string[] | Included files. |
 | BasePath | string | Base path for the cc65 project. |
 
-## Compile Options
+### Compile Options
 
 | Name | Type | Description |
 | -- | -- | -- |
