@@ -1,4 +1,4 @@
----
+<!-- ---
 layout: page
 title: Rom
 permalink: /rom
@@ -18,4 +18,4 @@ There are two ways to obtain a copy of the Rom:
 
 The easiest way to reference the rom and the symbols is to set `EmulatorDirectory` in your `project.json` to the location of the official X16 Emulator on your machine, and the debugger will use the files required.
 
-Alternatively once you have the `rom.bin` you can either use command line parameters, config files to reference it by either setting it with `RomFile` in the `project.json`, or create a environment variable `BITMAGIC_ROM` that has the full path and filename of the rom file.
+Alternatively once you have the `rom.bin` you can either use command line parameters, config files to reference it by either setting it with `RomFile` in the `project.json`, or create a environment variable `BITMAGIC_ROM` that has the full path and filename of the rom file. -->
