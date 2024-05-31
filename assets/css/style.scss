@@ -26,3 +26,35 @@ tr:nth-child(odd){
 code.highlighter-rouge {
     color: #ff00cc;
 }
+
+span.toplevel
+{
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color : $conifer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+span.subdir
+{
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color : $conifer;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+a.dir
+{
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color : $conifer;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+a.subdir
+{
+    font-family: Monaco, "Bitstream Vera Sans Mono", "Lucida Console", Terminal, monospace;
+    color : $conifer;
+    font-weight: bold;
+    font-size: 14px;
+}
