@@ -23,7 +23,7 @@ email: yazmon2050@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   The Complete Development Environment for the Commander X16.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://bigmagic.org" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://bitmagic.org" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: Yazwh0
 
 # Build settings
