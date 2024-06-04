@@ -12,7 +12,7 @@ Note: This can only be viewed while there is an active debugging session.
 
 ## How To Open
 
-To open the view, open the command palette and select `BitMagic: Open the History View`. Consult the VSCode [documentation](https://code.visualstudio.com/api/extension-guides/command) on how to customise access to that and other commands.
+To open the view, open the command palette and select `BitMagic: Open The History View`. Consult the VSCode [documentation](https://code.visualstudio.com/api/extension-guides/command) on how to customise access to that and other commands.
 
 Click Update to display the history. If BitMagic knows where the opcode came from, when you hover over it with your mouse it will appear as a 'link'. Click on it to be taken to the source.
 
