@@ -104,7 +104,7 @@ This can better be explained with an example:
 
     .scope newscope
         .const something $34
-        lda #test1              ; $34
+        lda #something          ; $34
     .endscope
 
     lda #something              ; $12
