@@ -13,7 +13,9 @@ You can debug your applications from within VSCode, like you would any modern la
 
 Windows is *beta*.
 
-Linux is *alpha*. I do not have a Linux machine to test with.
+Linux (x64) is *beta*. Tested using Ubuntu.
+
+Apple devices are not supported, but if its x64 based it *might* work. Try overriding the system check via the settings menu and let me know!
 
 ## Installation
 

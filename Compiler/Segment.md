@@ -22,9 +22,8 @@ A segment can be defined in code using the `.segment` verb. Using a `.endsegment
 
 The following parameters are also available:
 
-| --- | --- | --- | --- |
-| Name | Optional | Type | Description
-| --- | --- | --- | --- |
+| Name | Optional | Type | Description |
+| ---- | -------- | ---- | ----------- |
 | `name` | false | string | The name of the segment. If the segment has already been declared, that current segment will switch to that one and any parameters will be used. |
 | `address` | true | number | Location where the segment will be in memory. Can only be set before code or data has been added. If not set it will follow on from the previously defined segment. |
 | `maxsize` | true | number | Maximum size for the segment. Will error if it overflows. |
