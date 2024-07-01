@@ -11,11 +11,13 @@ You can debug your applications from within VSCode, like you would any modern la
 
 ## Host System Compatibility
 
+The machine must have a x64 CPU, as the underlying emulator is written in x64 assembler.
+
 Windows is *beta*.
 
-Linux (x64) is *beta*. Tested using Ubuntu.
+Linux is *beta*. Tested using Ubuntu.
 
-Apple devices are not supported, but if its x64 based it *might* work. Try overriding the system check via the settings menu and let me know!
+Apple devices are not supported but if its x64 based it *might* work. Try overriding the system check via VSCode's settings menu and let me know!
 
 ## Installation
 
