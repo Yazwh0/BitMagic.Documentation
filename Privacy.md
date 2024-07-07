@@ -1,7 +1,7 @@
 ---
 title: Privacy
 layout: home
-permalink: /privacy/
+permalink: /privacy
 ---
 
 No personal data is collected by the creator of the BitMagic website.
