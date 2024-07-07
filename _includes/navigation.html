@@ -1,7 +1,7 @@
 <nav class="site-nav">
     <div class="trigger">
         {%- for p in site.pages -%}
-        {% if p.title and p.layout == "home" and p.dir != "/" %}
+        {% if p.title and p.layout == "home" and p.dir != "/" and p.dir != "/privacy/" %}
         <span class="toplevel">../</span><a class="page-link dir" href="{{ p.url | relative_url }}">{{ p.title | escape }}</a>
         {% endif %}
         {%- endfor -%}
