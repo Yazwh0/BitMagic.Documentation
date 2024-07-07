@@ -4,6 +4,8 @@ layout: page
 permalink: /compiler/segment
 ---
 
+# Segment
+
 A segment is an area that is targeted to a location in memory and that optionally could be written as a file.
 
 Every application must have at least one segment, typically this would start at `0x801` with a maximum length of `0x96fe` or 38,654 bytes.

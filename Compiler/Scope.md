@@ -4,6 +4,8 @@ layout: page
 permalink: /compiler/scope
 ---
 
+# Scope
+
 A [scope](https://en.wikipedia.org/wiki/Scope_(computer_science)) is a collection of variables, constants and code references. Scopes work in BitMagic how you'd expect them to work in other languages.
 
 Variables in the text below can refer to a label, constant, or other definition.

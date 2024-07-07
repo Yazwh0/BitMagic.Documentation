@@ -4,6 +4,8 @@ layout: home
 permalink: /madewithbitmagic/
 ---
 
+# Made With BitMagic
+
 Here are some projects made with BitMagic
 
 ## Planet X16 +4 Trainer

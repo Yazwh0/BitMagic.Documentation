@@ -4,6 +4,8 @@ layout: page
 permalink: /debugger/layerviewer
 ---
 
+# Layer Viewer
+
 The layer viewer lets the developer see what each layer looks like from withing VSCode.
 
 Note: This can only be viewed while there is an active debugging session.

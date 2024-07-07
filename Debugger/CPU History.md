@@ -4,7 +4,7 @@ layout: page
 permalink: /debugger/cpuhistory
 ---
 
-## CPU History
+# CPU History
 
 While debugging the X16 you can view the previous 1000 CPU operations.
 

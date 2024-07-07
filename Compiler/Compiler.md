@@ -3,7 +3,7 @@ layout: home
 title: Compiler
 permalink: /compiler/
 ---
-# BitMagic - The Compiler
+# The Compiler
 
 **Please note the documentation is a currently a work in progress while the old docs are brought up to date.**
 

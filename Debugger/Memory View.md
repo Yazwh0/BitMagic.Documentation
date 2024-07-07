@@ -4,6 +4,8 @@ layout: page
 permalink: /debugger/memoryview
 ---
 
+# Memory Viewer
+
 The memory view is a visual representation of how the system is using its memory.
 
 It also includes a search functionality to allow developers to find where values are stored.
