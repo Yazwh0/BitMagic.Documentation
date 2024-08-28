@@ -4,7 +4,7 @@ layout: page
 permalink: /debugger/projectfile
 ---
 
-# Project File
+## Project File
 
 Using a project file is the easiest way to control your project.
 
