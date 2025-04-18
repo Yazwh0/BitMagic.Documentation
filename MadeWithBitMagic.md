@@ -8,6 +8,14 @@ permalink: /madewithbitmagic/
 
 Here are some projects made with BitMagic
 
+## X4096
+
+An intro featuring full frame rate vectors!
+
+[Download](/archives/X4096.ZIP)
+
+![X4096](/Images/x4096.screenshot.png)
+
 ## Planet X16 +4 Trainer
 
 A trainer for Planet X16 by the 8BG.
