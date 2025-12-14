@@ -18,7 +18,7 @@ An intro featuring full frame rate vectors!
 
 ## Planet X16 +4 Trainer
 
-A trainer for Planet X16 by the 8BG.
+A trainer for Planet X16 by 8BG.
 
 [Download](/archives/PX16-TRN.ZIP)
 
@@ -41,3 +41,11 @@ The source demonstrates how macros can be used to make large complex tasks easie
 [Download Including Source](/archives/DataPortTester.zip)
 
 ![DataPort Tester](/Images/DataPortTester.png)
+
+## Not made with BitMagic but made by me!
+
+The intro that started it all. It was trying to debug ca65's macro code that made me want to write my own compiler as I simply couldn't find out how to see what the macro code produced. The loop of using VSC to write code, ca65 to compile and then run in the official emulator was such a burden. I knew there could be a better way!
+
+[Download](/archives/1160.zip)
+
+![1160](/Images/1160.png)
