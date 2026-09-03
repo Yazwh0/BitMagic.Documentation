@@ -120,4 +120,4 @@ Given a `label` it emits `10 SYS <label>` instead, so the entry point can be any
     ; ...
 ```
 
-The address is written as four decimal digits, so `label` has to be below `10000` (`$2710`). `invalidHeader: true` drops the trailing two-byte end-of-program marker, leaving a ten-byte header.
+The helper writes the address as exactly four decimal digits, so `label` must be below `10000` (`$2710`); a higher address is silently truncated and the `SYS` comes out wrong. `invalidHeader: true` drops the trailing two-byte end-of-program marker, leaving a ten-byte header.
