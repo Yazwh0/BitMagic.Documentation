@@ -59,4 +59,4 @@ show_downloads: false
 
 exclude:
   - README.md
-  - TemplateEngine.md
+  - STYLE.md

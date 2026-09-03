@@ -2,40 +2,92 @@
 title: Scope
 layout: page
 permalink: /compiler/scope
+description: How BitMagic scopes constants, labels and definitions, and how names are resolved.
 ---
 
 # Scope
 
-A [scope](https://en.wikipedia.org/wiki/Scope_(computer_science)) is a collection of variables, constants and code references. Scopes work in BitMagic how you'd expect them to work in other languages.
+Scope is what keeps the `loop` label in one routine from clashing with the `loop` in the next, and lets a sound library have an `init` that isn't your `init`.
 
-Variables in the text below can refer to a label, constant, or other definition.
+Every name you define (a label, a constant or a variable) belongs to where you wrote it:
 
-## Scope Hierarchy
+- inside a `.proc`, it is private to that procedure;
+- inside a `.scope`, or in a library, it is reached through that scope's name, for example `sound:init`;
+- at the top level, it goes into the current scope, which is `Main` unless you have changed it.
 
-Scopes in BitMagic consist of at least three levels.
+You mostly don't have to think about it. When you use a name, the compiler searches outward from where you are, so a procedure can use a constant from its own scope, or a machine constant from `App`, without writing the full path. Spell the path out only when a bare name would be ambiguous: `sound:init`, or `App:sound:init` from the root.
 
-The top level is the application, or `App`. This cannot be changed and holds all the predefined constants for the machine, such as the VERA addresses.
+Throughout this page, "name" means any of the three: a label, a constant or a variable.
 
-The next level down is the 'scope' set in code. By default this is the `Main` scope. This is akin to a namespace in other languages and lets us keep code that performs different functions separate. For example you could define a scope for your sound engine and one for your user input handling. The other prime example is so that libraries can keep their definitions away from the code they're being included into.
+## The name tree
 
-The third level is the current procedure. If you do not define a procedure, an anonymous one will be created, however it will not appear in the fully qualified variable names.
+Names live in a tree. A fully qualified name is the path through it, joined with `:`, so a constant `something` in `.proc test` in the default scope is `App:Main:test:something`.
 
-Extra layers can be defined by creating nested procedures. These can be name or unnamed to create anonymous scope blocks. As you'd expect, you can't guarantee the name of an anonymous proc. This doesn't mean the variables can be accessed from other scopes.
+- **`App`** is the root. It can't be changed. It holds the target machine's constants, such as the VERA register names, which the [project file](/debugger/projectfile#properties) sets for you.
+- **Scopes** sit directly under `App` and do not nest inside each other. The default is `Main`. Each one is a flat namespace, and it is the unit a library uses to keep its names to itself. A scope is opened by [`.scope`](/compiler/directives#scope) or attached to a [segment](/compiler/segment).
+- **Procedures** form a tree inside the current scope. Each [`.proc`](/compiler/directives#proc) has its own names, and a `.proc` inside a `.proc` nests. Names defined outside any `.proc` go into an anonymous procedure that doesn't show up in qualified names.
 
-To create a unique name for each label or constant, the names of the parts are concatenated together with `:` used as a separator.
+```bmasm
+.proc test
+    .const something $1234       ; App:Main:test:something
+.endproc
+```
 
-## Defaults
+## Resolving a name
 
-When a `proc` is defined an entry is made for the address of the proc. This is how `jmp <procname>` is compiled properly. An additional entry is created called `endproc` in the procs scope. This can be useful for storing data after the code.
+To resolve a name the compiler:
 
-## Viewing Names
+1. Looks for an exact match at the current level, the procedure or the scope.
+2. Looks in the child namespaces for the bare name. This is how a name can reach a sibling procedure.
+3. Otherwise repeats one level up, ending at `App`.
 
-All the variables can be viewed by setting the `compileOptions.displayVariables` to `true`.
+The search is case sensitive; if nothing matches, the build fails.
 
-## Accessing Variables
+A partially qualified name is resolved the same way, matching the end of the path. Leaving out a middle section makes it a wildcard: `App::counter` matches a `counter` in any one scope, and is an error if more than one matches.
 
-The simplest way to access a variable is through its name. If the name doesn't exist in the current scope then BitMagic will move up the scope tree looking for an exact match. This search is case sensitive. If there is no match then an error will be thrown.
+## Switching scope
 
-A fully or partially qualified name can be used. It its partially qualified it will look up the tree looking for an exact match.
+[`.scope`](/compiler/directives#scope) opens a scope; `.endscope` returns to the enclosing procedure's scope. A named scope is global, so opening the same name again later continues it.
 
-By omitting one section of the name that will act as a wildcard. For example `App::counter` will return counter in a scope, as long as it is unique. If it isn't unique it will error.
+```bmasm
+.proc test
+    .const something $12
+    lda #something              ; $12
+
+    .scope newscope
+        .const something $34
+        lda #something          ; $34
+    .endscope
+
+    lda #something              ; $12
+    lda #newscope:something     ; $34
+    lda #App:newscope:something ; $34
+.endproc
+```
+
+## Procedure names
+
+A `.proc` defines two names for you.
+
+The **procedure's own name** resolves to its first instruction, so `jsr clear_screen` and `jmp clear_screen` work. It is defined in the enclosing scope, so from elsewhere you write `clear_screen`, or `App:Main:clear_screen` in full.
+
+**`endproc`** is the address just past the procedure's last byte. It belongs to the procedure's own namespace: inside the procedure it is the bare name `endproc`; from outside it is `greeting:endproc`. Every `.proc` gets its own, so they never collide, and a nested `.proc` has an `endproc` separate from the one around it. Put data straight after `.endproc` and read it through `endproc`, and it stays correct if the code changes size.
+
+```bmasm
+.proc greeting
+    ldx #0
+.loop:
+    lda endproc, x       ; the text that follows this proc
+    beq done
+    jsr $ffd2            ; CHROUT
+    inx
+    bne loop
+.done:
+    rts
+.endproc
+    .byte "HELLO", 0     ; greeting:endproc points here
+```
+
+## Viewing names
+
+Set the `displayVariables` compile option to `true` to list every name and its value in the build output.

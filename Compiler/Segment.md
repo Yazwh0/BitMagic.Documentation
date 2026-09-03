@@ -2,63 +2,76 @@
 title: Segment
 layout: page
 permalink: /compiler/segment
+description: Segments are areas of memory that hold code or data and are optionally written to a file.
 ---
 
 # Segment
 
-A segment is an area that is targeted to a location in memory and that optionally could be written as a file.
+A segment is a named region of memory that holds code or data, and can optionally be written to a file.
 
-Every application must have at least one segment, typically this would start at `0x801` with a maximum length of `0x96fe` or 38,654 bytes.
+Every program has a `Main` segment. You can add more, anywhere in memory: a BSS-style block of uninitialised RAM, a zero-page area for hot variables, or several segments that share a RAM bank address.
 
-An application can have segments anywhere else in memory, for example you can declare a segment that would traditionally be called the `BSS` area. On the X16 this would be from `0x400` to `0x800`. You can also use `0x200` to `0x3ff` if you do not want to use any kernel functionality.
+A segment with no `filename` is fine as long as it holds nothing but reserved space. Give it code or initialised data with no filename and the build fails. Without a `maxsize` a segment grows freely; with one, overflowing it is an error.
 
-If the segment only holds *uninitialised* memory then you can omit the filename. If a segment doesn't have a filename, but contains data be that code or initialised memory an error will be thrown at compile time.
+## Main
 
-## Main Segment
+`Main` is the segment every program starts in. It begins at `$0801`, where the X16 loads a BASIC program, and a program run from BASIC has to fit between there and the I/O area at `$9f00`.
 
-The Default segment defined for every application is called 'Main' and starts at `0x801`. The filename is set to the the name of the initial source file with a `.PRG` file extension.
+Its output file is the source file's name with the extension changed to `.prg`, written with a two-byte load address at the front. `.endsegment` returns to `Main` from any other segment.
 
-## Definition
+## Defining a segment
 
-A segment can be defined in code using the `.segment` verb. Using a `.endsegment` will revert to the default 'Main' segment.
+`.segment` opens a segment; naming one that already exists switches back to it.
 
-The following parameters are also available:
+| Name | Type | Optional | Description |
+| ---- | ---- | -------- | ----------- |
+| `name` | string | no | The segment's name. Naming an existing segment switches to it, and any other parameters given are applied. |
+| `address` | number | yes | Where it sits in memory. Settable only before the segment has any code or data. If omitted, it follows on from the current segment. |
+| `maxsize` | number | yes | Maximum size. Overflowing it is an error. |
+| `filename` | string | yes | File to write for this segment. |
+| `scope` | string | yes | Default [scope](/compiler/scope) for the segment. A new one is created if not given. |
 
-| Name | Optional | Type | Description |
-| ---- | -------- | ---- | ----------- |
-| `name` | false | string | The name of the segment. If the segment has already been declared, that current segment will switch to that one and any parameters will be used. |
-| `address` | true | number | Location where the segment will be in memory. Can only be set before code or data has been added. If not set it will follow on from the previously defined segment. |
-| `maxsize` | true | number | Maximum size for the segment. Will error if it overflows. |
-| `filename` | true | string | Name of the file to write for this segment. |
-| `scope` | true | string | Default scope for the segment. If not set a new scope will be created. |
+## Viewing segments
+
+Set the `displaySegments` compile option to list every segment and its extent in the build output:
+
+```text
+Segment                   Start Size  End
+Main                      $0801 $0145 $0946
+```
 
 ## Examples
 
-Here are a handful of examples to demonstrate how to define a segment.
+### A BSS area
 
-### BSS Segment
+Reserved RAM from `$400`, `$400` bytes long, with no file. On the X16 the `$400` to `$800` region is free for this, as is `$200` to `$3ff` if you are not using the KERNAL.
 
-To define a BSS segment which starts at `0x400` and is `0x400` bytes in length.
-
-```asm
-.segment BSS 0x400 0x400
+```bmasm
+.segment BSS $400 $400
 ```
 
-### Ram Bank
+### Zero page
 
-You can define many segments that would be in a RAM Bank. As the address is always from the CPU point of view, they would all start at `0xa000`. Its up to the developer to ensure they are loaded and referenced correctly!
+The zero page is where you keep your most-used variables. Here the segment runs from `$22` for up to `$5d` bytes, takes the scope `app_general`, and `_` skips the filename:
 
-Because the current segment can be changed at anytime, its a good idea to define all the segments in one place like this:
+```bmasm
+.segment ZP $22, $5d, _, app_general
+```
 
-```asm
+### Several segments, one RAM bank
+
+Addresses are always from the CPU's point of view, so segments destined for different RAM banks all start at `$a000`. It is up to you to page the right bank in before touching each one.
+
+Define them together so the layout lives in one place:
+
+```bmasm
 .segment MUSIC $a000 $2000 MUSIC.BIN
 .segment SNDFX $a000 $2000 SNDFX.BIN
 ```
 
-### Zero Page
+The [template engine](/templateengine/csharp-blocks#header-directives) `!` prefix does the same from the top of the file. A `!` line runs in the template's setup phase, before the body, so every segment exists before any code that uses one:
 
-Use of the ZeroPage (or DataPage) is essential for any application. This can be declared as below, where the segment has the scope of 'app_general' and there is no file as `_` skips the parameter.
-
-```asm
-.segment ZP $22, $5d, _, app_general
+```bmasm
+!segment MUSIC $a000 $2000 MUSIC.BIN
+!segment SNDFX $a000 $2000 SNDFX.BIN
 ```

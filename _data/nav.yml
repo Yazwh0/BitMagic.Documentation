@@ -1,0 +1,68 @@
+# Site navigation tree, rendered by _includes/navigation.html.
+# Only list pages that actually build.
+
+- title: Home
+  url: /
+
+- title: Getting Started
+  url: /getting-started
+
+- title: Compiler
+  url: /compiler/
+  children:
+    - title: Directives
+      url: /compiler/directives
+    - title: Segment
+      url: /compiler/segment
+    - title: Scope
+      url: /compiler/scope
+    - title: Labels
+      url: /compiler/labels
+    - title: Expressions
+      url: /compiler/expressions
+
+- title: Template Engine
+  url: /templateengine/
+  children:
+    - title: C# Blocks
+      url: /templateengine/csharp-blocks
+    - title: BM Library
+      url: /templateengine/bm-library
+
+- title: Debugger
+  url: /debugger/
+  children:
+    - title: Debugging
+      url: /debugger/debugging
+    - title: Project File
+      url: /debugger/projectfile
+    - title: Watches and Breakpoints
+      url: /debugger/watchesandbreakpoints
+    - title: CPU History
+      url: /debugger/cpuhistory
+    - title: Memory Viewer
+      url: /debugger/memoryview
+    - title: Layer Viewer
+      url: /debugger/layerviewer
+    - title: Sprite Viewer
+      url: /debugger/spriteviewer
+    - title: CPU Profiler
+      url: /debugger/cpuprofiler
+    - title: Multiline Template Code
+      url: /debugger/multiline-template-code
+    - title: cc65 Projects
+      url: /debugger/cc65
+
+- title: Emulator
+  url: /emulator
+  children:
+    - title: ROM
+      url: /emulator/rom
+    - title: SD Card
+      url: /emulator/sdcard
+
+- title: Settings
+  url: /settings
+
+- title: Made With BitMagic
+  url: /madewithbitmagic/

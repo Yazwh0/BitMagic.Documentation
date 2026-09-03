@@ -7,11 +7,22 @@
             "label": "Serve",
             "type": "shell",
             "command": "bundle exec jekyll serve --livereload",
+            // Force a Windows shell: the Ruby toolchain (bundle/jekyll) lives on the
+            // Windows PATH. Without this the task inherits the default terminal
+            // profile, and if that is WSL it fails with:
+            //   execvpe(bundle) failed: No such file or directory
+            "options": {
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": ["-NoProfile", "-Command"]
+                }
+            },
             "group": {
                 "kind": "test",
                 "isDefault": true
             },
             "isBackground": true,
+            "problemMatcher": [],
             "presentation": {
                 "reveal": "always",
                 "panel": "new"

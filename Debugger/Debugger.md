@@ -2,6 +2,7 @@
 layout: home
 title: Debugger
 permalink: /debugger/
+description: Debug the X16 inside VSCode. Launch a project, step, and inspect machine state.
 ---
 # The Debugger
 
@@ -17,31 +18,49 @@ Windows is *beta*.
 
 Linux is *beta*. Tested using Ubuntu.
 
-Apple devices are not supported but if its x64 based it *might* work. Try overriding the system check via VSCode's settings menu and let me know!
+Apple devices are not supported but if it's x64 based it *might* work. Try overriding the system check via VSCode's settings menu and let me know!
 
 ## Installation
 
-You can obtain the VSCode extension from the extensions market place. Simply search for `BitMagic` and click install.
+Get the extension from the VSCode marketplace by searching for `BitMagic`.
 
-By default the extension will download its own copy of the DotNet runtime and a copy of the official Emulator. This can be overridden in the settings.
+By default it downloads its own copy of the .NET runtime and the official emulator. Both can be overridden in the settings.
 
-## Getting Started
+## Getting started
 
-The easiest way to get something working is to create a `project.json` file as follows.
+Run **Create BitMagic Project** from the command palette to scaffold a project, then press `F5`. The full walkthrough is in [Getting Started](/getting-started).
+
+A launch config is `type: bmasm`, with `program` pointing at your `project.json`:
 
 ```json
 {
+    "type": "bmasm",
+    "request": "launch",
+    "name": "Debug Application",
+    "program": "${workspaceFolder}/project.json",
+    "stopOnEntry": false,
+    "cwd": "${workspaceRoot}"
 }
 ```
 
-Yes, that is a empty json file! With no settings it will simply launch to the X16 BASIC prompt.
-
-Go to the debug and run screen, click on `create a launch file`, and then on `BitMagic X16 ASM Debugger`.
-
-![Debug and Run](/Images/DebugAndRun.png)
-
-This will create a `launch.json`. Hit `F5` to run, and type `project.json`. A emulator window will then appear and VSCode will switch to its debugging mode. Click the pause button to see what the X16 is up to!
-
-If you don't want to enter the filename of what to debug each time, change the `program` entry in `launch.json` by replacing `${command:AskForProgramName}` with `project.json`.
+An empty `project.json` (`{}`) is valid and boots to the BASIC prompt.
 
 ![Debugger Running](/Images/DebuggerRunning.png)
+
+## What a session gives you
+
+[Debugging](/debugger/debugging) covers the core: stepping, the breakpoint types, disassembly, the memory hex editor and jump-to-cursor. Set it up with a [project file](/debugger/projectfile).
+
+## The debugger views
+
+While a debug session is active BitMagic adds several views, each opened from the command palette:
+
+- [Watches and Breakpoints](/debugger/watchesandbreakpoints): expressions, conditional and hit-count breakpoints, logpoints.
+- [CPU History](/debugger/cpuhistory): recent CPU operations.
+- [Memory Viewer](/debugger/memoryview): a visualisation of RAM reads, writes and execution, plus a value search.
+- [Layer Viewer](/debugger/layerviewer): what each VERA layer is rendering.
+- [Sprite Viewer](/debugger/spriteviewer): all 128 sprites and their attributes.
+- [CPU Profiler](/debugger/cpuprofiler): where in the frame your code runs, coloured by rule.
+- [Multiline Template Code](/debugger/multiline-template-code): debugging code generated from a macro string.
+
+For a cc65 build instead of `.bmasm` source, see [cc65 Projects](/debugger/cc65).

@@ -2,6 +2,7 @@
 title: Memory Viewer
 layout: page
 permalink: /debugger/memoryview
+description: Visualise how the X16 is using memory, and search RAM for where a value is stored.
 ---
 
 # Memory Viewer
@@ -20,20 +21,20 @@ The Main Ram image is a 256x256 image, where each pixel is a memory location wit
 
 When you click update, the image will refresh to indicate all the reads, writes and execution locations since the last time the Update button was clicked.
 
-Because the image is based on the changes since the last update it lets you visualise how functions work, so you could place a breakpoint before calling a kernel function. Update the memory view. Step over the kernel call, and clicking Update will display what that call effected.
+Because the image is based on the changes since the last update it lets you visualise how functions work, so you could place a breakpoint before calling a kernal function. Update the memory view. Step over the kernal call, and clicking Update will display what that call affected.
 
-There is also a 'Automatically Update' checkbox, which will request the changes as fast as possible. Please not there is no syncronisation when this is happening. However it will give you a real-time view of what is happening on the machine.
+There is also an 'Automatically Update' checkbox, which will request the changes as fast as possible. Please note there is no synchronisation when this is happening. However it will give you a real-time view of what is happening on the machine.
 
 ### Colours
 
-Each pixel is made up of three conditions:
+Each pixel can show any of the following states:
 
 - Dark green, a location that has previously been written. Good for visualising unused RAM.
 - Light green, a location that was written to in this update.
 - Blue, a location that was read from in this update.
 - Red, a location that was executed from in this update. Only the opcode location is coloured, not the parameters.
 
-As a pixel will be made up of three colours, the result is the combination of what has happened. For example a yellow pixel is where a write and a execution has occurred. A cyan pixel is where both a read and a write has occurred.
+As a pixel can combine these colours, the result shows what has happened. For example a yellow pixel is where a write and an execution has occurred. A cyan pixel is where both a read and a write has occurred.
 
 ![Memory Visualiser](/Images/MemoryViewExample.png)
 
@@ -63,12 +64,12 @@ From here you can reduce the search results. You can do this by looking for addr
 - Greater than the value entered.
 - Where the address has changed value.
 - Where the address hasn't changed value.
-- Where the value at the address as gone up.
+- Where the value at the address has gone up.
 - Where the value at the address has gone down.
 
 Select from the dropdown the search type and set the optional value, then click search. This will reduce the result set and add a new column showing the new value.
 
-From here it should be able to location the address you're looking for.
+From here you should be able to locate the address you're looking for.
 
 Clicking Reset starts the process again.
 
