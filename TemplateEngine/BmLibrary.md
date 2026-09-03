@@ -36,7 +36,7 @@ Emits `.byte` lines, `width` values to a line, formatted as `$XX`. `values` is a
 BM.Words(values, width = 16)
 ```
 
-Emits `.word` lines, little-endian, `width` values to a line. `values` is an `IEnumerable<ushort>`.
+Emits `.word` lines, little-endian, `width` values to a line. `values` is an `IEnumerable` of `ushort` or `short`.
 
 ### BM.HighBytes / BM.LowBytes
 
@@ -95,17 +95,29 @@ Returns those bytes as an `IEnumerable<byte>` rather than emitting them. Transfo
 
 ```text
 BM.X16Header()
+BM.X16Header(label, invalidHeader = false)
 ```
 
-Emits the 15-byte stub a `.prg` needs so that `RUN` from BASIC enters your code. It is the tokenised form of `10 SYS 2064`, with padding, and it puts your first instruction at `$0810`.
+Emits the tokenised BASIC line that makes `RUN` enter your machine code.
+
+With no argument it emits `10 SYS 2061` in twelve bytes, so your first instruction has to sit at `$080d`, straight after the header:
 
 ```bmasm
 import BM = "BM.bmasm";
 
     BM.X16Header()
-
-.proc main
-    ; entry point, $0810
+.proc main          ; $080d
     rts
 .endproc
 ```
+
+Given a `label` it emits `10 SYS <label>` instead, so the entry point can be anywhere. Pass the label as a name, which the compiler resolves, or as a literal address:
+
+```bmasm
+    BM.X16Header("start")
+    ; tables or setup here
+.start:
+    ; ...
+```
+
+The address is written as four decimal digits, so `label` has to be below `10000` (`$2710`). `invalidHeader: true` drops the trailing two-byte end-of-program marker, leaving a ten-byte header.
