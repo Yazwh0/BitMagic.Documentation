@@ -16,9 +16,9 @@ developer who wants to use them. Keep that.
   them directly.
 - **Enthusiastic about what works, honest about what doesn't.** Exclamation marks are
   fine for a genuine win ("full frame rate vectors!"). They are not filler; one per
-  few paragraphs at most. When something is rough, say so plainly: "Windows is
-  *beta*", "performance of breakpoints with an expression is poor", "frame syncing
-  isn't great".
+  few paragraphs at most. When something is rough, say so plainly: "the emulator
+  isn't an exact match for the official one", "performance of breakpoints with an
+  expression is poor", "frame syncing isn't great".
 - **Assume 6502 / X16 literacy.** The reader knows what the accumulator, zero page and
   an IRQ are. Don't re-teach the machine. Link to the
   [X16Community docs](https://github.com/X16Community/x16-docs) for hardware behaviour

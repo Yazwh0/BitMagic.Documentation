@@ -22,7 +22,7 @@ Before you can run the emulator you will need a copy of the [ROM](/emulator/rom)
 
 ## Emulator state
 
-The emulator is under active development. The CPU, VERA (including PSG, PCM and FX), the YM2151, the VIA, the SMC, the RTC and the SD card are all emulated. Compatibility is good but not exact. Open gaps and differences from hardware are tracked on the [issue tracker](https://github.com/Yazwh0/BitMagic/issues).
+The emulator is under active development. The CPU, VERA (including PSG, PCM and FX), the YM2151, the VIA, the SMC, the RTC and the SD card are all emulated. It aims to match the official X16 emulator; it is close but not exact. Open gaps and differences are tracked on the [issue tracker](https://github.com/Yazwh0/BitMagic/issues).
 
 Known limitations:
 

@@ -12,9 +12,11 @@ BitMagic is a development suite for the Commander X16, delivered as a VSCode ext
 - a source-level **debugger**, so you step, breakpoint and inspect the X16 like any modern language;
 - an **emulator** for the X16, which the debugger runs and which also ships standalone.
 
-Compatibility with real hardware is good but not 100%. You can follow the open issues on [GitHub](https://github.com/Yazwh0/BitMagic/issues).
+BitMagic's emulator is close to the official X16 emulator but not a perfect match. You can follow the open issues on [GitHub](https://github.com/Yazwh0/BitMagic/issues).
 
 BitMagic rounds off the sharp corners of 65c02 development, making retro dev fun!
+
+Install it from the [VSCode marketplace](vscode:extension/yazwh0.bitmagic) or [Open VSX](https://open-vsx.org/extension/yazwh0/bitmagic) for VSCodium, or search for `BitMagic` in your editor, then head to [Getting Started](/getting-started).
 
 ## Start here
 
