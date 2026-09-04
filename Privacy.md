@@ -4,6 +4,7 @@ layout: home
 permalink: /privacy
 description: What the BitMagic website collects, given hosting by GitHub Pages and Google Analytics.
 ---
+# Privacy
 
 No personal data is collected by the creator of the BitMagic website.
 

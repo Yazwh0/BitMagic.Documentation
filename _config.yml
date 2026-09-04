@@ -25,6 +25,7 @@ description: >- # this means to ignore newlines until "baseurl:"
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://bitmagic.org" # the base hostname & protocol for your site, e.g. http://example.com
 github_username: Yazwh0
+logo: /android-chrome-512x512.png # used by jekyll-seo-tag for og:image / social share previews
 
 # Build settings
 theme: jekyll-theme-hacker
@@ -60,3 +61,10 @@ show_downloads: false
 exclude:
   - README.md
   - STYLE.md
+
+# Site-wide default for jekyll-seo-tag's og:image / twitter:image, since no page sets its own.
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /android-chrome-512x512.png
