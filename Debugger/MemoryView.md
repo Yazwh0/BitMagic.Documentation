@@ -7,72 +7,70 @@ description: Visualise how the X16 is using memory, and search RAM for where a v
 
 # Memory Viewer
 
-The memory view is a visual representation of how the system is using its memory.
-
-It also includes a search functionality to allow developers to find where values are stored.
+The memory view visualises how the system is using memory, and lets you search RAM for where a value is stored.
 
 ## How to open
 
-To open the view, open the command palette and select `BitMagic: Open The Memory View`. Consult the VSCode [documentation](https://code.visualstudio.com/api/extension-guides/command) on how to customise access to that and other commands.
+Open the command palette and run `BitMagic: Open The Memory View`. See VSCode's [command documentation](https://code.visualstudio.com/api/extension-guides/command) to customise how you access it.
 
-## Memory View Visualisation
+## Memory view visualisation
 
-The Main Ram image is a 256x256 image, where each pixel is a memory location within the 64k that the CPU can see.
+The `Main Ram` image is 256x256 pixels, one pixel per memory location in the 64KB the CPU can address.
 
-When you click update, the image will refresh to indicate all the reads, writes and execution locations since the last time the Update button was clicked.
+Click Update and the image refreshes to show every read, write and execution location since the last click.
 
-Because the image is based on the changes since the last update it lets you visualise how functions work, so you could place a breakpoint before calling a kernal function. Update the memory view. Step over the kernal call, and clicking Update will display what that call affected.
+Because the view only shows changes since the last click, you can use it to see what a function touches: set a breakpoint before a KERNAL call, click Update, step over the call, then click Update again to see everywhere it touched.
 
-There is also an 'Automatically Update' checkbox, which will request the changes as fast as possible. Please note there is no synchronisation when this is happening. However it will give you a real-time view of what is happening on the machine.
+There's also an `Automatically Update` checkbox, which requests changes as fast as possible. There's no synchronisation while it runs, but it gives you a real-time view of the machine.
 
 ### Colours
 
 Each pixel can show any of the following states:
 
-- Dark green, a location that has previously been written. Good for visualising unused RAM.
-- Light green, a location that was written to in this update.
-- Blue, a location that was read from in this update.
-- Red, a location that was executed from in this update. Only the opcode location is coloured, not the parameters.
+- **Dark green**: a location written to at some point in the past. Good for spotting unused RAM.
+- **Light green**: a location written to in this update.
+- **Blue**: a location read from in this update.
+- **Red**: a location executed from in this update. Only the opcode is coloured, not its parameters.
 
-As a pixel can combine these colours, the result shows what has happened. For example a yellow pixel is where a write and an execution has occurred. A cyan pixel is where both a read and a write has occurred.
+Colours combine, so a yellow pixel means a write and an execution both happened there, and a cyan pixel means a read and a write both happened.
 
 ![Memory Visualiser](/Images/MemoryViewExample.png)
 
-## Memory Value Search
+## Memory value search
 
-Under the visualiser are controls that allow the developer to search for values in RAM.
+Below the visualiser are controls to search RAM for a value.
 
-### Starting Value
+### Starting value
 
 First make sure the debugger is paused.
 
-Initially we need to tell the debugger what data length value we're searching for, either a `byte` or a `word`.
+Tell the debugger what size value you're looking for: `byte` or `word`.
 
-You can also enter a value, or leave the box empty so the debugger can consider all memory locations.
+Enter a value to match, or leave it blank to start from every location that's been written to at least once.
 
-Now let the debugger run again until the condition you want to search for has happened.
+Let the debugger run until whatever you're looking for happens.
 
 ### Iterations
 
 Pause the debugger.
 
-From here you can reduce the search results. You can do this by looking for addresses in the current search results that are now:
+From here, narrow the results by finding which addresses are now:
 
-- Equal to the value entered.
-- Not Equal to the value entered.
-- Less than the value entered.
-- Greater than the value entered.
-- Where the address has changed value.
-- Where the address hasn't changed value.
-- Where the value at the address has gone up.
-- Where the value at the address has gone down.
+- `Equal`: equal to the value entered.
+- `Not Equal`: not equal to the value entered.
+- `Less Than`: less than the value entered.
+- `Greater Than`: greater than the value entered.
+- `Changed`: the value has changed.
+- `Not Changed`: the value hasn't changed.
+- `Gone Up`: the value has increased.
+- `Gone Down`: the value has decreased.
 
-Select from the dropdown the search type and set the optional value, then click search. This will reduce the result set and add a new column showing the new value.
+Select the search type from the dropdown, optionally set a value to compare against, then click Search. This narrows the results and adds a column with the new value.
 
-From here you should be able to locate the address you're looking for.
+Repeat until you've narrowed it down to the address you're after.
 
-Clicking Reset starts the process again.
+Click Reset to start over.
 
-For example searching for the memory location for the row the cursor is on in BASIC.
+For example, here's a search for the memory address of BASIC's cursor row:
 
 ![Cursor Row Search](/Images/memorysearch.gif)

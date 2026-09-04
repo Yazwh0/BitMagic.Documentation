@@ -55,8 +55,8 @@ Syncing covers the **root directory only**.
 
 ## In a project file
 
-The [debugger](/debugger/projectfile) has the equivalent settings: `sdCard`, `sdCardFiles`, `sdCardOutput` and `sdCardFinalOutput`.
+The [project file](/debugger/projectfile) has the equivalent settings: `sdCard`, `sdCardFiles`, `sdCardOutput` and `sdCardFinalOutput`.
 
-## Note
+## Filenames on the card
 
 Files copied in from the host may be renamed to 8.3 form by the FAT layer.

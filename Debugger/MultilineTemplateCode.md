@@ -7,9 +7,9 @@ description: Debugging 65c02 code that was generated from a macro string rather 
 
 # Multiline Template Code
 
-When developing your application, it can be necessary to create code in a macro variable and then output that variable to the template.
+Sometimes it's easier to build up a block of code in a string variable and drop the whole thing into the template at once, rather than writing it inline.
 
-This is perfectly possible in BitMagic. It works as you'd expect by simply using the inline block mechanism as below.
+BitMagic supports this through the same inline block mechanism you'd use for anything else:
 
 ```bmasm
 var codeblock = "lda #2 \n lda #3";
@@ -21,8 +21,8 @@ lda #4
 
 ## Debugging
 
-Debugging this code is a little different to normal.
+Debugging this code works a little differently.
 
-Because BitMagic cannot be sure of the location of the original lines of code that made up the string, it will step into the generated file instead. This means breakpoints on the code above will never hit this will be obvious by the breakpoint not becoming active.
+BitMagic can't map the generated instructions back to the original lines inside the string, so stepping goes into the generated file instead. Breakpoints placed on the lines inside the string never hit; you'll notice this because the breakpoint never becomes active.
 
 ![Multiline Template Debugging](/Images/TemplateVariablesExample.gif)

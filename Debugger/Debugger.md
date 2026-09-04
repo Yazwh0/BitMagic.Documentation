@@ -10,7 +10,7 @@ description: Debug the X16 inside VSCode. Launch a project, step, and inspect ma
 
 You can debug your applications from within VSCode, like you would any modern language. Because we use VSCode to provide the IDE, it means we can leverage the interface to provide the best developer experience possible.
 
-## Host System Compatibility
+## Host system compatibility
 
 The machine must have a x64 CPU, as the underlying emulator is written in x64 assembler.
 

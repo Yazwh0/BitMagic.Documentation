@@ -7,18 +7,20 @@ description: See what each VERA layer, sprite layer and the background are rende
 
 # Layer Viewer
 
-The layer viewer lets the developer see what each layer looks like from within VSCode.
+The layer viewer lets you see what each VERA layer looks like from within VSCode.
 
-Note: This can only be viewed while there is an active debugging session.
+Note: this can only be viewed while a debug session is active.
 
-## How To Open
+## How to open
 
-To open the view, open the command palette and select `BitMagic: Open The Layer View`. Consult the VSCode [documentation](https://code.visualstudio.com/api/extension-guides/command) on how to customise access to that and other commands.
+Open the command palette and run `BitMagic: Open The Layer View`. See VSCode's [command documentation](https://code.visualstudio.com/api/extension-guides/command) to customise how you access it.
 
-The Update button will refresh all six windows, while doing so with the automatically update checkbox set will update the displays in real time. Please note there is no frame control on this view, so there might be tearing or similar artifacts not present on the actual hardware. For a perfect view, pause the emulation and click Update.
+Update refreshes all six windows once; with `Automatically Update` checked, they refresh continuously in real time. There's no frame sync on this view, so you may see tearing or similar artifacts that wouldn't happen on real hardware. For an exact view, pause the emulator and click Update.
 
-## Explanation
+## What it shows
 
-Layer 0 and 1 are what is rendered to each of those layers. The sprite layers are based on the 'Z-depth' of the sprite. The background is the background colour as the layer is rendered. If all six are combined by passing through where the layer is transparent to the first coloured pixel you get to the actual screen on the machine.
+Six windows, one per compositing layer, front to back: `Sprite 3`, `Layer 1`, `Sprite 2`, `Layer 0`, `Sprite 1`, and `Background`. `Layer 0` and `Layer 1` are VERA's two tile/bitmap layers; the three sprite windows each show the sprites set to one Z-depth; `Background` is VERA's flat background colour.
+
+Combine all six from front to back, letting each transparent pixel show through to the next, and you get what's shown on the actual screen.
 
 ![Layer View](/Images/LayerViewExample.png)

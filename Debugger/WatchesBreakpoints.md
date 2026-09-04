@@ -6,9 +6,9 @@ description: C# expressions for watches, conditional and hit-count breakpoints, 
 ---
 # Watches and Breakpoints
 
-Expressions are used while debugging to show the state of the machine in the Watch window, to set [conditional and hit-count breakpoints](https://code.visualstudio.com/docs/editor/debugging#_conditional-breakpoints), along with setting [logpoints](https://code.visualstudio.com/docs/editor/debugging#_logpoints).
+Expressions are used while debugging to show the state of the machine in the Watch window, to set [conditional and hit-count breakpoints](https://code.visualstudio.com/docs/editor/debugging#_conditional-breakpoints), to set [logpoints](https://code.visualstudio.com/docs/editor/debugging#_logpoints), and to write [function breakpoints](/debugger/debugging#breakpoints) like `vram(...)` and `vsync(...)`.
 
-The expressions are C#, and are based on the variables shown in the debugger. The roots match the sections in the Variables window: `CPU`, `VERA`, `Kernal`, `Display`, `I2C`, `SMC`, `RTC`, `VIA`, `SD Card` and more.
+The expressions are C#, and are based on the variables shown in the debugger. The roots match the sections in the Variables window with any spaces removed: `CPU`, `VERA`, `Kernal`, `Display`, `I2C`, `SMC`, `RTC`, `VIA`, `SDCard` and more.
 
 Because expressions are C# code, they are case sensitive.
 
@@ -63,13 +63,13 @@ CPU.Ram[CPU.Y * 2 + 100]
 VERA.VRam[CPU.X * CPU.Y]
 ```
 
-## Conditional Breakpoints
+## Conditional breakpoints
 
 Conditional breakpoints will evaluate the expression and check if the result is 'truthy'. The breakpoint is considered hit if the value is `true`, non-zero or a non-blank string.
 
 ![Conditional-Breakpoint](/Images/Conditional-Breakpoint.gif)
 
-## Hit Count Breakpoints
+## Hit count breakpoints
 
 Hit count breakpoints work like conditional breakpoints, but the number of times a breakpoint has been hit is added to the beginning of the expression.
 
@@ -81,7 +81,7 @@ Hit count breakpoints can be combined with conditional breakpoints for extra fle
 
 ## Logpoints
 
-Logpoints will display a message in the output window when they are hit, which is especially useful for a system where outputting text natively is difficult.
+Logpoints will display a message in the Debug Console when they are hit, which is especially useful for a system where outputting text natively is difficult.
 
 Logpoints can be combined with conditional and hit count breakpoints to determine if the output will be logged.
 
@@ -91,4 +91,4 @@ The string is a C# formatted string, and can bring in the system variables like 
 
 ## Performance
 
-It's worth noting that performance of breakpoints that have an expression attached is poor, as the execution of the X16 has to be suspended with the display being updated to evaluate the breakpoint. As such you should try to use them sparingly, and disable breakpoints when not in use.
+Performance of breakpoints with an expression is poor: each hit stops the X16 and updates the debugger's view of machine state before the expression is even evaluated. Use them sparingly, and disable them when you're not using them.

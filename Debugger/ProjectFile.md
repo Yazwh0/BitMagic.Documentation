@@ -62,7 +62,7 @@ Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC pr
 | `romSource` | [RomSource](#romsource)[] | `[]` | Files to load into ROM banks. |
 | `compileOptions` | [CompileOptions](#compileoptions) | `null` | Compilation options. |
 | `memoryFillValue` | byte | `0` | Value to fill CPU RAM and VRAM with at startup. |
-| `breakpoints` | int[] | `[]` | Line numbers to break on at startup. |
+| `breakpoints` | int[] | `[]` | Addresses to break on at startup. |
 | `historySize` | int | `0x800000` | Size of the CPU history buffer. Must be a power of two. |
 | `windowScale` | float | `1` | Multiplier for the emulator display window. |
 | `basePath` | string | *(workspace folder)* | Base path that other relative paths are resolved against. |
@@ -81,6 +81,8 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 
 ### cc65
 
+Experimental: see [cc65 Projects](/debugger/cc65) for what's supported.
+
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `type` | `"cc65"` | |
@@ -94,7 +96,7 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 | `basepath` | string | Base path for the cc65 project. |
 | `defaultOutputFile` | string | Which of `outputs` is the one to run. |
 
-#### Cc65 Output
+#### cc65 output
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -104,7 +106,7 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 | `hasHeader` | bool | The file has a two-byte load-address header. Default `true`. |
 | `referenceFile` | string | A file to compare the generated data against. |
 
-#### Cc65 File Map
+#### cc65 file map
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -121,7 +123,7 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 | `filename` | string | X16 filename the symbols belong to. Omit if not for an X16 binary. |
 | `rangeDefinitions` | [RangeDefinition](#range-definition)[] | Memory ranges that are jump tables, used to synthesise extra symbols. |
 
-### Range Definition
+### Range definition
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
@@ -171,7 +173,7 @@ Set `emulatorDirectory` to an X16 emulator checkout and the ROM-bank symbol file
 | `displayCode` | bool | Show generated code. |
 | `displayData` | bool | Show generated data. |
 | `rebuild` | bool | Force a full rebuild. |
-| `binFolder` | string | Folder for the built template assemblies. Default `bin`. |
+| `binFolder` | string | Folder for the built template assemblies. If omitted, generated files land directly in the project's base path rather than a `bin` subfolder; the scaffolded project sets this to `bin` explicitly. |
 | `saveGeneratedBmasm` | bool | Write the generated `.bmasm` to the bin folder. Default `true`. |
 | `saveGeneratedTemplate` | bool | Write the generated template C# to the bin folder. Default `false`. |
 | `savePreGeneratedTemplate` | bool | Write the pre-template intermediate to the bin folder. Default `false`. |
