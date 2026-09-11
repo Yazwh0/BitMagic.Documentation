@@ -10,6 +10,8 @@ BitMagic emulates the [TL16C2550](https://www.ti.com/lit/ds/symlink/tl16c2550.pd
 
 This currently ships only in the develop release. Turn on `bitMagic.debugger.developRelease` in [Settings](/settings#debugger) to get it.
 
+![RomTerm running over the WiFi card](/Images/RomTerm.gif)
+
 ## What it is
 
 - A [TL16C2550](https://www.ti.com/lit/ds/symlink/tl16c2550.pdf) UART, mapped at `$9fe0` to `$9fe7`, with 16-byte transmit and receive FIFOs.

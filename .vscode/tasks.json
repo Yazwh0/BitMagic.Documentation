@@ -10,11 +10,16 @@
             // so this stays cheap on every Serve run while still working on a fresh
             // clone. Needs BitMagic.VSC checked out as a sibling of this repo (see
             // tools/highlight/render.mjs) -- the normal superproject layout.
+            //
+            // pwsh (PS7), not powershell.exe (Windows PowerShell 5.1, used by the Serve
+            // task below): 5.1 doesn't support && as a statement separator, and npm on
+            // Windows is an npm.ps1 script that 5.1's default execution policy refuses
+            // to run at all. Neither restriction applies to pwsh.
             "command": "npm install && npm run build",
             "options": {
                 "cwd": "${workspaceFolder}/tools/highlight",
                 "shell": {
-                    "executable": "powershell.exe",
+                    "executable": "pwsh.exe",
                     "args": ["-NoProfile", "-Command"]
                 }
             },
