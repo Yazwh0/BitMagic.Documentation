@@ -1,0 +1,3 @@
+.segment DATA $2000 _ data.bin
+    .var byte lives 3
+    .var short score 0

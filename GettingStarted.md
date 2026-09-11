@@ -36,18 +36,7 @@ Open the command palette and run **Create BitMagic Project**. Pick an empty fold
 
 `src/main.bmasm` starts as:
 
-```bmasm
-import BM="bm.bmasm";
-
-BM.X16Header();
-	nop
-
-; your code here
-
-	stp
-.loop:
-	jmp -loop
-```
+{% include generated/gettingstarted-stub.html %}
 
 `import BM` pulls in the [BM library](/templateengine/bm-library); `BM.X16Header()` emits the BASIC stub so the program runs when it loads. The CPU executes `nop`, then hits `stp`, which halts it and breaks into the debugger. The `jmp` loop after is just a safety net.
 
@@ -59,10 +48,7 @@ Press `F5`. The emulator window opens, VSCode switches to debug mode, and the ru
 
 Replace `; your code here` with:
 
-```bmasm
-	lda #$41        ; 'A'
-	jsr $ffd2       ; CHROUT prints a character
-```
+{% include generated/gettingstarted-print-a.html %}
 
 `F5` again. The emulator prints `A`.
 

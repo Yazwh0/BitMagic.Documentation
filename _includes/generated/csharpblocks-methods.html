@@ -1,0 +1,10 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">void</span><span style="color:#EAEAEA"> delay(</span><span style="color:#B5E853">int</span><span style="color:#EAEAEA"> loops)</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    ldx</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">@(loops)</span></span>
+<span class="line"><span style="color:#EAEAEA">.:</span></span>
+<span class="line"><span style="color:#B5E853">    dex</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> -</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">    delay(</span><span style="color:#FF79C6">200</span><span style="color:#EAEAEA">)</span></span>
+<span class="line"><span style="color:#EAEAEA">    delay(</span><span style="color:#FF79C6">50</span><span style="color:#EAEAEA">)</span></span></code></pre>

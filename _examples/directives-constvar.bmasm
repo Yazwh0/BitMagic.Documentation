@@ -1,0 +1,2 @@
+.constvar byte ptr  vera_ctrl  $9f25   ; name for $9f25, shown as a byte in the debugger
+.constvar ushort    score      $0400   ; a 16-bit value living at $0400

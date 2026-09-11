@@ -1,0 +1,2 @@
+lda #$00        ; a comment
+.const width 40 // also a comment

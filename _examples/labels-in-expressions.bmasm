@@ -1,0 +1,4 @@
+.byte $00
+.loop:
+    inc loop-1
+    bne loop        ; loops 256 times

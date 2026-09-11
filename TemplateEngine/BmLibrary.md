@@ -10,12 +10,7 @@ description: The bundled BM template library for data tables, string bytes and t
 
 Import it at the top of a template and call its methods where you want the bytes:
 
-```bmasm
-import BM = "BM.bmasm";
-
-.sine:
-    BM.Bytes(Enumerable.Range(0, 256).Select(i => (int)(128 + 127 * Math.Sin(i * Math.PI / 128))))
-```
+{% include generated/bmlibrary-bytes-sine.html %}
 
 Every method emits its assembly at the call site, so a `.byte` table appears exactly where you wrote the call.
 
@@ -47,14 +42,7 @@ BM.LowBytes(values, width = 16)
 
 Emit the high or low byte of each value as `.byte` lines. `values` is an `IEnumerable` of `int`, `ushort` or `short`. Use the pair to build split lookup tables, a run of low bytes and a matching run of high bytes, so you can index them with `lda lo,x` / `lda hi,x`:
 
-```bmasm
-.const count 32
-
-.jump_lo:
-    BM.LowBytes(Enumerable.Range(0, count).Select(i => targets[i]))
-.jump_hi:
-    BM.HighBytes(Enumerable.Range(0, count).Select(i => targets[i]))
-```
+{% include generated/bmlibrary-split-lookup.html %}
 
 ## Strings
 
@@ -68,10 +56,7 @@ BM.Petscii(text, addNullTermination = true)
 
 Emits one byte per character of `text`, followed by a `0` unless you pass `addNullTermination: false`.
 
-```bmasm
-.message:
-    BM.Petscii("HELLO WORLD")
-```
+{% include generated/bmlibrary-petscii.html %}
 
 ### BM.IsoPetscii
 
@@ -102,22 +87,10 @@ Emits the tokenised BASIC line that makes `RUN` enter your machine code.
 
 With no argument it emits `10 SYS 2061` in twelve bytes, so your first instruction has to sit at `$080d`, straight after the header:
 
-```bmasm
-import BM = "BM.bmasm";
-
-    BM.X16Header()
-.proc main          ; $080d
-    rts
-.endproc
-```
+{% include generated/bmlibrary-x16header-default.html %}
 
 Given a `label` it emits `10 SYS <label>` instead, so the entry point can be anywhere. Pass the label as a name, which the compiler resolves, or as a literal address:
 
-```bmasm
-    BM.X16Header("start")
-    ; tables or setup here
-.start:
-    ; ...
-```
+{% include generated/bmlibrary-x16header-label.html %}
 
 The helper writes the address as exactly four decimal digits, so `label` must be below `10000` (`$2710`); a higher address is silently truncated and the `SYS` comes out wrong. `invalidHeader: true` drops the trailing two-byte end-of-program marker, leaving a ten-byte header.

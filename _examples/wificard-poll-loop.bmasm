@@ -1,0 +1,20 @@
+.const UART_RBR $9fe0
+.const UART_THR $9fe0
+.const UART_LSR $9fe5
+
+send_byte:
+    lda UART_LSR
+    ; THRE, transmit holding register empty
+    and #%0010_0000
+    beq send_byte
+    lda #'A'
+    ; queue a byte for the modem
+    sta UART_THR
+
+read_byte:
+    lda UART_LSR
+    ; DR, a byte is waiting
+    and #%0000_0001
+    beq read_byte
+    ; A holds $41 if the modem echoed the 'A' back
+    lda UART_RBR

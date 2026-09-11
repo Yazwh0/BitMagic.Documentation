@@ -1,0 +1,4 @@
+import BM = "BM.bmasm";
+
+.sine:
+    BM.Bytes(Enumerable.Range(0, 256).Select(i => (int)(128 + 127 * Math.Sin(i * Math.PI / 128))))

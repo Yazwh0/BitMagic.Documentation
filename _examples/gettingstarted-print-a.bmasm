@@ -1,0 +1,2 @@
+	lda #$41        ; 'A'
+	jsr $ffd2       ; CHROUT prints a character

@@ -27,11 +27,7 @@ Names live in a tree. A fully qualified name is the path through it, joined with
 - **Scopes** sit directly under `App` and do not nest inside each other. The default is `Main`. Each one is a flat namespace, and it is the unit a library uses to keep its names to itself. A scope is opened by [`.scope`](/compiler/directives#scope) or attached to a [segment](/compiler/segment).
 - **Procedures** form a tree inside the current scope. Each [`.proc`](/compiler/directives#proc) has its own names, and a `.proc` inside a `.proc` nests. Names defined outside any `.proc` go into an anonymous procedure that doesn't show up in qualified names.
 
-```bmasm
-.proc test
-    .const something $1234       ; App:Main:test:something
-.endproc
-```
+{% include generated/scope-name-tree.html %}
 
 ## Resolving a name
 
@@ -49,21 +45,7 @@ A partially qualified name is resolved the same way, matching the end of the pat
 
 [`.scope`](/compiler/directives#scope) opens a scope; `.endscope` returns to the enclosing procedure's scope. A named scope is global, so opening the same name again later continues it.
 
-```bmasm
-.proc test
-    .const something $12
-    lda #something              ; $12
-
-    .scope newscope
-        .const something $34
-        lda #something          ; $34
-    .endscope
-
-    lda #something              ; $12
-    lda #newscope:something     ; $34
-    lda #App:newscope:something ; $34
-.endproc
-```
+{% include generated/scope-switching.html %}
 
 ## Procedure names
 
@@ -73,20 +55,7 @@ The **procedure's own name** resolves to its first instruction, so `jsr clear_sc
 
 **`endproc`** is the address just past the procedure's last byte. It belongs to the procedure's own namespace: inside the procedure it is the bare name `endproc`; from outside it is `greeting:endproc`. Every `.proc` gets its own, so they never collide, and a nested `.proc` has an `endproc` separate from the one around it. Put data straight after `.endproc` and read it through `endproc`, and it stays correct if the code changes size.
 
-```bmasm
-.proc greeting
-    ldx #0
-.loop:
-    lda endproc, x       ; the text that follows this proc
-    beq done
-    jsr $ffd2            ; CHROUT
-    inx
-    bne loop
-.done:
-    rts
-.endproc
-    .byte "HELLO", 0     ; greeting:endproc points here
-```
+{% include generated/scope-procedure-names.html %}
 
 ## Viewing names
 

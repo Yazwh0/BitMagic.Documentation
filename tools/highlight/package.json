@@ -1,0 +1,13 @@
+{
+  "name": "bitmagic-docs-highlight",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Pre-renders _examples/*.bmasm into syntax-highlighted HTML using the real BitMagic.VSC grammar, for _includes/generated/*.html",
+  "type": "module",
+  "scripts": {
+    "build": "node render.mjs"
+  },
+  "dependencies": {
+    "shiki": "^4.4.3"
+  }
+}

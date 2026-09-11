@@ -1,0 +1,2 @@
+.const width 40
+.const height=25, cells=width*height

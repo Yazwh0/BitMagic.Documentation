@@ -1,0 +1,6 @@
+import BM = "BM.bmasm";
+
+    BM.X16Header()
+.proc main          ; $080d
+    rts
+.endproc

@@ -1,0 +1,6 @@
+.const count 32
+
+.jump_lo:
+    BM.LowBytes(Enumerable.Range(0, count).Select(i => targets[i]))
+.jump_hi:
+    BM.HighBytes(Enumerable.Range(0, count).Select(i => targets[i]))

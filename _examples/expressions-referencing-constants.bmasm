@@ -1,0 +1,4 @@
+    lda data + 3    ; loads $13
+
+.data:
+    .byte $00, $11, $12, $13, $14

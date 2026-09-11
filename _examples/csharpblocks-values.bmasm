@@ -1,0 +1,2 @@
+.const sprites 8
+ldx #@(sprites - 1)

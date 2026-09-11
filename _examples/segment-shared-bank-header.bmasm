@@ -1,0 +1,2 @@
+!segment MUSIC $a000 $2000 MUSIC.BIN
+!segment SNDFX $a000 $2000 SNDFX.BIN

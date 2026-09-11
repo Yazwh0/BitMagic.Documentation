@@ -11,13 +11,7 @@ Sometimes it's easier to build up a block of code in a string variable and drop 
 
 BitMagic supports this through the same inline block mechanism you'd use for anything else:
 
-```bmasm
-var codeblock = "lda #2 \n lda #3";
-
-lda #1
-@(codeblock)
-lda #4
-```
+{% include generated/multilinetemplatecode-codeblock.html %}
 
 ## Debugging
 

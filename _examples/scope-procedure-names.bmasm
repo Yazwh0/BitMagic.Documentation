@@ -1,0 +1,12 @@
+.proc greeting
+    ldx #0
+.loop:
+    lda endproc, x       ; the text that follows this proc
+    beq done
+    jsr $ffd2            ; CHROUT
+    inx
+    bne loop
+.done:
+    rts
+.endproc
+    .byte "HELLO", 0     ; greeting:endproc points here

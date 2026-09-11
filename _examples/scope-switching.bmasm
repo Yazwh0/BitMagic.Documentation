@@ -1,0 +1,13 @@
+.proc test
+    .const something $12
+    lda #something              ; $12
+
+    .scope newscope
+        .const something $34
+        lda #something          ; $34
+    .endscope
+
+    lda #something              ; $12
+    lda #newscope:something     ; $34
+    lda #App:newscope:something ; $34
+.endproc

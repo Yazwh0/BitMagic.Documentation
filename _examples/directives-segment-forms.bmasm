@@ -1,0 +1,3 @@
+.segment ZP $02 $fd
+.segment name=ZP, address=$02, maxsize=$fd
+.segment ZP $02 _ _ app_general   ; skip maxsize and filename

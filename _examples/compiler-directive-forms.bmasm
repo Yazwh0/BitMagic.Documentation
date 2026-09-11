@@ -1,0 +1,2 @@
+.const name=example, value=$1234
+.const example $1234

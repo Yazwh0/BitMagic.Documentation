@@ -1,0 +1,11 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> clear</span></span>
+<span class="line"><span style="color:#B5E853">    ldx</span><span style="color:#B5E853"> #</span><span style="color:#FF79C6">0</span></span>
+<span class="line"><span style="color:#EAEAEA">.loop:</span></span>
+<span class="line"><span style="color:#B5E853">    for</span><span style="color:#EAEAEA"> (</span><span style="color:#B5E853">var</span><span style="color:#EAEAEA"> page </span><span style="color:#B5E853">=</span><span style="color:#FF79C6"> 0</span><span style="color:#EAEAEA">; page </span><span style="color:#B5E853">&#x3C;</span><span style="color:#FF79C6"> 4</span><span style="color:#EAEAEA">; page</span><span style="color:#B5E853">++</span><span style="color:#EAEAEA">)</span></span>
+<span class="line"><span style="color:#EAEAEA">    {</span></span>
+<span class="line"><span style="color:#B5E853">        sta</span><span style="color:#FF79C6"> $0400</span><span style="color:#B5E853"> +</span><span style="color:#EAEAEA"> @(page </span><span style="color:#B5E853">*</span><span style="color:#FF79C6"> 256</span><span style="color:#EAEAEA">), x</span></span>
+<span class="line"><span style="color:#EAEAEA">    }</span></span>
+<span class="line"><span style="color:#B5E853">    inx</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#EAEAEA"> loop</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span></code></pre>

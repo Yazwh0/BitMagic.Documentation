@@ -43,10 +43,7 @@ What works:
 
 This is the usual way to split an address:
 
-```bmasm
-    lda #<target        ; low byte of target
-    ldx #>target        ; high byte of target
-```
+{% include generated/expressions-byte-operators.html %}
 
 A byte operator binds tightly, so `<target + 1` is `(<target) + 1`. Parenthesise for the other grouping: `<(target + 1)`.
 
@@ -56,11 +53,6 @@ Because these three symbols are taken as prefixes, use `<=` `>=` `==` `!=` for c
 
 Labels and constants can be used in an expression:
 
-```bmasm
-    lda data + 3    ; loads $13
-
-.data:
-    .byte $00, $11, $12, $13, $14
-```
+{% include generated/expressions-referencing-constants.html %}
 
 Names are resolved through the current [scope](/compiler/scope). A label name that is defined more than once is ambiguous and cannot be used here. See [Labels](/compiler/labels).

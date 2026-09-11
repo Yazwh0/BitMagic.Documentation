@@ -1,0 +1,13 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> test</span></span>
+<span class="line"><span style="color:#B5E853">    .const</span><span style="color:#EAEAEA"> something </span><span style="color:#FF79C6">$12</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">something              </span><span style="color:#8F8F8F;font-style:italic">; $12</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .scope</span><span style="color:#EAEAEA"> newscope</span></span>
+<span class="line"><span style="color:#B5E853">        .const</span><span style="color:#EAEAEA"> something </span><span style="color:#FF79C6">$34</span></span>
+<span class="line"><span style="color:#B5E853">        lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">something          </span><span style="color:#8F8F8F;font-style:italic">; $34</span></span>
+<span class="line"><span style="color:#B5E853">    .endscope</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">something              </span><span style="color:#8F8F8F;font-style:italic">; $12</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">newscope:something     </span><span style="color:#8F8F8F;font-style:italic">; $34</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">App:newscope:something </span><span style="color:#8F8F8F;font-style:italic">; $34</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span></code></pre>

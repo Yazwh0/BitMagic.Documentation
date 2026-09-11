@@ -46,17 +46,13 @@ Main                      $0801 $0145 $0946
 
 Reserved RAM from `$400`, `$400` bytes long, with no file. On the X16 the `$400` to `$800` region is free for this, as is `$200` to `$3ff` if you are not using the KERNAL.
 
-```bmasm
-.segment BSS $400 $400
-```
+{% include generated/segment-bss.html %}
 
 ### Zero page
 
 The zero page is where you keep your most-used variables. Here the segment runs from `$22` for up to `$5d` bytes, takes the scope `app_general`, and `_` skips the filename:
 
-```bmasm
-.segment ZP $22, $5d, _, app_general
-```
+{% include generated/segment-zeropage.html %}
 
 ### Several segments, one RAM bank
 
@@ -64,14 +60,8 @@ Addresses are always from the CPU's point of view, so segments destined for diff
 
 Define them together so the layout lives in one place:
 
-```bmasm
-.segment MUSIC $a000 $2000 MUSIC.BIN
-.segment SNDFX $a000 $2000 SNDFX.BIN
-```
+{% include generated/segment-shared-bank.html %}
 
 The [template engine](/templateengine/csharp-blocks#header-directives) `!` prefix does the same from the top of the file. A `!` line runs in the template's setup phase, before the body, so every segment exists before any code that uses one:
 
-```bmasm
-!segment MUSIC $a000 $2000 MUSIC.BIN
-!segment SNDFX $a000 $2000 SNDFX.BIN
-```
+{% include generated/segment-shared-bank-header.html %}

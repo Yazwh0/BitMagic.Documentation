@@ -8,11 +8,7 @@ description: "Reference for every .bmasm compiler directive: machine, segments, 
 
 Every directive starts with a `.`. Parameters are positional in the order shown, or given as `name=value` pairs. A lone `_` skips a positional parameter.
 
-```bmasm
-.segment ZP $02 $fd
-.segment name=ZP, address=$02, maxsize=$fd
-.segment ZP $02 _ _ app_general   ; skip maxsize and filename
-```
+{% include generated/directives-segment-forms.html %}
 
 ## Types
 
@@ -34,11 +30,7 @@ The type is not a type in any real sense. The compiler never checks it, and it p
 
 **Pointers** are the word `ptr` after a type: `byte ptr`, `ushort ptr`, `string ptr`. A pointer is always a 2-byte word holding the address of a value of that type.
 
-```bmasm
-.var      ushort ptr  cursor    $0400   ; a 2-byte variable, initialised to $0400
-.constvar uint ptr    counter   $c000   ; names $c000 as a uint pointer; emits nothing
-.padvar   ushort ptr  next              ; reserves 2 bytes for a ushort pointer
-```
+{% include generated/directives-typed-pointers.html %}
 
 Array and pointer combine, with the bracket first: `byte[16] ptr` is an array of sixteen `byte` pointers (32 bytes), not one pointer to a sixteen-byte block. Put `ptr` before the bracket and the bracket is ignored.
 
@@ -56,10 +48,7 @@ See [Segment](/compiler/segment) for the full picture.
 | `filename` | string | true | File to write for this segment. |
 | `scope` | string | true | Default scope for the segment. A new scope is created if not given. |
 
-```bmasm
-.segment BSS $0400 $0400          ; 0x400 bytes of uninitialised space, no file
-.segment DATA $2000 _ data.bin    ; written to data.bin
-```
+{% include generated/directives-segment.html %}
 
 ### .endsegment
 
@@ -89,14 +78,7 @@ No parameters. Returns to the enclosing procedure's scope.
 
 A named block with its own scope and an entry-point constant of the same name, so `jmp myproc` works. Procedures **can** be nested: a `.proc` inside a `.proc` becomes a child of it.
 
-```bmasm
-.proc clear_screen
-    ; ...
-    rts
-.endproc
-
-    jsr clear_screen
-```
+{% include generated/directives-proc.html %}
 
 ### .endproc
 
@@ -113,10 +95,7 @@ No parameters. Closes the current procedure and adds an `endproc` constant point
 
 Defines a named constant. A single line can define several:
 
-```bmasm
-.const width 40
-.const height=25, cells=width*height
-```
+{% include generated/directives-const.html %}
 
 ### .var
 
@@ -128,11 +107,7 @@ Defines a named constant. A single line can define several:
 
 A way to put typed data into the segment. It reserves space for the variable **and writes its initial value**, then advances the segment write position past it.
 
-```bmasm
-.segment DATA $2000 _ data.bin
-    .var byte lives 3
-    .var short score 0
-```
+{% include generated/directives-var.html %}
 
 ### .constvar
 
@@ -144,10 +119,7 @@ A way to put typed data into the segment. It reserves space for the variable **a
 
 Defines a typed constant that points at an address: a typed alias for a fixed location, such as a hardware register or a zero-page slot. No data is written.
 
-```bmasm
-.constvar byte ptr  vera_ctrl  $9f25   ; name for $9f25, shown as a byte in the debugger
-.constvar ushort    score      $0400   ; a 16-bit value living at $0400
-```
+{% include generated/directives-constvar.html %}
 
 ### .padvar
 
@@ -158,12 +130,7 @@ Defines a typed constant that points at an address: a typed alias for a fixed lo
 
 Reserves space for a typed variable and advances the segment write position by its size, but writes **no** data. It is for uninitialised storage, so it belongs in a segment with no filename (a BSS area), where you are only carving RAM into named slots rather than producing bytes for a file. Using it in a segment that is written to disk would pad the file with blank bytes.
 
-```bmasm
-.segment BSS $0400 $0400        ; RAM at $0400, no filename
-    .padvar ushort   score      ; $0400
-    .padvar byte     lives      ; $0402
-    .padvar byte[8]  sprite_x   ; $0403 to $040a
-```
+{% include generated/directives-padvar.html %}
 
 ## Segment layout
 
@@ -175,10 +142,7 @@ Reserves space for a typed variable and advances the segment write position by i
 
 Moves the segment write position forward to `address`. Errors if the position is already past it.
 
-```bmasm
-.org $2000          ; the next byte lands at $2000
-.byte $ff
-```
+{% include generated/directives-org.html %}
 
 ### .pad
 
@@ -188,9 +152,7 @@ Moves the segment write position forward to `address`. Errors if the position is
 
 Advances the write position by `size` bytes.
 
-```bmasm
-.pad $100           ; leave a 256-byte gap
-```
+{% include generated/directives-pad.html %}
 
 ### .align
 
@@ -200,10 +162,7 @@ Advances the write position by `size` bytes.
 
 Advances the write position until it is a multiple of `boundary`.
 
-```bmasm
-.align $100         ; advance to the next page boundary
-.tiles:             ; tile data, now page aligned
-```
+{% include generated/directives-align.html %}
 
 ## Data
 
@@ -211,17 +170,13 @@ Advances the write position until it is a multiple of `boundary`.
 
 Emits one or more bytes.
 
-```bmasm
-.byte $00, $11, $12, $13
-```
+{% include generated/directives-byte.html %}
 
 ### .word
 
 Emits one or more 16-bit words, little-endian.
 
-```bmasm
-.word $1234, label, label + 2
-```
+{% include generated/directives-word.html %}
 
 ### .code
 
@@ -229,9 +184,7 @@ Emits raw bytes exactly like `.byte`. The output is identical; the difference is
 
 Use it when you are producing instruction bytes directly rather than writing mnemonics: opcodes emitted by a [template](/templateengine/), a hand-encoded instruction, or a patch table the CPU will jump into. Anything that gets executed should be `.code` or a normal opcode line, so that stepping and the disassembly view line up.
 
-```bmasm
-.code $4c, <target, >target    ; jmp target, encoded by hand
-```
+{% include generated/directives-code.html %}
 
 ## Debugging directives
 

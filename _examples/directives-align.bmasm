@@ -1,0 +1,2 @@
+.align $100         ; advance to the next page boundary
+.tiles:             ; tile data, now page aligned

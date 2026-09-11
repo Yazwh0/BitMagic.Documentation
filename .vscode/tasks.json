@@ -4,6 +4,27 @@
     "version": "2.0.0",
     "tasks": [
         {
+            "label": "Regenerate Highlighting",
+            "type": "shell",
+            // npm install is a fast no-op once node_modules matches package-lock.json,
+            // so this stays cheap on every Serve run while still working on a fresh
+            // clone. Needs BitMagic.VSC checked out as a sibling of this repo (see
+            // tools/highlight/render.mjs) -- the normal superproject layout.
+            "command": "npm install && npm run build",
+            "options": {
+                "cwd": "${workspaceFolder}/tools/highlight",
+                "shell": {
+                    "executable": "powershell.exe",
+                    "args": ["-NoProfile", "-Command"]
+                }
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "shared"
+            },
+            "problemMatcher": []
+        },
+        {
             "label": "Serve",
             "type": "shell",
             "command": "bundle exec jekyll serve --livereload",
@@ -17,6 +38,8 @@
                     "args": ["-NoProfile", "-Command"]
                 }
             },
+            "dependsOn": ["Regenerate Highlighting"],
+            "dependsOrder": "sequence",
             "group": {
                 "kind": "test",
                 "isDefault": true

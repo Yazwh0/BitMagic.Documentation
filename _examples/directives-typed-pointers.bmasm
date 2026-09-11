@@ -1,0 +1,3 @@
+.var      ushort ptr  cursor    $0400   ; a 2-byte variable, initialised to $0400
+.constvar uint ptr    counter   $c000   ; names $c000 as a uint pointer; emits nothing
+.padvar   ushort ptr  next              ; reserves 2 bytes for a ushort pointer

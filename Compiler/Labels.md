@@ -10,11 +10,7 @@ A label is a name for a point in your code or data. Use it as the target of a br
 
 A label goes on its own line: a single word starting with `.` and ending with `:`, with nothing but whitespace before the `.`. A comment may follow the `:`; anything else on the line, an instruction included, is dropped without warning.
 
-```bmasm
-.start:
-    inx
-    bne start
-```
+{% include generated/labels-basic.html %}
 
 A label belongs to the [scope](/compiler/scope) it is defined in, so a label inside a `.proc` is private to that procedure. Forward references are fine; the compiler resolves them in a later pass.
 
@@ -22,12 +18,7 @@ A label belongs to the [scope](/compiler/scope) it is defined in, so a label ins
 
 As long as a label is defined only once, it can be used in an [expression](/compiler/expressions) like any other constant:
 
-```bmasm
-.byte $00
-.loop:
-    inc loop-1
-    bne loop        ; loops 256 times
-```
+{% include generated/labels-in-expressions.html %}
 
 `loop-1` is the address of the `.byte` just before the label. `inc loop-1` bumps that byte each pass, and `bne loop` keeps going until it wraps back to zero.
 
@@ -42,21 +33,7 @@ To reference one, prefix it with `+` or `-` for the direction to search, relativ
 
 Repeat the prefix to step further: `--name` is the second match backwards, `++name` the second forwards.
 
-```bmasm
-.loop:          ; A
-    ; ...
-.loop:          ; B
-
-    bne -loop    ; B
-    bne --loop   ; A
-    bne +loop    ; C
-    bne ++loop   ; D
-    bne loop     ; error, not unique
-
-.loop:          ; C
-    ; ...
-.loop:          ; D
-```
+{% include generated/labels-repeated.html %}
 
 ## Anonymous labels
 
@@ -64,8 +41,5 @@ A label with no name, just `.:`, is an anonymous label. Reference the nearest on
 
 Unlike a named label, `.:` may share its line with an instruction:
 
-```bmasm
-.: dex
-   bne -            ; back to the anonymous label
-```
+{% include generated/labels-anonymous.html %}
 

@@ -1,0 +1,2 @@
+.segment BSS $0400 $0400          ; 0x400 bytes of uninitialised space, no file
+.segment DATA $2000 _ data.bin    ; written to data.bin

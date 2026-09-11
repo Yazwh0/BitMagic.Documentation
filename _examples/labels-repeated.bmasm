@@ -1,0 +1,13 @@
+.loop:          ; A
+    ; ...
+.loop:          ; B
+
+    bne -loop    ; B
+    bne --loop   ; A
+    bne +loop    ; C
+    bne ++loop   ; D
+    bne loop     ; error, not unique
+
+.loop:          ; C
+    ; ...
+.loop:          ; D

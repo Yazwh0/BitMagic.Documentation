@@ -1,0 +1,14 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">library</span><span style="color:#EAEAEA"> MyProject.Screen;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Fill(</span><span style="color:#B5E853">byte</span><span style="color:#EAEAEA"> value)</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">@(value)</span></span>
+<span class="line"><span style="color:#B5E853">    ldx</span><span style="color:#B5E853"> #</span><span style="color:#FF79C6">0</span></span>
+<span class="line"><span style="color:#EAEAEA">.:</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#FF79C6"> $0400</span><span style="color:#EAEAEA">, x</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#FF79C6"> $0500</span><span style="color:#EAEAEA">, x</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#FF79C6"> $0600</span><span style="color:#EAEAEA">, x</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#FF79C6"> $0700</span><span style="color:#EAEAEA">, x</span></span>
+<span class="line"><span style="color:#B5E853">    inx</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> -</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span></code></pre>

@@ -1,0 +1,4 @@
+.segment BSS $0400 $0400        ; RAM at $0400, no filename
+    .padvar ushort   score      ; $0400
+    .padvar byte     lives      ; $0402
+    .padvar byte[8]  sprite_x   ; $0403 to $040a

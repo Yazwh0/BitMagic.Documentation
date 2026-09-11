@@ -22,18 +22,12 @@ The template engine expands any embedded C# first. What reaches the compiler is 
 
 `;` starts a comment, whether it follows code on a line or sits on a line of its own. The compiler also accepts `//` on a directive line. On a C# line, use C# comment syntax.
 
-```bmasm
-lda #$00        ; a comment
-.const width 40 // also a comment
-```
+{% include generated/compiler-comments.html %}
 
 ## Directives
 
 A directive line starts with `.`. Parameters are positional, or given as `name=value` pairs:
 
-```bmasm
-.const name=example, value=$1234
-.const example $1234
-```
+{% include generated/compiler-directive-forms.html %}
 
 The [Directives](/compiler/directives) page is the full list. The parts with more to them have their own pages: [Segments](/compiler/segment), [Scopes](/compiler/scope), [Labels](/compiler/labels) and [Expressions](/compiler/expressions).

@@ -1,0 +1,3 @@
+.proc test
+    .const something $1234       ; App:Main:test:something
+.endproc

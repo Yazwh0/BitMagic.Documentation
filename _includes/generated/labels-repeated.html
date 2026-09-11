@@ -1,0 +1,13 @@
+<pre class="shiki"><code><span class="line"><span style="color:#EAEAEA">.loop:          </span><span style="color:#8F8F8F;font-style:italic">; A</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; ...</span></span>
+<span class="line"><span style="color:#EAEAEA">.loop:          </span><span style="color:#8F8F8F;font-style:italic">; B</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> -</span><span style="color:#EAEAEA">loop    </span><span style="color:#8F8F8F;font-style:italic">; B</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> --</span><span style="color:#EAEAEA">loop   </span><span style="color:#8F8F8F;font-style:italic">; A</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> +</span><span style="color:#EAEAEA">loop    </span><span style="color:#8F8F8F;font-style:italic">; C</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> ++</span><span style="color:#EAEAEA">loop   </span><span style="color:#8F8F8F;font-style:italic">; D</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#EAEAEA"> loop     </span><span style="color:#8F8F8F;font-style:italic">; error, not unique</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">.loop:          </span><span style="color:#8F8F8F;font-style:italic">; C</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; ...</span></span>
+<span class="line"><span style="color:#EAEAEA">.loop:          </span><span style="color:#8F8F8F;font-style:italic">; D</span></span></code></pre>

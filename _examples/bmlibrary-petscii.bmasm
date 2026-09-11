@@ -1,0 +1,2 @@
+.message:
+    BM.Petscii("HELLO WORLD")

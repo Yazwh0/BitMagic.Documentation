@@ -1,0 +1,10 @@
+import BM="bm.bmasm";
+
+BM.X16Header();
+	nop
+
+; your code here
+
+	stp
+.loop:
+	jmp -loop

@@ -1,0 +1,4 @@
+    BM.X16Header("start")
+    ; tables or setup here
+.start:
+    ; ...

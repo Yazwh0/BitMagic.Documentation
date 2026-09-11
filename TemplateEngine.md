@@ -24,26 +24,11 @@ Each line of a `.bmasm` file is emitted as **assembly** if it is:
 - `@(expression)` anywhere on an assembly line inserts the value of a C# expression.
 - A line that is `@expression` on its own emits whatever that expression returns.
 
-```bmasm
-for (var i = 0; i < 4; i++)
-{
-    lda #@(i)
-    sta $0400 + @(i)
-}
-```
+{% include generated/templateengine-splice-loop.html %}
 
 generates
 
-```asm
-lda #0
-sta $0400 + 0
-lda #1
-sta $0400 + 1
-lda #2
-sta $0400 + 2
-lda #3
-sta $0400 + 3
-```
+{% include generated/templateengine-splice-loop-generated.html %}
 
 ## Seeing the output
 

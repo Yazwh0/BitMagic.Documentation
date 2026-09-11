@@ -1,0 +1,6 @@
+.proc clear_screen
+    ; ...
+    rts
+.endproc
+
+    jsr clear_screen

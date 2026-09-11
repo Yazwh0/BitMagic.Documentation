@@ -1,0 +1,20 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.const</span><span style="color:#EAEAEA"> UART_RBR </span><span style="color:#FF79C6">$9fe0</span></span>
+<span class="line"><span style="color:#B5E853">.const</span><span style="color:#EAEAEA"> UART_THR </span><span style="color:#FF79C6">$9fe0</span></span>
+<span class="line"><span style="color:#B5E853">.const</span><span style="color:#EAEAEA"> UART_LSR </span><span style="color:#FF79C6">$9fe5</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">send_byte:</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> UART_LSR</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; THRE, transmit holding register empty</span></span>
+<span class="line"><span style="color:#B5E853">    and</span><span style="color:#B5E853"> #</span><span style="color:#FF79C6">%0010_0000</span></span>
+<span class="line"><span style="color:#B5E853">    beq</span><span style="color:#EAEAEA"> send_byte</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#E6DB74">'A'</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; queue a byte for the modem</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#EAEAEA"> UART_THR</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">read_byte:</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> UART_LSR</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; DR, a byte is waiting</span></span>
+<span class="line"><span style="color:#B5E853">    and</span><span style="color:#B5E853"> #</span><span style="color:#FF79C6">%0000_0001</span></span>
+<span class="line"><span style="color:#B5E853">    beq</span><span style="color:#EAEAEA"> read_byte</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; A holds $41 if the modem echoed the 'A' back</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> UART_RBR</span></span></code></pre>

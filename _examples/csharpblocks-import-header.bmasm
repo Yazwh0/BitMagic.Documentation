@@ -1,0 +1,3 @@
+import BM = "BM.bmasm";
+
+    BM.X16Header()

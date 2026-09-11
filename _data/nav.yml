@@ -60,6 +60,8 @@
       url: /emulator/rom
     - title: SD Card
       url: /emulator/sdcard
+    - title: WiFi Card
+      url: /emulator/wificard
 
 - title: Settings
   url: /settings

@@ -1,0 +1,6 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.const</span><span style="color:#EAEAEA"> count </span><span style="color:#FF79C6">32</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">.jump_lo:</span></span>
+<span class="line"><span style="color:#EAEAEA">    BM.LowBytes(Enumerable.Range(</span><span style="color:#FF79C6">0</span><span style="color:#EAEAEA">, count).Select(i </span><span style="color:#B5E853">=></span><span style="color:#EAEAEA"> targets[i]))</span></span>
+<span class="line"><span style="color:#EAEAEA">.jump_hi:</span></span>
+<span class="line"><span style="color:#EAEAEA">    BM.HighBytes(Enumerable.Range(</span><span style="color:#FF79C6">0</span><span style="color:#EAEAEA">, count).Select(i </span><span style="color:#B5E853">=></span><span style="color:#EAEAEA"> targets[i]))</span></span></code></pre>

@@ -1,0 +1,2 @@
+    lda #<target        ; low byte of target
+    ldx #>target        ; high byte of target

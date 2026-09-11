@@ -1,0 +1,11 @@
+.proc clear
+    ldx #0
+.loop:
+    for (var page = 0; page < 4; page++)
+    {
+        sta $0400 + @(page * 256), x
+    }
+    inx
+    bne loop
+    rts
+.endproc

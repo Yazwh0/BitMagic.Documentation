@@ -207,6 +207,59 @@ body {
   overflow-x: auto;
 }
 #main_content pre code { padding: 0; background: none; color: inherit; }
+
+/* Rouge syntax highlighting, scoped so it only touches fenced code blocks
+   the highlighter recognises the language of. Background/border come from
+   #main_content pre above, not from a Rouge theme, so a highlighted block
+   matches an unhighlighted one. Deliberately a small palette, not a full
+   IDE theme: three accent colours plus muted comments, everything else
+   (identifiers, punctuation, unrecognised tokens) left as plain text, so a
+   few lines of example code don't out-shout the surrounding page. Numbers
+   reuse the same pink already used for `inline code`, so an address like
+   $9fe0 looks the same whether it's in a sentence or a code block. */
+#main_content .highlight .c,
+#main_content .highlight .ch,
+#main_content .highlight .cd,
+#main_content .highlight .cpf,
+#main_content .highlight .cm,
+#main_content .highlight .c1,
+#main_content .highlight .cp,
+#main_content .highlight .cs { color: var(--muted); font-style: italic; }
+#main_content .highlight .k,
+#main_content .highlight .kv,
+#main_content .highlight .kc,
+#main_content .highlight .kd,
+#main_content .highlight .kp,
+#main_content .highlight .kr,
+#main_content .highlight .kt,
+#main_content .highlight .kn,
+#main_content .highlight .no,
+#main_content .highlight .ow,
+#main_content .highlight .o,
+#main_content .highlight .nt,
+#main_content .highlight .sa { color: var(--accent); }
+#main_content .highlight .m,
+#main_content .highlight .mb,
+#main_content .highlight .mf,
+#main_content .highlight .mh,
+#main_content .highlight .mi,
+#main_content .highlight .mo,
+#main_content .highlight .il,
+#main_content .highlight .se { color: #ff79c6; }
+#main_content .highlight .s,
+#main_content .highlight .sb,
+#main_content .highlight .sc,
+#main_content .highlight .sd,
+#main_content .highlight .s1,
+#main_content .highlight .s2,
+#main_content .highlight .sh,
+#main_content .highlight .si,
+#main_content .highlight .sx,
+#main_content .highlight .sr,
+#main_content .highlight .ss,
+#main_content .highlight .dl { color: #e6db74; }
+#main_content .highlight .err { color: inherit; background: none; }
+
 #main_content table {
   display: block;
   width: 100%;

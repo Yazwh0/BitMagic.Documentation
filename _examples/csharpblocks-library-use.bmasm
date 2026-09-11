@@ -1,0 +1,3 @@
+import Screen = "screen.bmasm";
+
+    Screen.Fill(0x20)

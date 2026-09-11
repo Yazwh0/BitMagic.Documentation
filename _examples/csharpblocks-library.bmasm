@@ -1,0 +1,14 @@
+library MyProject.Screen;
+
+public static void Fill(byte value)
+{
+    lda #@(value)
+    ldx #0
+.:
+    sta $0400, x
+    sta $0500, x
+    sta $0600, x
+    sta $0700, x
+    inx
+    bne -
+}

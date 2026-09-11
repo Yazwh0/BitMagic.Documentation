@@ -1,0 +1,5 @@
+var codeblock = "lda #2 \n lda #3";
+
+lda #1
+@(codeblock)
+lda #4

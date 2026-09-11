@@ -1,0 +1,12 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> greeting</span></span>
+<span class="line"><span style="color:#B5E853">    ldx</span><span style="color:#B5E853"> #</span><span style="color:#FF79C6">0</span></span>
+<span class="line"><span style="color:#EAEAEA">.loop:</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> endproc, x       </span><span style="color:#8F8F8F;font-style:italic">; the text that follows this proc</span></span>
+<span class="line"><span style="color:#B5E853">    beq</span><span style="color:#EAEAEA"> done</span></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#FF79C6"> $ffd2</span><span style="color:#8F8F8F;font-style:italic">            ; CHROUT</span></span>
+<span class="line"><span style="color:#B5E853">    inx</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#EAEAEA"> loop</span></span>
+<span class="line"><span style="color:#EAEAEA">.done:</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span>
+<span class="line"><span style="color:#B5E853">    .byte</span><span style="color:#E6DB74"> "HELLO"</span><span style="color:#EAEAEA">, </span><span style="color:#FF79C6">0</span><span style="color:#8F8F8F;font-style:italic">     ; greeting:endproc points here</span></span></code></pre>

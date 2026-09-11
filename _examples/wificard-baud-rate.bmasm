@@ -1,0 +1,17 @@
+.const UART_LCR $9fe3
+.const UART_DLL $9fe0
+.const UART_DLM $9fe1
+
+    ; LCR: set DLAB, divisor latch now at $9fe0/$9fe1
+    lda #%1000_0000
+    sta UART_LCR
+
+    ; divisor low = 921600 / 115200 = 8
+    lda #$08
+    sta UART_DLL
+    ; divisor high = 0
+    stz UART_DLM
+
+    ; LCR: clear DLAB, back to normal registers
+    lda #%0000_0011
+    sta UART_LCR
