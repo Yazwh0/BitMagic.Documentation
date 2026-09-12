@@ -12,7 +12,7 @@ BitMagic emulates the Commander X16 for general use. The same core also drives t
 
 ## Download
 
-The best way to get the emulator is the [latest build](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Windows.zip). There is no automatic update, so check back for newer builds.
+The best way to get the emulator is the latest build: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Linux.tar.gz). There is no automatic update, so check back for newer builds.
 
 Alternatively, clone the repository and build the emulator project.
 
@@ -52,6 +52,7 @@ Known limitations:
 | `--sdcard-overwrite` | Allow `--sdcard-write` to overwrite an existing file. |
 | `-u`, `--sdcard-update` | Sets `--sdcard-write` to the `--sdcard` value and enables overwrite. Requires `--sdcard`. |
 | `--cart` | Cartridge file to load as a plain binary. `.zip` / `.gz`, in the form `name.cart.zip`. |
+| `--wifi` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
 | `--dump` | Start from the state in a dump file. |
 | `--dump-folder` | Folder to write dump files to (Menu + Left Ctrl + S). |
 | `--help` | Display the help screen. |
