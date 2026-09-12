@@ -59,6 +59,7 @@ Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC pr
 | `sdCardFinalOutput` | string | `""` | SD card image to write once emulation finishes. May end `.gz` or `.zip`. |
 | `sdCardFiles` | [SdCardFile](#sdcardfiles)[] | `[]` | Files to add to the SD card. Wildcards accepted. Added in the order listed. |
 | `cartridge` | string | `""` | Cartridge file to load. |
+| `wifi` | bool | `false` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
 | `romSource` | [RomSource](#romsource)[] | `[]` | Files to load into ROM banks. |
 | `compileOptions` | [CompileOptions](#compileoptions) | `null` | Compilation options. |
 | `memoryFillValue` | byte | `0` | Value to fill CPU RAM and VRAM with at startup. |

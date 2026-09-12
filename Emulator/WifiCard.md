@@ -10,6 +10,8 @@ BitMagic emulates the [TL16C2550](https://www.ti.com/lit/ds/symlink/tl16c2550.pd
 
 This currently ships only in the develop release. Turn on `bitMagic.debugger.developRelease` in [Settings](/settings#debugger) to get it.
 
+The wifi card is not enabled by default, so it needs to be turned on separately. Set `"wifi": true` in your [project file](/debugger/projectfile) to enable it; without it the UART is never initialised, so reads and writes to `$9fe0` to `$9fe7` hit uninitialised state instead of a working UART.
+
 ![RomTerm running over the WiFi card](/Images/RomTerm.gif)
 
 ## What it is
