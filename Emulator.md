@@ -35,22 +35,22 @@ Known limitations:
 
 | Argument | Description |
 | -------- | ---------- |
-| `-p`, `--prg` | `.prg` file to load. |
-| `-r`, `--rom` | ROM file to load. Falls back to `rom.bin` in the current folder, then the `BITMAGIC_ROM` environment variable. |
-| `-a`, `--address` | Start address, default `0x810`. Only used when a `.prg` or `--code` file is loaded; otherwise the ROM boots from its own reset vector. |
-| `-c`, `--code` | Code file to compile. The result is loaded at `0x801`. |
-| `-w`, `--write` | Write the result of the compilation. Requires `--code`. |
+| `-p`<br>`--prg` | `.prg` file to load. |
+| `-r`<br>`--rom` | ROM file to load. Falls back to `rom.bin` in the current folder, then the `BITMAGIC_ROM` environment variable. |
+| `-a`<br>`--address` | Start address, default `0x810`. Only used when a `.prg` or `--code` file is loaded; otherwise the ROM boots from its own reset vector. |
+| `-c`<br>`--code` | Code file to compile. The result is loaded at `0x801`. |
+| `-w`<br>`--write` | Write the result of the compilation. Requires `--code`. |
 | `--warp` | Run as fast as possible. |
-| `-s`, `--sdcard` | SD card to attach. Can be a `.zip` or `.gz`, in the form `name.xxx.zip` where `xxx` is `BIN` or `VHD`. |
+| `-s`<br>`--sdcard` | SD card to attach. Can be a `.zip` or `.gz`, in the form `name.xxx.zip` where `xxx` is `BIN` or `VHD`. |
 | `--sdcard-size` | SD card size in MB, if the emulator is creating the card. |
-| `-d`, `--sdcard-folder` | Home folder for the SD card. |
+| `-d`<br>`--sdcard-folder` | Home folder for the SD card. |
 | `--sdcard-synctox16` | Sync changes in the home directory to the SD card. Root directory only. |
 | `--sdcard-syncfromx16` | Sync changes on the SD card to the home directory. Root directory only. |
-| `-y`, `--sdcard-sync` | Both of the above. |
-| `-f`, `--sdcard-file` | File to add to the SD card root. Repeatable; wildcards accepted. |
+| `-y`<br>`--sdcard-sync` | Both of the above. |
+| `-f`<br>`--sdcard-file` | File to add to the SD card root. Repeatable; wildcards accepted. |
 | `--sdcard-write` | SD card file to write at the end of emulation. `.zip` / `.gz`, `name.xxx.zip`, `xxx` is `BIN` or `VHD`. |
 | `--sdcard-overwrite` | Allow `--sdcard-write` to overwrite an existing file. |
-| `-u`, `--sdcard-update` | Sets `--sdcard-write` to the `--sdcard` value and enables overwrite. Requires `--sdcard`. |
+| `-u`<br>`--sdcard-update` | Sets `--sdcard-write` to the `--sdcard` value and enables overwrite. Requires `--sdcard`. |
 | `--cart` | Cartridge file to load as a plain binary. `.zip` / `.gz`, in the form `name.cart.zip`. |
 | `--wifi` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
 | `--dump` | Start from the state in a dump file. |
