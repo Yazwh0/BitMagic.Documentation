@@ -41,6 +41,7 @@ Known limitations:
 | `-c`<br>`--code` | Code file to compile. The result is loaded at `0x801`. |
 | `-w`<br>`--write` | Write the result of the compilation. Requires `--code`. |
 | `--warp` | Run as fast as possible. |
+| `--scale` | Window scale, e.g. `2` for double size. Default `1`. |
 | `-s`<br>`--sdcard` | SD card to attach. Can be a `.zip` or `.gz`, in the form `name.xxx.zip` where `xxx` is `BIN` or `VHD`. |
 | `--sdcard-size` | SD card size in MB, if the emulator is creating the card. |
 | `-d`<br>`--sdcard-folder` | Home folder for the SD card. |
