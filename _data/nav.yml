@@ -63,6 +63,9 @@
     - title: WiFi Card
       url: /emulator/wificard
 
+- title: MCP Agent
+  url: /mcpagent
+
 - title: Settings
   url: /settings
 
