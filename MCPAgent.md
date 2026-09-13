@@ -22,10 +22,16 @@ Alternatively, clone the repository and build `BitMagic.X16MCP/X16M`.
 
 ## Registering it with an MCP client
 
-For Claude Code, register X16M with the CLI rather than a project `.mcp.json`, since the path to its executable is machine-specific:
+For Claude Code, register X16M with the CLI rather than a project `.mcp.json`, since the path to its executable is machine-specific. `--scope local` registers it for the current project only:
 
 ```bash
 claude mcp add x16m --scope local -- <path-to-X16M.exe>
+```
+
+Use `--scope user` instead to make it available in every project on this machine, rather than registering it project by project:
+
+```bash
+claude mcp add x16m --scope user -- <path-to-X16M.exe>
 ```
 
 Other MCP clients typically want the equivalent of a `.mcp.json` entry:
