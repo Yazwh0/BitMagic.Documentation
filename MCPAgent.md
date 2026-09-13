@@ -8,6 +8,8 @@ description: Let an AI coding agent drive a BitMagic debug session directly, via
 
 X16M is an MCP server that lets an AI agent, Claude Code or any other MCP client, drive a BitMagic debug session itself: launching a project, setting breakpoints, stepping, and inspecting memory, the same way VSCode does via `BitMagic.X16Debugger`.
 
+![Claude Code driving a BitMagic debug session through X16M](/Images/MCPExample.png)
+
 ## What it's for
 
 Normally you run the debugger and describe what you see to an agent. X16M lets the agent drive the session directly instead. Ask it in plain English to launch a project, set a breakpoint on a line, and report back what a variable holds once it's hit; it picks the right calls itself.
