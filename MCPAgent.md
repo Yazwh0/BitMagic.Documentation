@@ -73,11 +73,7 @@ Other MCP clients typically want the equivalent of a `.mcp.json` entry, with `co
 }
 ```
 
-### Pointing at a specific X16D
-
-By default X16M runs the bundled copy of `X16D` next to its own executable. Point it at a different debugger build with `--x16d <path-to-X16D.exe>`, or connect to one already running with `--dapport` via `--x16d-host`/`--x16d-port`.
-
-If you already have the VSCode extension installed, you don't need a separate copy of `X16D` at all: point `--x16d` at the same one it uses. Its location is the [`bitMagic.debugger.path`](/settings#debugger) setting (or `bitMagic.debugger.alternativePath`, if you've set one), so X16M drives the exact debugger build VSCode does.
+X16M runs the copy of `X16D` bundled alongside it by default, and that's the one to use: X16M's tools are built and tested against that exact build. `--x16d <path-to-X16D.exe>` and `--x16d-host`/`--x16d-port` exist for X16M's own development (stepping into `X16D` itself from a debugger), not as a general-purpose option: pointing X16M at a different `X16D` build (an older release, a local build, or the one your VSCode extension uses) risks a version mismatch between what X16M expects and what it's actually talking to.
 
 ## Available tools
 
