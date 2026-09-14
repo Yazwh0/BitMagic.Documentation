@@ -34,6 +34,9 @@ This puts `x16m` on your PATH, so registering it with Claude Code is a direct co
 claude mcp add x16m --scope user -- x16m
 ```
 
+A .NET tool doesn't auto-update. To pick up a newer version later, run
+`dotnet tool update -g BitMagic.X16M`.
+
 ### Download a build
 
 Get the latest build directly: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Linux.tar.gz).
