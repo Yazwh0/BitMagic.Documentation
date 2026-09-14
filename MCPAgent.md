@@ -16,22 +16,27 @@ Normally you run the debugger and describe what you see to an agent. X16M lets t
 
 X16M doesn't modify or depend on the debugger's internals. It speaks the Debug Adapter Protocol (DAP) to `X16D`, either spawning it as a child process (stdin/stdout, exactly as VSCode does) or connecting over TCP to one already running with `--dapport`, and re-exposes a subset of DAP as MCP tools.
 
-## Download
+## Getting started
 
-Get the latest build: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Linux.tar.gz). It bundles a copy of `X16D` alongside it, so there's nothing else to configure beyond a [ROM](/emulator/rom).
+There are two ways to get X16M, and each registers with an MCP client slightly differently.
 
-## Registering it with an MCP client
+### Install as a .NET tool
 
-For Claude Code, register X16M with the CLI rather than a project `.mcp.json`, since the path to its executable is machine-specific. Two scopes are relevant, and the difference matters:
-
-- `--scope user` makes X16M available from every project, in every session, on this machine. There's nothing project-specific about it: X16D and the ROM it talks to are the same regardless of which BitMagic project you're in, so registering it once per machine is the natural fit. Reach for this one unless you have a specific reason not to.
-- `--scope local` only takes effect in sessions launched from the exact directory you were standing in when you ran `claude mcp add`. A session started anywhere else, even after a full restart, won't see it, and `claude mcp list` will still report it as healthy since that check isn't tied to any one session.
+If you have the [.NET SDK](https://dotnet.microsoft.com/download) installed, this is the simplest route:
 
 ```bash
-claude mcp add x16m --scope user -- <path-to-X16M.exe>
+dotnet tool install -g BitMagic.X16M
 ```
 
-Either way the registration lives in your own `~/.claude.json`, never in a project file.
+This puts `x16m` on your PATH, so registering it with Claude Code is a direct command:
+
+```bash
+claude mcp add x16m --scope user -- x16m
+```
+
+### Download a build
+
+Get the latest build directly: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheMCP.Linux.tar.gz).
 
 `claude mcp add` stores the command exactly as given, and Claude Code doesn't necessarily launch it from the directory you were standing in when you registered it, so the path must be absolute, not `.\X16M.exe` or `./X16M`. From inside the extracted release folder, expand it to an absolute path with the shell itself:
 
@@ -43,19 +48,32 @@ claude mcp add x16m --scope user -- "$PWD\X16M.exe"
 claude mcp add x16m --scope user -- "$(pwd)/X16M"
 ```
 
+Either way it bundles a copy of `X16D` alongside it, so there's nothing else to configure beyond a [ROM](/emulator/rom), and the registration lives in your own `~/.claude.json`, never in a project file.
+
+### Scopes
+
+Register X16M with the CLI rather than a project `.mcp.json`, since the command (or path) is machine-specific. Two scopes are relevant, and the difference matters:
+
+- `--scope user` makes X16M available from every project, in every session, on this machine. There's nothing project-specific about it: X16D and the ROM it talks to are the same regardless of which BitMagic project you're in, so registering it once per machine is the natural fit. Reach for this one unless you have a specific reason not to.
+- `--scope local` only takes effect in sessions launched from the exact directory you were standing in when you ran `claude mcp add`. A session started anywhere else, even after a full restart, won't see it, and `claude mcp list` will still report it as healthy since that check isn't tied to any one session.
+
 If you registered it before and `claude mcp list` shows a relative path, a "Conflicting scopes" warning, or the tools aren't showing up despite a full restart, remove the bad entry (or entries, if it's registered in more than one scope) and re-add it: `claude mcp remove x16m --scope <scope>`, then one of the commands above.
 
-Other MCP clients typically want the equivalent of a `.mcp.json` entry:
+### Other MCP clients
+
+Other MCP clients typically want the equivalent of a `.mcp.json` entry, with `command` set to `x16m` if you installed the .NET tool, or the absolute path to `X16M.exe` (`X16M` on Linux) if you downloaded a build:
 
 ```json
 {
   "mcpServers": {
     "x16m": {
-      "command": "<path-to-X16M.exe>"
+      "command": "x16m"
     }
   }
 }
 ```
+
+### Pointing at a specific X16D
 
 By default X16M runs the bundled copy of `X16D` next to its own executable. Point it at a different debugger build with `--x16d <path-to-X16D.exe>`, or connect to one already running with `--dapport` via `--x16d-host`/`--x16d-port`.
 
