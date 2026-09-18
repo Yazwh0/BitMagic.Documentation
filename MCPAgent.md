@@ -95,6 +95,7 @@ Standard DAP is covered, plus X16-specific tools for VERA layers, sprites and CP
 | `evaluate(expression)` | Evaluates an expression in the current scope. |
 | `disassemble(memoryReference, instructionCount)` | Disassembles instructions from a memory location. |
 | `read_memory(memoryReference, count)` | Reads a block of memory. |
+| `search_memory(memoryReference, pattern, maxResults?)` | Searches a memory space for a value, run on the debugger itself rather than transferring the space first, so it's practical against something as large as the SD card image. `pattern` is either plain text (matched case-insensitively) or hex bytes prefixed with `$` or `0x`. |
 | `get_layers()` | Returns the current VERA display as six images, one per compositing layer (background, layer 0, layer 1, and sprites at each of their three depth slots). While paused mid-frame this can be a partial image rather than a complete one, since the beam only advances alongside executed CPU cycles. |
 | `get_sprites()` | Returns each sprite VERA currently has enabled (depth != 0), with its attributes and its own cropped image. VERA has a fixed table of 128 sprite slots; disabled ones are omitted rather than returned as 128 mostly-empty entries. |
 | `get_cpu_history(count?)` | Returns the most recently executed CPU instructions, most recent first, with register state, flags and source file/line where known. Useful for seeing how execution actually reached the current stop, not just where it is now. |
