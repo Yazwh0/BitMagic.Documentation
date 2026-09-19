@@ -101,6 +101,13 @@ Standard DAP is covered, plus X16-specific tools for VERA layers, sprites and CP
 | `get_cpu_history(count?)` | Returns the most recently executed CPU instructions, most recent first, with register state, flags and source file/line where known. Useful for seeing how execution actually reached the current stop, not just where it is now. |
 | `disconnect()` | Ends the debug session. |
 
+## Resources
+
+Alongside its tools, X16M serves `bmasm-syntax`, a purpose-written reference to the `.bmasm`
+language and its embedded Template Engine C# - directives, types, labels, scope, expressions,
+the BM library, and a worked example. An agent can read it before writing or editing `.bmasm`
+code, without you having to explain the syntax yourself.
+
 ## Example
 
 Once X16M is registered, you don't call its tools directly. You ask your agent in plain English, and it picks the right tools for you.
