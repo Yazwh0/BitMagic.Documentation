@@ -59,7 +59,7 @@ To add one, either use **Run > Add Configuration** and choose the BitMagic entry
 BitMagic adds its own views, each opened from the command palette under the **BitMagic** category. A view can be opened at any time, but stays empty until a debug session is running.
 
 - **BitMagic: Open The History View** ([CPU History](/debugger/cpuhistory)): recent CPU operations.
-- **BitMagic: Open The Memory View** ([Memory Viewer](/debugger/memoryview)): a visualisation of RAM reads, writes and execution, plus a value search.
+- **BitMagic: Open The Memory Access View** ([Memory Access View](/debugger/memoryaccessview)): a visualisation of RAM reads, writes and execution, plus a value search.
 - **BitMagic: Open The Layer View** ([Layer Viewer](/debugger/layerviewer)): what each VERA layer is rendering.
 - **BitMagic: Open The Sprite Viewer** ([Sprite Viewer](/debugger/spriteviewer)): all 128 sprites and their attributes.
 - **BitMagic: Open The CPU Profiler View** ([CPU Profiler](/debugger/cpuprofiler)): where in the frame your code runs, coloured by rule.

@@ -1,19 +1,19 @@
 ---
-title: Memory Viewer
+title: Memory Access View
 layout: page
-permalink: /debugger/memoryview
+permalink: /debugger/memoryaccessview
 description: Visualise how the X16 is using memory, and search RAM for where a value is stored.
 ---
 
-# Memory Viewer
+# Memory Access View
 
-The memory view visualises how the system is using memory, and lets you search RAM for where a value is stored.
+The memory access view visualises how the system is using memory, and lets you search RAM for where a value is stored.
 
 ## How to open
 
-Open the command palette and run `BitMagic: Open The Memory View`. See VSCode's [command documentation](https://code.visualstudio.com/api/extension-guides/command) to customise how you access it.
+Open the command palette and run `BitMagic: Open The Memory Access View`. See VSCode's [command documentation](https://code.visualstudio.com/api/extension-guides/command) to customise how you access it.
 
-## Memory view visualisation
+## Memory access visualisation
 
 The `Main Ram` image is 256x256 pixels, one pixel per memory location in the 64KB the CPU can address.
 
