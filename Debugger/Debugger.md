@@ -49,7 +49,7 @@ To add one, either use **Run > Add Configuration** and choose the BitMagic entry
 - **`type`** is always `bmasm`. It is what hands the session to the BitMagic debugger.
 - **`program`** is the [project file](/debugger/projectfile), normally `project.json` at the workspace root. It can instead point straight at a `.bmasm` file, which then becomes the only source. An empty `project.json` (`{}`) is valid and boots to the BASIC prompt.
 - **`debugArgs`** passes extra arguments through to X16D.
-- **`stopOnEntry`** is currently ignored: the session runs until it hits a breakpoint or a `stp`.
+- **`stopOnEntry`** pauses the session at its very first instruction instead of running straight through. Off by default.
 - **`cwd`** is the working directory for the session.
 
 ![Debugger Running](/Images/DebuggerRunning.png)
@@ -68,5 +68,6 @@ Two related topics are not separate views:
 
 - [Watches and Breakpoints](/debugger/watchesandbreakpoints): expressions, conditional and hit-count breakpoints, and logpoints, in the standard VSCode debug panels.
 - [Multiline Template Code](/debugger/multiline-template-code): stepping through code generated from a macro string.
+- [Copilot Tools](/debugger/copilottools): let GitHub Copilot Chat read sprites, layers, palette and memory from your running session.
 
 For a cc65 build instead of `.bmasm` source, see [cc65 Projects](/debugger/cc65).

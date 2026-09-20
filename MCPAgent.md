@@ -80,14 +80,19 @@ X16M runs the copy of `X16D` bundled alongside it by default, and that's the one
 
 ## Available tools
 
-Standard DAP is covered, plus X16-specific tools for VERA layers, sprites and CPU history.
+Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette, hardware breakpoints, CPU history, memory scanning, and keyboard/mouse input.
 
 | Tool | Description |
 | ---- | ----------- |
-| `launch_project(projectPath, breakpoints?)` | Launches a project's `.json` file, or a `.bmasm` file directly, and waits for its initial stop before returning. Pass `breakpoints` here rather than a follow-up `set_breakpoints` call: some targets finish in well under a second, faster than a separate tool call can land. |
-| `set_breakpoints(file, lines[])` | Sets the full set of breakpoints for a file, replacing any previously set there. |
+| `launch_project(projectPath, breakpoints?, stopOnEntry?)` | Launches a project's `.json` file, or a `.bmasm` file directly. Stops the target at its very first instruction by default (`stopOnEntry: true`) - the recommended flow from here is `set_breakpoints`, then `continue_execution`. Pass `stopOnEntry: false` to let it start running immediately instead, in which case strongly prefer passing `breakpoints` here too rather than a follow-up `set_breakpoints` call: some targets finish in well under a second, faster than a separate tool call can land. |
+| `set_breakpoints(file, lines[])` | Sets the full set of source breakpoints for a file, replacing any previously set there. |
 | `get_breakpoints()` | Reports the current verification state of every breakpoint set so far. X16D verifies a breakpoint once its file actually loads, which can happen after `set_breakpoints` or `launch_project` already returned. |
-| `continue_execution()` | Resumes a paused session. |
+| `set_instruction_breakpoints(addresses[])` | Sets the full set of breakpoints by raw CPU address, replacing any previously set this way - independent of `set_breakpoints`' source lines. Useful for code with no source mapping, or an address reached from more than one line. |
+| `set_hardware_breakpoints(expressions[])` | Sets X16 hardware breakpoints, replacing any previously set this way: `vram(address)` breaks on any VRAM read or write at that address (optionally a range, and/or restricted to reads or writes only); `vsync()`/`vsync(frameNumber)` breaks on every frame's vertical sync, or once on a specific frame. Not "break when this function is called" despite the name - `set_breakpoints` already covers that better. |
+| `set_exception_breakpoints(filters[])` | Sets which exception conditions stop the target: `BRK` (a BRK instruction executes, off by default), `EXP` (an exception raised within code, on by default), `FIO` (a LOAD returned an error code, on by default). |
+| `get_exception_info()` | Reports which exception breakpoint caused the current stop, and why - call after a stop with reason "exception". |
+| `continue_execution()` | Resumes a paused session and waits for the next stop. |
+| `pause()` | Pauses a running target immediately and waits for the resulting stop, rather than waiting for a breakpoint or exception. |
 | `step_over()` | Steps over the current line. |
 | `step_into()` | Steps into a call on the current line. |
 | `step_out()` | Steps out of the current function. |
@@ -95,10 +100,15 @@ Standard DAP is covered, plus X16-specific tools for VERA layers, sprites and CP
 | `evaluate(expression)` | Evaluates an expression in the current scope. |
 | `disassemble(memoryReference, instructionCount)` | Disassembles instructions from a memory location. |
 | `read_memory(memoryReference, count)` | Reads a block of memory. |
+| `write_memory(memoryReference, address, data)` | Writes raw bytes to a memory space at a given address, to amend live state (e.g. poke a value to test a theory). |
 | `search_memory(memoryReference, pattern, maxResults?)` | Searches a memory space for a value, run on the debugger itself rather than transferring the space first, so it's practical against something as large as the SD card image. `pattern` is either plain text (matched case-insensitively) or hex bytes prefixed with `$` or `0x`. |
+| `find_memory_value(value, searchType, searchWidth, locations?)` | "Cheat Engine" style value scanner across every RAM bank - the way to find where an unknown game variable (health, score, a counter) lives without knowing its address. The first call scans fresh (takes roughly 30-60s regardless of value or searchType - only call it once per hunt); pass the locations it returns back with a new searchType (e.g. "Changed", "Gone Up") to narrow down, repeating until only the address you want is left. |
 | `get_layers()` | Returns the current VERA display as six images, one per compositing layer (background, layer 0, layer 1, and sprites at each of their three depth slots). While paused mid-frame this can be a partial image rather than a complete one, since the beam only advances alongside executed CPU cycles. |
 | `get_sprites()` | Returns each sprite VERA currently has enabled (depth != 0), with its attributes and its own cropped image. VERA has a fixed table of 128 sprite slots; disabled ones are omitted rather than returned as 128 mostly-empty entries. |
+| `get_palette()` | Returns the current VERA palette: 256 entries, both as fully-resolved 8-bit RGBA colours (what's actually rendered) and as VERA's own raw 4-bit-per-channel values. |
 | `get_cpu_history(count?)` | Returns the most recently executed CPU instructions, most recent first, with register state, flags and source file/line where known. Useful for seeing how execution actually reached the current stop, not just where it is now. |
+| `send_key(key, down)` | Sends a single keyboard event - one key press or release, exactly as a real key would arrive. `key` matches Silk.NET.Input.Key, e.g. "A", "Enter", "ShiftLeft". |
+| `send_mouse(deltaX?, deltaY?, left?, right?, middle?)` | Sends a single mouse sample: a movement delta plus the mouse's current button state, exactly as a real mouse would report one. The X16's mouse is relative (PS/2-style), not absolute - there's no "move to X,Y", only "move by this much". |
 | `disconnect()` | Ends the debug session. |
 
 ## Compiling without a session
