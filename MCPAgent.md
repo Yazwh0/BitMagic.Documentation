@@ -2,11 +2,11 @@
 layout: page
 title: MCP Agent
 permalink: /mcpagent
-description: Let an AI coding agent drive a BitMagic debug session directly, via an MCP server.
+description: Let an AI coding agent drive a BitMagic debug session, or just compile bmasm, directly via an MCP server.
 ---
 # MCP Agent
 
-X16M is an MCP server that lets an AI agent, Claude Code or any other MCP client, drive a BitMagic debug session itself: launching a project, setting breakpoints, stepping, and inspecting memory, the same way VSCode does via `BitMagic.X16Debugger`.
+X16M is an MCP server that lets an AI agent, Claude Code or any other MCP client, drive a BitMagic debug session itself: launching a project, setting breakpoints, stepping, and inspecting memory, the same way VSCode does via `BitMagic.X16Debugger`. It can also just compile a project or a single `.bmasm` file and report errors, with no session involved at all - see [Compiling without a session](#compiling-without-a-session).
 
 ![Claude Code driving a BitMagic debug session through X16M](/Images/MCPExample.png)
 
@@ -100,6 +100,14 @@ Standard DAP is covered, plus X16-specific tools for VERA layers, sprites and CP
 | `get_sprites()` | Returns each sprite VERA currently has enabled (depth != 0), with its attributes and its own cropped image. VERA has a fixed table of 128 sprite slots; disabled ones are omitted rather than returned as 128 mostly-empty entries. |
 | `get_cpu_history(count?)` | Returns the most recently executed CPU instructions, most recent first, with register state, flags and source file/line where known. Useful for seeing how execution actually reached the current stop, not just where it is now. |
 | `disconnect()` | Ends the debug session. |
+
+## Compiling without a session
+
+`build_project(target, buildFolder?, outputFolder?, binFolder?)` is the one tool above that isn't about a debug session at all: it compiles a project's `.json` file, or a single `.bmasm`/`.asm` file directly, and reports any errors - no session, no ROM, nothing run. It's independent of whatever `launch_project`/`attach_to_session` state exists, so it's safe to call at any time, including mid-session, and doesn't need one to exist first. Use it as a fast compile-check loop while an agent is writing or editing `.bmasm`: point it at the file, fix whatever it reports, repeat.
+
+`outputFolder` is where the compiled program (`.prg` etc) is written - worth setting explicitly when `target` is a bare source file, since there's no project file to carry an `outputFolder` of its own otherwise. `binFolder` is just the template engine's own intermediate artifacts (its compiled C#, generated `.bmasm`), not the compiled program - it rarely needs setting. Both default to a `bin` folder under `buildFolder` if omitted.
+
+Each call spawns its own short-lived copy of `X16D`, separate from any `X16D` a live session owns.
 
 ## Resources
 
