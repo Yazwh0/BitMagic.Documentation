@@ -41,7 +41,7 @@ Repeat the prefix to step further: `--name` is the second match backwards, `++na
 
 A label with no name, just `.:`, is an anonymous label. Reference the nearest one with a bare `-` or `+` (no name), following the same direction and repeat rules.
 
-Unlike a named label, `.:` may share its line with an instruction:
+Unlike a named label, `.:` may share its line with an instruction. When it does, that label is never a match for its own line's `-` or `+`: `.: bne -` and `.: bne +` always search strictly before or after the current line, so they can't branch to themselves.
 
 {% include generated/labels-anonymous.html %}
 
