@@ -1,0 +1,3 @@
+var evens = Enumerable.Range(0, 8).
+    Where(i => i % 2 == 0).
+    ToList();

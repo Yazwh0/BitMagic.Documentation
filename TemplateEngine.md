@@ -19,6 +19,10 @@ Each line of a `.bmasm` file is emitted as **assembly** if it is:
 
 **Any other line is C#.** So `for (var i = 0; i < 8; i++)`, `{`, `}` and `var x = …` are just run.
 
+This is decided per line, by its first character, not by parsing the statement. A C# method chain split across lines, with the `.` leading each continuation, is misread: the continuation line is taken as a directive instead. Keep the `.` at the end of the previous line instead:
+
+{% include generated/templateengine-chained-methods.html %}
+
 ## Splicing values in
 
 - `@(expression)` anywhere on an assembly line inserts the value of a C# expression.

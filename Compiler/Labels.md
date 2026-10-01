@@ -12,7 +12,9 @@ A label goes on its own line: a single word starting with `.` and ending with `:
 
 {% include generated/labels-basic.html %}
 
-A label belongs to the [scope](/compiler/scope) it is defined in, so a label inside a `.proc` is private to that procedure. Forward references are fine; the compiler resolves them in a later pass.
+A label belongs to the [scope](/compiler/scope) it is defined in, so a label inside a `.proc` is private to that procedure, and forward references to it are resolved in a later pass.
+
+A forward reference resolves oddly if a global label already has the same name: it picks the global, not the local label defined later in the same scope (I've had one of these jump straight into BSS). Give a local label a unique prefix if the bare name might already exist elsewhere.
 
 ## Labels in expressions
 

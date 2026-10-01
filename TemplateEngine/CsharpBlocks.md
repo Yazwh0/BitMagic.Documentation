@@ -28,6 +28,10 @@ The `for` header and the braces are C#. The `sta` line is assembly, so it is emi
 
 A line that is just `@expr` emits the string that `expr` evaluates to.
 
+`@()` runs as C#, before the file reaches the [compiler](/compiler/), so it only sees C# values. It doesn't know about labels, or the [byte operators](/compiler/expressions#byte-operators) `<`, `>` and `^` (`@(<target)` won't compile). Write label arithmetic as plain assembly, with no `@()`:
+
+{% include generated/csharpblocks-label-bytes.html %}
+
 To emit assembly *from* C#, call a method that writes it, such as one from the [BM library](/templateengine/bm-library), as a plain statement with no `@`:
 
 {% include generated/csharpblocks-method-call-statement.html %}

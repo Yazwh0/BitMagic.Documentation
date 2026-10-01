@@ -27,8 +27,9 @@ A BitMagic debug session has to already be running (`F5` in VSCode). Without one
 | `#x16Palette` | The 256-colour VERA palette, as both raw R,G,B values and display-space RGBA. |
 | `#x16CpuHistory` | The entire recorded 65c02 instruction history, most recent first, since the last reset. Can be a large response on a long-running session; say so if you only want the most recent few. |
 | `#x16MemoryUse` | A heatmap image of which addresses were recently executed, read or changed. Calling it clears the tracked flags, so calling it straight again shows a different, mostly blank picture rather than the same one repeated. |
+| `#x16Variables` | Lists a debug scope's variables as `name: type = value` lines, the same as the Variables pane. For program symbols the type includes the memory location, e.g. `counter: byte ($0810) = 5`, so Copilot can go straight on to read or write that address. Scopes are `Globals`, `Locals` and the hardware scopes (CPU, VERA, etc.). |
 | `#x16ReadMemory` | Reads raw bytes from a memory space at an offset. |
-| `#x16WriteMemory` | Writes raw bytes to a memory space at an offset, to amend live state (poke a value to test a theory). Only `main`, `vram`, `sdcard` and `nvram` are writable. |
+| `#x16WriteMemory` | Writes raw bytes to a memory space at an offset, to amend live state (poke a value to test a theory). The bytes are a plain array of numbers (each 0-255, e.g. `[169, 1, 141]`), not base64. Only `main`, `vram`, `sdcard` and `nvram` are writable. |
 | `#x16SearchMemory` | Searches a memory space for a byte pattern, returning the offsets it was found at. |
 
 Memory space names match the rest of the debugger: `main` (currently-banked CPU-addressable RAM/ROM), `vram`, `sdcard`, `sdcardblock`, `nvram`, `rambank<N>`, `rombank<N>` (read and search only for the last two).

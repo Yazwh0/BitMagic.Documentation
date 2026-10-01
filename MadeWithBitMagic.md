@@ -43,6 +43,14 @@ The source demonstrates how macros can be used to make large complex tasks easie
 
 ![DataPort Tester](/Images/DataPortTester.png)
 
+## MCP Breakout
+
+Testing the BitMagic MCP Claude was directed to create a breakout game. After 40 minutes using Opus 5.5, Here is the result.
+
+[Download Incluing Source](/archives/BREAKOUT.ZIP)
+
+![Breakout](/Images/breakout.screenshot.png)
+
 ## Not made with BitMagic but made by me!
 
 The intro that started it all. It was trying to debug ca65's macro code that made me want to write my own compiler as I simply couldn't find out how to see what the macro code produced. The loop of using VSC to write code, ca65 to compile and then run in the official emulator was such a burden. I knew there could be a better way!

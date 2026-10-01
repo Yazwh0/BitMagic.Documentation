@@ -1,0 +1,2 @@
+lda #<target        ; low byte of target's address, no @() needed
+ldx #>target        ; high byte

@@ -57,6 +57,10 @@ The **procedure's own name** resolves to its first instruction, so `jsr clear_sc
 
 {% include generated/scope-procedure-names.html %}
 
+## Libraries and procedures
+
+Importing a [template library](/templateengine/csharp-blocks#library) doesn't give it a scope of its own. Its `.proc`s land wherever the current scope is when the library's code is spliced in, normally `Main`. Two libraries that both define, say, `.proc bsp` collide the moment both are imported into the same file. Wrap a library's procedures in their own [`.scope`](/compiler/directives#scope) to keep them out of each other's way.
+
 ## Viewing names
 
 Set the `displayVariables` compile option to `true` to list every name and its value in the build output.
