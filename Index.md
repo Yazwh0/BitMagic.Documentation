@@ -3,6 +3,7 @@ layout: home
 permalink: /
 title: What is BitMagic?
 description: "BitMagic is a Commander X16 development suite for VSCode: compiler, debugger and emulator."
+image: /Images/DebuggerExample.png
 ---
 # What is BitMagic?
 

@@ -3,6 +3,7 @@ title: Memory Access View
 layout: page
 permalink: /debugger/memoryaccessview
 description: Visualise how the X16 is using memory, and search RAM for where a value is stored.
+image: /Images/MemoryViewExample.png
 ---
 
 # Memory Access View

@@ -3,6 +3,7 @@ layout: page
 title: Watches and Breakpoints
 permalink: /debugger/watchesandbreakpoints
 description: C# expressions for watches, conditional and hit-count breakpoints, and logpoints.
+image: /Images/Variables-Cpu.png
 ---
 # Watches and Breakpoints
 

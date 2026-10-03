@@ -3,6 +3,7 @@ layout: page
 title: MCP Agent
 permalink: /mcpagent
 description: Let an AI coding agent drive a BitMagic debug session, or just compile bmasm, directly via an MCP server.
+image: /Images/MCPExample.png
 ---
 # MCP Agent
 

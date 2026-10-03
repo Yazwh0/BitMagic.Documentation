@@ -23,23 +23,42 @@
 
   // --- Image lightbox ---------------------------------------------------------
   // Clicking an image in the page content shows it full size over the page.
-  // Images that are already links are left alone.
+  // Images that are already links are left alone. The images are focusable
+  // and open with Enter or Space too; focus moves into the lightbox while
+  // it's open and goes back to the image when it closes.
   var content = document.getElementById('main_content');
   if (content) {
     var lightbox = document.createElement('div');
     lightbox.className = 'lightbox';
     lightbox.setAttribute('role', 'dialog');
     lightbox.setAttribute('aria-modal', 'true');
-    lightbox.setAttribute('aria-label', 'Enlarged image');
+    lightbox.setAttribute('aria-label', 'Enlarged image, press Escape to close');
+    lightbox.tabIndex = -1;
     var large = document.createElement('img');
     lightbox.appendChild(large);
     document.body.appendChild(lightbox);
+    var opener = null;
 
+    function openLightbox(img) {
+      large.src = img.currentSrc || img.src;
+      large.alt = img.alt;
+      opener = img;
+      document.body.classList.add('lightbox-open');
+      lightbox.focus();
+    }
     function closeLightbox() {
+      if (!document.body.classList.contains('lightbox-open')) return;
       document.body.classList.remove('lightbox-open');
       large.removeAttribute('src');
+      if (opener) opener.focus();
+      opener = null;
     }
     lightbox.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('keydown', function (e) {
+      // Nothing in the lightbox to tab to, so keep focus in it.
+      if (e.key === 'Tab') e.preventDefault();
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); closeLightbox(); }
+    });
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape') closeLightbox();
     });
@@ -47,10 +66,12 @@
     content.querySelectorAll('img').forEach(function (img) {
       if (img.closest('a')) return;
       img.classList.add('zoomable');
-      img.addEventListener('click', function () {
-        large.src = img.currentSrc || img.src;
-        large.alt = img.alt;
-        document.body.classList.add('lightbox-open');
+      img.tabIndex = 0;
+      img.setAttribute('role', 'button');
+      img.setAttribute('aria-label', (img.alt ? img.alt + ': ' : '') + 'enlarge image');
+      img.addEventListener('click', function () { openLightbox(img); });
+      img.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openLightbox(img); }
       });
     });
   }

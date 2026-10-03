@@ -248,6 +248,9 @@ for (const example of examples) {
     `title: ${yamlString(title)}`,
     `permalink: ${url}`,
     `description: ${yamlString(example.description.replace(/`/g, ""))}`,
+    // The first image in the README is the page's preview when it's shared,
+    // instead of the site-wide default.
+    ...(copiedImages.length ? [`image: /Images/examples/${example.slug}/${copiedImages[0]}`] : []),
     "---",
     `${marker} from ${readmePath}. Edit the README, not this file. -->`,
     "{% raw %}",

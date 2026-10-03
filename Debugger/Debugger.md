@@ -3,6 +3,7 @@ layout: home
 title: Debugger
 permalink: /debugger/
 description: Debug the X16 inside VSCode. Launch a project, step, and inspect machine state.
+image: /Images/DebuggerRunning.png
 ---
 # The Debugger
 

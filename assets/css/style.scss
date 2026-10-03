@@ -319,6 +319,8 @@ body {
 }
 #main_content img { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 4px; }
 #main_content img.zoomable { cursor: zoom-in; }
+#main_content img.zoomable:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.lightbox:focus { outline: none; }
 
 /* ---------- image lightbox (docs.js) ---------- */
 .lightbox {

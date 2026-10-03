@@ -3,6 +3,7 @@ title: Made With BitMagic
 layout: home
 permalink: /madewithbitmagic/
 description: A few demos, intros and tools built with BitMagic.
+image: /Images/x4096.screenshot.png
 ---
 
 # Made With BitMagic

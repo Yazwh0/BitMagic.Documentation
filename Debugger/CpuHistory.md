@@ -3,6 +3,7 @@ title: CPU History
 layout: page
 permalink: /debugger/cpuhistory
 description: View recent CPU operations while debugging, and jump back to the source.
+image: /Images/HistoryExample.png
 ---
 
 # CPU History

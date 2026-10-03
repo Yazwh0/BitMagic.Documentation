@@ -3,6 +3,7 @@ title: Layer Viewer
 layout: page
 permalink: /debugger/layerviewer
 description: See what each VERA layer, sprite layer and the background are rendering while debugging.
+image: /Images/LayerViewExample.png
 ---
 
 # Layer Viewer

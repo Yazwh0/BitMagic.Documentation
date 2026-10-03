@@ -3,6 +3,7 @@ layout: page
 title: WiFi Card
 permalink: /emulator/wificard
 description: How BitMagic emulates the Commander X16's serial UART, runs the WiFi card firmware behind it, and which parts are not modelled.
+image: /Images/RomTerm.gif
 ---
 # WiFi Card
 

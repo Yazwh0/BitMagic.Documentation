@@ -3,6 +3,7 @@ title: Multiline Template Code
 layout: page
 permalink: /debugger/multiline-template-code
 description: Debugging 65c02 code that was generated from a macro string rather than written inline.
+image: /Images/TemplateVariablesExample.gif
 ---
 
 # Multiline Template Code

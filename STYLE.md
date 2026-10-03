@@ -60,6 +60,7 @@ layout: page          # "home" for a section landing page, "page" for a leaf
 title: Memory Viewer  # Title Case
 permalink: /debugger/memoryview   # lowercase, no spaces, section-prefixed, no .html
 description: Visualise how the X16 is using memory and search for values in RAM.
+image: /Images/MemoryViewExample.png   # when the page has a screenshot or GIF
 ---
 ```
 
@@ -71,6 +72,10 @@ description: Visualise how the X16 is using memory and search for values in RAM.
   breaks inbound links.
 - **`description`**: one sentence, present on every page. It's the search-result
   snippet; without it every page shares the site description.
+- **`image`**: set it whenever the page has a screenshot or GIF, using the page's main
+  one (the same `/Images/...` path the page links to). It's the preview shown when the
+  page is shared; without it the page falls back to the site logo. The example pages
+  get this from `tools/examples/sync.mjs`, which uses the README's first image.
 
 Then:
 
@@ -165,6 +170,7 @@ an afterthought.
 Before committing a new or edited page:
 
 - [ ] Frontmatter has `layout`, `title`, `permalink`, `description`
+- [ ] Frontmatter has `image` if the page has a screenshot or GIF
 - [ ] One `#` H1, matching `title`
 - [ ] Opening sentence says what the page is for
 - [ ] Headings are task-phrased
