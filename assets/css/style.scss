@@ -318,6 +318,29 @@ body {
   color: var(--muted);
 }
 #main_content img { max-width: 100%; height: auto; border: 1px solid var(--border); border-radius: 4px; }
+#main_content img.zoomable { cursor: zoom-in; }
+
+/* ---------- image lightbox (docs.js) ---------- */
+.lightbox {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  background: rgba(0, 0, 0, 0.85);
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  cursor: zoom-out;
+}
+body.lightbox-open .lightbox { display: flex; }
+.lightbox img {
+  max-width: 100%;
+  max-height: 100%;
+  min-width: min(100%, 48rem);
+  object-fit: contain;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
 #main_content ul,
 #main_content ol { padding-left: 1.4rem; }
 #main_content li { margin: .2rem 0; }

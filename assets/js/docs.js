@@ -21,8 +21,41 @@
     if (e.key === 'Escape') setOpen(false);
   });
 
-  // --- "On this page" table of contents ------------------------------------
+  // --- Image lightbox ---------------------------------------------------------
+  // Clicking an image in the page content shows it full size over the page.
+  // Images that are already links are left alone.
   var content = document.getElementById('main_content');
+  if (content) {
+    var lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    lightbox.setAttribute('role', 'dialog');
+    lightbox.setAttribute('aria-modal', 'true');
+    lightbox.setAttribute('aria-label', 'Enlarged image');
+    var large = document.createElement('img');
+    lightbox.appendChild(large);
+    document.body.appendChild(lightbox);
+
+    function closeLightbox() {
+      document.body.classList.remove('lightbox-open');
+      large.removeAttribute('src');
+    }
+    lightbox.addEventListener('click', closeLightbox);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape') closeLightbox();
+    });
+
+    content.querySelectorAll('img').forEach(function (img) {
+      if (img.closest('a')) return;
+      img.classList.add('zoomable');
+      img.addEventListener('click', function () {
+        large.src = img.currentSrc || img.src;
+        large.alt = img.alt;
+        document.body.classList.add('lightbox-open');
+      });
+    });
+  }
+
+  // --- "On this page" table of contents ------------------------------------
   var toc = document.getElementById('toc');
   var list = document.getElementById('toc-list');
   if (!content || !toc || !list) return;

@@ -4,3 +4,4 @@ _site
 .jekyll-metadata
 vendor
 tools/highlight/node_modules
+bitmagic-debug-session.json

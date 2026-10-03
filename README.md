@@ -32,6 +32,19 @@ bundle exec jekyll serve --livereload
   ridk exec bundle install
   ```
 
+## Example pages
+
+The pages under `Examples/` are generated from the READMEs in `BitMagic.Examples`, so
+edit the README rather than the page. After changing a README, run (with `npm install`
+done in `tools/highlight`):
+
+```sh
+node tools/examples/sync.mjs
+```
+
+and commit the regenerated `Examples/*.md`, `Images/examples/` and `_data/examples.yml`.
+New examples are added to the list at the top of the script.
+
 ## Style
 
 `STYLE.md` defines the voice, page structure and conventions for the docs. Read it

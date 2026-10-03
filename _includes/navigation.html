@@ -8,14 +8,17 @@
         {%- assign in_section = true -%}
       {%- endif -%}
 
-      {%- if item.children -%}
+      {%- assign children = item.children -%}
+      {%- if item.children_data -%}{%- assign children = site.data[item.children_data] -%}{%- endif -%}
+
+      {%- if children -%}
       <li class="tree-section{% if in_section %} is-current-section{% endif %}">
         <details{% if in_section %} open{% endif %}>
           <summary>
             <a href="{{ item.url | relative_url }}"{% if page.url == item.url %} aria-current="page" class="current"{% endif %}>{{ item.title | escape }}</a>
           </summary>
           <ul>
-            {%- for child in item.children -%}
+            {%- for child in children -%}
             <li><a href="{{ child.url | relative_url }}"{% if page.url == child.url %} aria-current="page" class="current"{% endif %}>{{ child.title | escape }}</a></li>
             {%- endfor -%}
           </ul>
