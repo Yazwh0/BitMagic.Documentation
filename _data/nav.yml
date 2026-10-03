@@ -50,8 +50,8 @@
       url: /debugger/cpuprofiler
     - title: Multiline Template Code
       url: /debugger/multiline-template-code
-    - title: cc65 Projects
-      url: /debugger/cc65
+    - title: ca65 Projects
+      url: /debugger/ca65
 
 - title: Emulator
   url: /emulator

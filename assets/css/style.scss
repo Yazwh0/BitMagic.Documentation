@@ -135,6 +135,27 @@ body {
 #toc-list a.active { color: var(--accent); border-left-color: var(--accent); }
 #toc-list .toc-h3 a { padding-left: 1.6rem; }
 
+/* The theme bullet (bullet.png) is a ">>" drawn outside each li, and how much of it
+   shows depends on where the container clips it. Draw one chevron (the right half
+   of the image) just left of the guide line instead, so the TOC and the sidebar's
+   page lists match. */
+#toc-list > li,
+.site-tree details > ul > li {
+  position: relative;
+  list-style: none;
+}
+#toc-list > li::before,
+.site-tree details > ul > li::before {
+  content: "";
+  position: absolute;
+  left: -15px;
+  width: 9px;
+  height: 8px;
+  background: url("../images/bullet.png") right center / 18px auto no-repeat;
+}
+#toc-list > li::before { top: calc(.2rem + .8em - 4px); }
+.site-tree details > ul > li::before { top: calc(.32rem + .8em - 5.5px); }
+
 /* ---------- sidebar tree ---------- */
 .site-tree ul { list-style: none; margin: 0; padding: 0; }
 .site-tree > ul > li { margin: .05rem 0; }
@@ -145,14 +166,29 @@ body {
   color: var(--fg);
   text-decoration: none;
 }
-.site-tree a:hover { background: rgba(181, 232, 83, .08); color: var(--accent); }
+.site-tree a:hover { color: var(--accent); }
+/* No bold in the tree: the mono fonts have no medium weight, so bold at this size
+   smears. Level is shown by colour and the guide line, the current page by the
+   accent bar, the same as the TOC on the right. */
 .site-tree a.current {
-  background: rgba(181, 232, 83, .13);
+  background: none;
+  box-shadow: inset 2px 0 0 var(--accent);
   color: var(--accent);
-  font-weight: bold;
 }
-.site-tree .tree-leaf > a { font-weight: bold; }
-.site-tree details > ul a { padding-left: 2.3rem; font-size: .8rem; font-weight: normal; }
+.site-tree details > ul {
+  margin: .1rem 0 .35rem 1.6rem;
+  border-left: 1px solid var(--border);
+}
+.site-tree details > ul a {
+  margin-left: -1px;
+  padding-left: .8rem;
+  border-left: 2px solid transparent;
+  border-radius: 0;
+  font-size: .8rem;
+  color: #b4b4b4;
+}
+.site-tree details > ul a:hover { background: none; color: var(--fg); }
+.site-tree details > ul a.current { box-shadow: none; border-left-color: var(--accent); color: var(--accent); }
 
 .site-tree summary {
   list-style: none;
@@ -171,7 +207,7 @@ body {
   transition: transform .12s ease;
 }
 .site-tree details[open] > summary::before { transform: rotate(90deg); }
-.site-tree summary a { padding-left: 1rem; font-weight: bold; }
+.site-tree summary a { padding-left: 1rem; }
 
 /* ---------- content typography (id-scoped to beat the theme) ---------- */
 #main_content h1 { margin: 0 0 1rem; }

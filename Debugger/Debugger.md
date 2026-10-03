@@ -70,4 +70,4 @@ Two related topics are not separate views:
 - [Multiline Template Code](/debugger/multiline-template-code): stepping through code generated from a macro string.
 - [Copilot Tools](/debugger/copilottools): let GitHub Copilot Chat read sprites, layers, palette and memory from your running session.
 
-For a cc65 build instead of `.bmasm` source, see [cc65 Projects](/debugger/cc65).
+For a ca65 program instead of `.bmasm` source, see [ca65 Projects](/debugger/ca65).

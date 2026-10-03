@@ -38,7 +38,7 @@ Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC pr
 | Name | Type | Default | Description |
 | ---- | ---- | ------- | ----------- |
 | `source` | string | `""` | Main source file. |
-| `startStepping` | bool | `true` | Start the session paused, ready to step. |
+| `startStepping` | bool | `false` | Start the session paused, ready to step. `stopOnEntry` in `launch.json` is ignored. |
 | `directRun` | bool | `false` | Run the compiled code directly. If `false`, compile it and add it to the SD card as a file instead. |
 | `autobootRun` | bool | `true` | Run the application by writing an `AUTOBOOT.X16`. Not written if the file already exists. |
 | `autobootFile` | string | `""` | Write `AUTOBOOT.X16` to run this named file instead. Overrides `autobootRun`. |
@@ -82,30 +82,30 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 
 ### cc65
 
-Experimental: see [cc65 Projects](/debugger/cc65) for what's supported.
+See [ca65 Projects](/debugger/ca65) for how to build and debug a ca65 program.
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
 | `type` | `"cc65"` | |
-| `outputs` | [Cc65Output](#cc65-output)[] | The binaries ld65 produced, with their load addresses. |
-| `objectFiles` | string[] | The `.o` files. |
-| `config` | string | The `.cfg` file passed to ld65. |
-| `debugFile` | string | The ld65 `--dbgfile` output. |
-| `sourcePath` | string | Where the source lives. |
-| `includes` | string[] | Include paths. |
+| `outputs` | [Cc65Output](#cc65-output)[] | The binaries ld65 produced. Filenames can use wildcards, eg `DAT/*`. |
+| `debugFile` | string | Required. The ld65 `--dbgfile` output, which provides the source map. |
+| `objectFiles` | string[] | Optional. The `.o` files, checked against the outputs to catch out of date builds. Wildcards accepted. |
+| `sourcePath` | string | Extra folder to search for source files. |
+| `includes` | string[] | Extra source files (eg `.mac`) to use when a source file in the debug file can't be found. Matched by filename. |
 | `filemap` | [Cc65FileMap](#cc65-file-map)[] | Path rewrites, applied to paths in the debug file. |
-| `basepath` | string | Base path for the cc65 project. |
-| `defaultOutputFile` | string | Which of `outputs` is the one to run. |
+| `basepath` | string | Folder ca65 and ld65 were run from, relative to the project. |
+| `config` | string | No longer used. |
+| `defaultOutputFile` | string | No longer used. |
 
 #### cc65 output
 
 | Name | Type | Description |
 | ---- | ---- | ----------- |
-| `filename` | string | The produced binary. |
-| `startAddress` | int | Address it is loaded at. |
-| `default` | bool | This is the binary to run. |
+| `filename` | string | The produced binary, as named in the debug file. Wildcards accepted. |
+| `startAddress` | int | Optional. Address it is loaded at; taken from the debug file if not set. |
+| `default` | bool | No longer used. |
 | `hasHeader` | bool | The file has a two-byte load-address header. Default `true`. |
-| `referenceFile` | string | A file to compare the generated data against. |
+| `referenceFile` | string | Read this file instead of `filename`. |
 
 #### cc65 file map
 
@@ -134,7 +134,7 @@ Experimental: see [cc65 Projects](/debugger/cc65) for what's supported.
 
 ### About symbol files
 
-A `.sym` file is the cc65 / VICE label format: one `al <hex address> .<name>` per line. `ld65 -Ln game.sym` produces one for a cc65 build, and the x16-rom build produces one per ROM bank (`kernal.sym`, `basic.sym`, and so on).
+A `.sym` file is the cc65 / VICE label format: one `al <hex address> .<name>` per line. `ld65 -Ln game.sym` produces one for a ca65 build, and the x16-rom build produces one per ROM bank (`kernal.sym`, `basic.sym`, and so on).
 
 Set `emulatorDirectory` to an X16 emulator checkout and the ROM-bank symbol files are picked up automatically, named from `romBankNames`. A symbol at `$c000` or above needs `romBank` set; one in `$a000` to `$bfff` needs `ramBank`; symbols in the wrong area for the bank are dropped.
 
