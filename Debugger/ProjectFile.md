@@ -79,6 +79,7 @@ Each entry has a `type` of either `bitmagic` or `cc65`, with different fields.
 | ---- | ---- | ----------- |
 | `type` | `"bitmagic"` | |
 | `filename` | string | The `.bmasm` file. |
+| `outputFilename` | string | Optional. The file to write the main output to, eg `GAME.PRG` or `BIN/GAME.PRG`. Defaults to the source name with a `.prg` extension, so `main.bmasm` writes `MAIN.PRG`. It's written with a two-byte load address header, so it can be loaded with `LOAD`, unless the name ends `.bin`. |
 
 ### cc65
 
