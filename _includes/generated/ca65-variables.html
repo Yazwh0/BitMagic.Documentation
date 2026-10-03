@@ -1,0 +1,13 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.segment</span><span style="color:#E6DB74"> "BSS"</span></span>
+<span class="line"><span style="color:#EAEAEA">frame_count:    .res </span><span style="color:#FF79C6">2</span><span style="color:#8F8F8F;font-style:italic">          ; watch 'frame_count', a word</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> update</span></span>
+<span class="line"><span style="color:#B5E853">.segment</span><span style="color:#E6DB74"> "BSS"</span></span>
+<span class="line"><span style="color:#EAEAEA">step_index:     .res </span><span style="color:#FF79C6">1</span><span style="color:#8F8F8F;font-style:italic">          ; watch 'update:step_index'</span></span>
+<span class="line"><span style="color:#B5E853">.segment</span><span style="color:#E6DB74"> "CODE"</span></span>
+<span class="line"><span style="color:#B5E853">    ldy</span><span style="color:#EAEAEA"> step_index</span></span>
+<span class="line"><span style="color:#EAEAEA">@loop:                          </span><span style="color:#8F8F8F;font-style:italic">; a cheap local, which can't be watched</span></span>
+<span class="line"><span style="color:#B5E853">    dey</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#EAEAEA"> @loop</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span></code></pre>

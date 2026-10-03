@@ -1,0 +1,13 @@
+.segment "BSS"
+frame_count:    .res 2          ; watch 'frame_count', a word
+
+.proc update
+.segment "BSS"
+step_index:     .res 1          ; watch 'update:step_index'
+.segment "CODE"
+    ldy step_index
+@loop:                          ; a cheap local, which can't be watched
+    dey
+    bne @loop
+    rts
+.endproc
