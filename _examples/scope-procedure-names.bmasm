@@ -1,3 +1,5 @@
+import BM="BM.bmasm";
+
 .proc greeting
     ldx #0
 .loop:
@@ -9,4 +11,4 @@
 .done:
     rts
 .endproc
-    .byte "HELLO", 0     ; greeting:endproc points here
+    BM.Bytes(BM.StringToPetscii("HELLO"));    // "HELLO", 0: greeting:endproc points here
