@@ -81,11 +81,12 @@ X16M runs the copy of `X16D` bundled alongside it by default, and that's the one
 
 ## Available tools
 
-Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette, hardware breakpoints, CPU history, memory scanning, and keyboard/mouse input.
+Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette, hardware breakpoints, CPU history, memory scanning, keyboard/mouse input, and recording the audio output.
 
 | Tool | Description |
 | ---- | ----------- |
 | `launch_project(projectPath, breakpoints?, stopOnEntry?, muteAudio?)` | Launches a project's `.json` file, or a `.bmasm` file directly. Stops the target at its very first instruction by default (`stopOnEntry: true`) - the recommended flow from here is `set_breakpoints`, then `continue_execution`. Pass `stopOnEntry: false` to let it start running immediately instead, in which case strongly prefer passing `breakpoints` here too rather than a follow-up `set_breakpoints` call: some targets finish in well under a second, faster than a separate tool call can land. Audio is muted by default (`muteAudio: true`), overriding the project file's `muteAudio`; this only silences the output, emulation is unaffected. |
+| `attach_to_session(workspacePath?)` | Attaches to a debug session VSCode already launched and owns, to view and amend its state rather than control it. Every other tool attaches automatically on first use, so this is only needed to check the connection up front or to re-attach after a disconnect. It needs the extension's *Run debug sessions through the same background process* setting on and a session running there. Stepping, breakpoints, continuing and disconnecting stay with VSCode; X16M's tools are for reading and amending X16 state (memory, sprites, palette, layers, CPU history, audio recording). `workspacePath` is the project folder to find the session in, and defaults to the current directory. |
 | `set_breakpoints(file, lines[])` | Sets the full set of source breakpoints for a file, replacing any previously set there. |
 | `get_breakpoints()` | Reports the current verification state of every breakpoint set so far. X16D verifies a breakpoint once its file actually loads, which can happen after `set_breakpoints` or `launch_project` already returned. |
 | `set_instruction_breakpoints(addresses[])` | Sets the full set of breakpoints by raw CPU address, replacing any previously set this way - independent of `set_breakpoints`' source lines. Useful for code with no source mapping, or an address reached from more than one line. |
@@ -111,6 +112,8 @@ Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette
 | `get_cpu_history(count?)` | Returns the most recently executed CPU instructions, most recent first, with register state, flags and source file/line where known. Useful for seeing how execution actually reached the current stop, not just where it is now. |
 | `send_key(key, down)` | Sends a single keyboard event - one key press or release, exactly as a real key would arrive. `key` matches Silk.NET.Input.Key, e.g. "A", "Enter", "ShiftLeft". |
 | `send_mouse(deltaX?, deltaY?, left?, right?, middle?)` | Sends a single mouse sample: a movement delta plus the mouse's current button state, exactly as a real mouse would report one. The X16's mouse is relative (PS/2-style), not absolute - there's no "move to X,Y", only "move by this much". |
+| `start_audio_recording(path)` | Records the running target's audio output (the VERA PSG and PCM, and the YM2151, mixed) to a 16-bit stereo WAV file at 48828Hz, overwriting any existing file. It's taken straight from the emulator's output, so it captures the real audio even when the window is muted, and only covers time the emulator is actually running: nothing is written while stopped at a breakpoint or paused, so the file plays back without gaps. One recording at a time. Use an absolute `path`; a relative one is only accepted when this session launched the project, and is resolved against the project's folder. Missing folders are created. Works when attached to a session you don't own. |
+| `stop_audio_recording()` | Stops the recording and finalises the WAV file, reporting its path and the length recorded (emulated running time only). A recording is also stopped when the session ends. |
 | `disconnect()` | Ends the debug session. |
 
 ## Compiling without a session
