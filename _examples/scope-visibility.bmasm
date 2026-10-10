@@ -1,0 +1,21 @@
+.scope sound
+    .const VOLUME 64            ; public: sound:VOLUME works from anywhere
+    .const private STRIDE 168   ; private: only code in the sound scope can use it
+    .padvar private byte tmp    ; private
+
+    .proc mix                   ; public: sound:mix
+        lda #STRIDE             ; fine, mix is in the sound scope
+        sta tmp
+        jsr helper              ; fine, so is helper
+        rts
+    .endproc
+
+    .proc private helper        ; private: only code in the sound scope can call it
+        rts
+    .endproc
+.endscope
+
+    lda #sound:VOLUME           ; fine
+    jsr sound:mix               ; fine
+    jsr sound:helper            ; error: 'sound:helper' is private to 'App:sound'
+    lda sound:tmp               ; error: 'sound:tmp' is private to 'App:sound'

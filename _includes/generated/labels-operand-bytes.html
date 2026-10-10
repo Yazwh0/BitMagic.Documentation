@@ -1,0 +1,8 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #&#x3C;</span><span style="color:#EAEAEA">message</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#EAEAEA"> read_lo             </span><span style="color:#8F8F8F;font-style:italic">; same as sta read</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #></span><span style="color:#EAEAEA">message</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#EAEAEA"> read_hi             </span><span style="color:#8F8F8F;font-style:italic">; same as sta read + 1</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> read: </span><span style="color:#B5E853">&#x3C;</span><span style="color:#EAEAEA">read_lo: </span><span style="color:#B5E853">></span><span style="color:#EAEAEA">read_hi: </span><span style="color:#FF79C6">$ffff</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; read    = this lda + 1, ushort</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; read_lo = this lda + 1, byte</span></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">    ; read_hi = this lda + 2, byte</span></span></code></pre>

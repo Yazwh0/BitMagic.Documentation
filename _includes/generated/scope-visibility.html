@@ -1,0 +1,21 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.scope</span><span style="color:#EAEAEA"> sound</span></span>
+<span class="line"><span style="color:#B5E853">    .const</span><span style="color:#EAEAEA"> VOLUME </span><span style="color:#FF79C6">64</span><span style="color:#8F8F8F;font-style:italic">            ; public: sound:VOLUME works from anywhere</span></span>
+<span class="line"><span style="color:#B5E853">    .const</span><span style="color:#B5E853"> private</span><span style="color:#EAEAEA"> STRIDE </span><span style="color:#FF79C6">168</span><span style="color:#8F8F8F;font-style:italic">   ; private: only code in the sound scope can use it</span></span>
+<span class="line"><span style="color:#B5E853">    .padvar</span><span style="color:#B5E853"> private</span><span style="color:#B5E853"> byte</span><span style="color:#EAEAEA"> tmp    </span><span style="color:#8F8F8F;font-style:italic">; private</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#EAEAEA"> mix                   </span><span style="color:#8F8F8F;font-style:italic">; public: sound:mix</span></span>
+<span class="line"><span style="color:#B5E853">        lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">STRIDE             </span><span style="color:#8F8F8F;font-style:italic">; fine, mix is in the sound scope</span></span>
+<span class="line"><span style="color:#B5E853">        sta</span><span style="color:#EAEAEA"> tmp</span></span>
+<span class="line"><span style="color:#B5E853">        jsr</span><span style="color:#EAEAEA"> helper              </span><span style="color:#8F8F8F;font-style:italic">; fine, so is helper</span></span>
+<span class="line"><span style="color:#B5E853">        rts</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#B5E853"> private</span><span style="color:#EAEAEA"> helper        </span><span style="color:#8F8F8F;font-style:italic">; private: only code in the sound scope can call it</span></span>
+<span class="line"><span style="color:#B5E853">        rts</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"><span style="color:#B5E853">.endscope</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">sound:VOLUME           </span><span style="color:#8F8F8F;font-style:italic">; fine</span></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#EAEAEA"> sound:mix               </span><span style="color:#8F8F8F;font-style:italic">; fine</span></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#EAEAEA"> sound:helper            </span><span style="color:#8F8F8F;font-style:italic">; error: 'sound:helper' is private to 'App:sound'</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> sound:tmp               </span><span style="color:#8F8F8F;font-style:italic">; error: 'sound:tmp' is private to 'App:sound'</span></span></code></pre>

@@ -1,0 +1,18 @@
+.scope private sound            ; names in sound are private unless marked public
+    .export volume VOLUME       ; exports are always public
+
+    .const VOLUME 64            ; private, the scope's default
+
+    .proc public play           ; the library's API says so
+        jsr mix
+        rts
+    .endproc
+
+    .proc mix                   ; private
+        rts
+    .endproc
+.endscope
+
+    jsr sound:play              ; fine
+    lda #sound:volume           ; fine, through the export
+    jsr sound:mix               ; error: 'sound:mix' is private to 'App:sound'

@@ -1,0 +1,9 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> feed</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> sample: </span><span style="color:#FF79C6">$ffff</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">.export</span><span style="color:#EAEAEA"> feed_sample feed:sample         </span><span style="color:#8F8F8F;font-style:italic">; public (the default)</span></span>
+<span class="line"><span style="color:#B5E853">.export</span><span style="color:#B5E853"> private</span><span style="color:#EAEAEA"> feed_end feed:endproc   </span><span style="color:#8F8F8F;font-style:italic">; private to this scope</span></span>
+<span class="line"><span style="color:#B5E853">.export</span><span style="color:#EAEAEA"> feed_data </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> feed_sample         </span><span style="color:#8F8F8F;font-style:italic">; an export of an export, '=' is optional</span></span>
+<span class="line"><span style="color:#B5E853">.export</span><span style="color:#EAEAEA"> feed_high feed:sample </span><span style="color:#B5E853">+</span><span style="color:#FF79C6"> 1</span><span style="color:#8F8F8F;font-style:italic">       ; an expression, still a ushort</span></span>
+<span class="line"><span style="color:#B5E853">.export</span><span style="color:#EAEAEA"> feed_low </span><span style="color:#B5E853">&#x3C;</span><span style="color:#EAEAEA">feed:sample           </span><span style="color:#8F8F8F;font-style:italic">; an expression, a constant</span></span></code></pre>

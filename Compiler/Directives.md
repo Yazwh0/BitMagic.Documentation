@@ -62,9 +62,12 @@ See [Scope](/compiler/scope) for how names are resolved.
 
 | Parameter | Type | Optional | Description |
 | --------- | ---- | -------- | ----------- |
-| `name` | string | true | Scope name. If omitted, an anonymous name is generated. |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive: the default for names declared in the scope. Set by the first `.scope` for the name; defaults to `public`. See [Private scopes](/compiler/scope#private-scopes). |
+| `name` | string | true | Scope name. If omitted, an anonymous name is generated. A scope with a `visibility` needs a name. |
 
-Opens a named constant scope. Scopes are a flat namespace under `App`; they do not nest.
+Opens a named constant scope. Scopes are a flat namespace under `App`; they do not nest. A scope is also the boundary for [public and private](/compiler/scope#public-and-private) names: everything in a scope can use every name in it.
+
+{% include generated/scope-private.html %}
 
 ### .endscope
 
@@ -74,7 +77,8 @@ No parameters. Returns to the enclosing procedure's scope.
 
 | Parameter | Type | Optional | Description |
 | --------- | ---- | -------- | ----------- |
-| `name` | string | true | Procedure name. If omitted, an anonymous name is generated. |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive. Defaults to the scope's default, normally `public`. See [Public and private](/compiler/scope#public-and-private). |
+| `name` | string | true | Procedure name. If omitted, an anonymous name is generated. A private procedure needs a name. |
 
 A named block with its own scope and an entry-point constant of the same name, so `jmp myproc` works. Procedures **can** be nested: a `.proc` inside a `.proc` becomes a child of it.
 
@@ -90,10 +94,11 @@ No parameters. Closes the current procedure and adds an `endproc` constant point
 
 | Parameter | Type | Description |
 | --------- | ---- | ----------- |
+| `visibility` | keyword | Optional: `public` or `private`, straight after the directive. Defaults to the scope's default, normally `public`. See [Public and private](/compiler/scope#public-and-private). |
 | `name` | string | Constant name. |
 | `value` | expression | Value. See [Expressions](/compiler/expressions). |
 
-Defines a named constant. A single line can define several:
+Defines a named constant. A single line can define several, and a `public` or `private` keyword applies to them all:
 
 {% include generated/directives-const.html %}
 
@@ -101,6 +106,7 @@ Defines a named constant. A single line can define several:
 
 | Parameter | Type | Optional | Description |
 | --------- | ---- | -------- | ----------- |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive. Defaults to the scope's default, normally `public`. See [Public and private](/compiler/scope#public-and-private). |
 | `type` | type | false | See [Types](#types). |
 | `name` | string | false | Variable name. |
 | `value` | expression | true | Initial value. Defaults to `0`. |
@@ -113,6 +119,7 @@ A way to put typed data into the segment. It reserves space for the variable **a
 
 | Parameter | Type | Optional | Description |
 | --------- | ---- | -------- | ----------- |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive. Defaults to the scope's default, normally `public`. See [Public and private](/compiler/scope#public-and-private). |
 | `type` | type | false | See [Types](#types). |
 | `name` | string | false | Name. |
 | `value` | expression | true | Address the pointer holds. Defaults to `0`. |
@@ -125,12 +132,25 @@ Defines a typed constant that points at an address: a typed alias for a fixed lo
 
 | Parameter | Type | Optional | Description |
 | --------- | ---- | -------- | ----------- |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive. Defaults to the scope's default, normally `public`. See [Public and private](/compiler/scope#public-and-private). |
 | `type` | type | false | See [Types](#types). |
 | `name` | string | false | Name. |
 
 Reserves space for a typed variable and advances the segment write position by its size, but writes **no** data. It is for uninitialised storage, so it belongs in a segment with no filename (a BSS area), where you are only carving RAM into named slots rather than producing bytes for a file. Using it in a segment that is written to disk would pad the file with blank bytes.
 
 {% include generated/directives-padvar.html %}
+
+### .export
+
+| Parameter | Type | Optional | Description |
+| --------- | ---- | -------- | ----------- |
+| `visibility` | keyword | true | `public` or `private`, straight after the directive. Defaults to `public`, even in a private scope. See [Public and private](/compiler/scope#public-and-private). |
+| `name` | string | false | The new name. |
+| `value` | name or expression | false | A name, resolved like any other, or an [expression](/compiler/expressions). An `=` before it is optional. |
+
+Gives an existing name a second, usually public, name. It can open up anything in its own [scope](/compiler/scope), whatever its visibility: labels, operand labels, private procedures, constants and variables, and `endproc`. When the value is a name, the new name has the same value and type as the original. When it's an expression that starts with a name and adds or subtracts, it has that name's type; any other expression gives a constant. See [Exporting a name](/compiler/scope#exporting-a-name).
+
+{% include generated/directives-export.html %}
 
 ## Segment layout
 

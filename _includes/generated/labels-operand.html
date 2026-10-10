@@ -1,0 +1,15 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> print</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #&#x3C;</span><span style="color:#EAEAEA">message</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#EAEAEA"> source              </span><span style="color:#8F8F8F;font-style:italic">; point the lda below at the message</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #></span><span style="color:#EAEAEA">message</span></span>
+<span class="line"><span style="color:#B5E853">    sta</span><span style="color:#EAEAEA"> source </span><span style="color:#B5E853">+</span><span style="color:#FF79C6"> 1</span></span>
+<span class="line"><span style="color:#EAEAEA">.:  </span><span style="color:#B5E853">lda</span><span style="color:#EAEAEA"> source: </span><span style="color:#FF79C6">$ffff</span><span style="color:#8F8F8F;font-style:italic">       ; source is this lda's two operand bytes</span></span>
+<span class="line"><span style="color:#B5E853">    beq</span><span style="color:#EAEAEA"> done</span></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#EAEAEA"> BSOUT</span></span>
+<span class="line"><span style="color:#B5E853">    inc</span><span style="color:#EAEAEA"> source              </span><span style="color:#8F8F8F;font-style:italic">; on to the next character</span></span>
+<span class="line"><span style="color:#B5E853">    bne</span><span style="color:#B5E853"> -</span></span>
+<span class="line"><span style="color:#B5E853">    inc</span><span style="color:#EAEAEA"> source </span><span style="color:#B5E853">+</span><span style="color:#FF79C6"> 1</span></span>
+<span class="line"><span style="color:#B5E853">    bra</span><span style="color:#B5E853"> -</span></span>
+<span class="line"><span style="color:#EAEAEA">.done:</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span></code></pre>

@@ -33,6 +33,11 @@ const examples = [
     description: "An over engineered Hello World! Five different ways to print `HELLO WORLD!`, each using a different BitMagic feature.",
   },
   {
+    folder: "Visibility",
+    slug: "visibility",
+    description: "A small text library that keeps most of itself private, showing `public`, `private` and `.export`.",
+  },
+  {
     folder: "DataGeneration",
     slug: "data-generation",
     description: "Uses C# to generate sine tables at compile time, then uses them to move a sprite around the screen.",

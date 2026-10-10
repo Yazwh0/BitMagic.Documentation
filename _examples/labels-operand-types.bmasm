@@ -1,0 +1,4 @@
+    lda count: #0           ; count: byte, one operand byte (immediate)
+    ldx row: $22            ; row: byte, one operand byte (zero page)
+    sta address: $9f23      ; address: ushort, two operand bytes (absolute)
+    jmp target: $0900       ; target: ushort, the jmp's destination

@@ -1,0 +1,15 @@
+.proc print
+    lda #<message
+    sta source              ; point the lda below at the message
+    lda #>message
+    sta source + 1
+.:  lda source: $ffff       ; source is this lda's two operand bytes
+    beq done
+    jsr BSOUT
+    inc source              ; on to the next character
+    bne -
+    inc source + 1
+    bra -
+.done:
+    rts
+.endproc

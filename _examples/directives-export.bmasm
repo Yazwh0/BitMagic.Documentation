@@ -1,0 +1,9 @@
+.proc feed
+    lda sample: $ffff
+.endproc
+
+.export feed_sample feed:sample         ; public (the default)
+.export private feed_end feed:endproc   ; private to this scope
+.export feed_data = feed_sample         ; an export of an export, '=' is optional
+.export feed_high feed:sample + 1       ; an expression, still a ushort
+.export feed_low <feed:sample           ; an expression, a constant

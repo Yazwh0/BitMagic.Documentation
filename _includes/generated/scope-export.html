@@ -1,0 +1,20 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">.scope</span><span style="color:#EAEAEA"> sound</span></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#EAEAEA"> mixer</span></span>
+<span class="line"><span style="color:#EAEAEA">    .loop:</span></span>
+<span class="line"><span style="color:#B5E853">        lda</span><span style="color:#EAEAEA"> sample: </span><span style="color:#FF79C6">$ffff</span><span style="color:#8F8F8F;font-style:italic">       ; an operand label: a ushort</span></span>
+<span class="line"><span style="color:#B5E853">        .const</span><span style="color:#B5E853"> private</span><span style="color:#EAEAEA"> RATE </span><span style="color:#FF79C6">43</span></span>
+<span class="line"><span style="color:#B5E853">        rts</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#EAEAEA"> mix_loop mixer:loop             </span><span style="color:#8F8F8F;font-style:italic">; a label</span></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#EAEAEA"> mix_sample mixer:sample         </span><span style="color:#8F8F8F;font-style:italic">; an operand label, still a ushort</span></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#EAEAEA"> mix_high mixer:sample </span><span style="color:#B5E853">+</span><span style="color:#FF79C6"> 1</span><span style="color:#8F8F8F;font-style:italic">       ; an expression: still a ushort, a byte on</span></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#EAEAEA"> mix_rate mixer:RATE             </span><span style="color:#8F8F8F;font-style:italic">; a private constant</span></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#EAEAEA"> double_rate mixer:RATE </span><span style="color:#B5E853">*</span><span style="color:#FF79C6"> 2</span><span style="color:#8F8F8F;font-style:italic">      ; an expression: a constant, 86</span></span>
+<span class="line"><span style="color:#B5E853">    .export</span><span style="color:#B5E853"> private</span><span style="color:#EAEAEA"> mix_end mixer:endproc   </span><span style="color:#8F8F8F;font-style:italic">; visible in sound only</span></span>
+<span class="line"><span style="color:#B5E853">.endscope</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    jmp</span><span style="color:#EAEAEA"> sound:mix_loop</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> sound:mix_sample </span><span style="color:#B5E853">+</span><span style="color:#FF79C6"> 1</span><span style="color:#8F8F8F;font-style:italic">    ; the high byte of the operand</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#EAEAEA"> sound:mix_high          </span><span style="color:#8F8F8F;font-style:italic">; the same byte</span></span>
+<span class="line"><span style="color:#B5E853">    lda</span><span style="color:#B5E853"> #</span><span style="color:#EAEAEA">sound:mix_rate         </span><span style="color:#8F8F8F;font-style:italic">; 43</span></span></code></pre>

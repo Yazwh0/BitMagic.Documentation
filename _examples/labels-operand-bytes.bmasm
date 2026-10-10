@@ -1,0 +1,8 @@
+    lda #<message
+    sta read_lo             ; same as sta read
+    lda #>message
+    sta read_hi             ; same as sta read + 1
+    lda read: <read_lo: >read_hi: $ffff
+    ; read    = this lda + 1, ushort
+    ; read_lo = this lda + 1, byte
+    ; read_hi = this lda + 2, byte

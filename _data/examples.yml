@@ -5,6 +5,11 @@
   description: "An over engineered Hello World! Five different ways to print `HELLO WORLD!`, each using a different BitMagic feature."
   source: https://github.com/Yazwh0/BitMagic.Examples/tree/main/HelloWorld
 
+- title: "Visibility"
+  url: /examples/visibility
+  description: "A small text library that keeps most of itself private, showing `public`, `private` and `.export`."
+  source: https://github.com/Yazwh0/BitMagic.Examples/tree/main/Visibility
+
 - title: "Data Generation"
   url: /examples/data-generation
   description: "Uses C# to generate sine tables at compile time, then uses them to move a sprite around the screen."

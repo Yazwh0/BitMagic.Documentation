@@ -1,0 +1,20 @@
+.scope sound
+    .proc mixer
+    .loop:
+        lda sample: $ffff       ; an operand label: a ushort
+        .const private RATE 43
+        rts
+    .endproc
+
+    .export mix_loop mixer:loop             ; a label
+    .export mix_sample mixer:sample         ; an operand label, still a ushort
+    .export mix_high mixer:sample + 1       ; an expression: still a ushort, a byte on
+    .export mix_rate mixer:RATE             ; a private constant
+    .export double_rate mixer:RATE * 2      ; an expression: a constant, 86
+    .export private mix_end mixer:endproc   ; visible in sound only
+.endscope
+
+    jmp sound:mix_loop
+    lda sound:mix_sample + 1    ; the high byte of the operand
+    lda sound:mix_high          ; the same byte
+    lda #sound:mix_rate         ; 43
