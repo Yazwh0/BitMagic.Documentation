@@ -1,0 +1,7 @@
+; levels.bmasm
+file data 3
+
+.level1:
+    .byte 1, 2, 3
+.level2:
+    .byte 4, 5, 6

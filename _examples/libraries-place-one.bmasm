@@ -1,0 +1,12 @@
+import BM="bm.bmasm";
+import Dos="dos.bmasm";
+import Lz="decompress.bmasm";
+
+    BM.X16Header();
+    ...
+
+    .segment dos_bank       ; RAM bank 1
+    place Dos.code          ; only dos.bmasm's code
+    .endsegment
+
+    place code              ; everyone else's code, decompress.bmasm's included

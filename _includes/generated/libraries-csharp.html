@@ -1,0 +1,25 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">library</span><span style="color:#EAEAEA"> MyGame.Window;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">private</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Setup()</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    .segment</span><span style="color:#EAEAEA"> window_data, scope</span><span style="color:#B5E853">=</span><span style="color:#EAEAEA">window</span></span>
+<span class="line"><span style="color:#B5E853">    .padvar</span><span style="color:#B5E853"> byte</span><span style="color:#EAEAEA"> count</span></span>
+<span class="line"><span style="color:#B5E853">    .endsegment</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">private</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Code()</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    .scope</span><span style="color:#EAEAEA"> window</span></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#EAEAEA"> draw</span></span>
+<span class="line"><span style="color:#EAEAEA">        ...</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"><span style="color:#B5E853">    .endscope</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> OutputLine() { ... }     </span><span style="color:#8F8F8F;font-style:italic">// a C# helper, as before</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> override</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Initialise()</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#EAEAEA">    Section.Get(</span><span style="color:#E6DB74">"setup"</span><span style="color:#EAEAEA">).Add(Owner, Setup)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">    Section.Get(</span><span style="color:#E6DB74">"code"</span><span style="color:#EAEAEA">).Add(Owner, Code)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span></code></pre>

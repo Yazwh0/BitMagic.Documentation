@@ -42,5 +42,6 @@ Right-click a `.bmasm` file, in the explorer or the editor, and choose **Show Bi
 
 - [C# blocks](/templateengine/csharp-blocks): loops, helpers, and the header directives (`import`, `include`, `using`, `nuget`, `library`).
 - [The BM library](/templateengine/bm-library): the bundled helpers for data tables, strings and the BASIC header.
+- [Libraries](/templateengine/libraries): libraries in plain bmasm with `file library`, sections, and choosing where each library's code goes with `place`.
 
 Debugging generated lines is covered under the debugger, in [Multiline Template Code](/debugger/multiline-template-code).

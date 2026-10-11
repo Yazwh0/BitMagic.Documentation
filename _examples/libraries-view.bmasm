@@ -1,0 +1,28 @@
+; data.bmasm: the view behind 'file data'
+library MyGame.DataView;
+
+public static IEnumerable<string> Keywords => new[] { "bank" };
+
+public static void Process(ViewFile file)
+{
+    var bank = file.Arguments ?? "0";       // 'file data 3' starts in bank 3
+    var items = new List<CapturedItem>();
+
+    foreach (var item in file.Capture())
+    {
+        if (item is KeywordLine { Keyword: "bank" } keyword)
+        {
+            bank = keyword.Arguments;       // 'bank 4'
+            continue;
+        }
+
+        items.Add(item);
+    }
+
+    Section.Get("data").Add(file.Owner, () =>
+    {
+        .segment @($"data_bank_{bank}")
+        Template.Write(items);
+        .endsegment
+    });
+}

@@ -1,0 +1,10 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; main.bmasm</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> BM=</span><span style="color:#E6DB74">"bm.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> Text=</span><span style="color:#E6DB74">"text.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">    BM.X16Header()</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    ldx</span><span style="color:#B5E853"> #&#x3C;</span><span style="color:#EAEAEA">hello</span></span>
+<span class="line"><span style="color:#B5E853">    ldy</span><span style="color:#B5E853"> #></span><span style="color:#EAEAEA">hello</span></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#EAEAEA"> text:print          </span><span style="color:#8F8F8F;font-style:italic">; text's code is written after main's</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span></code></pre>

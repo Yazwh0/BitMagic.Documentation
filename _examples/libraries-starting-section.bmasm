@@ -1,0 +1,8 @@
+; text.bmasm
+file library code           ; everything is in code until a 'section' line
+
+.scope text
+    .proc print
+        ...
+    .endproc
+.endscope

@@ -62,7 +62,7 @@ Marks the file as a library: a bundle of methods for other files to `import`, wi
 import Name = "file";
 ```
 
-Builds `file` as a template of its own and brings it in as `Name`; you then call `Name.Method(...)`. The quotes and semicolon are required. `file` is found as an absolute path, then relative to the file doing the import, then by bare name in the `Library` folder next to the debugger. `file` is normally a library.
+Builds `file` as a template of its own and brings it in as `Name`; you then call `Name.Method(...)`. The quotes are required; the closing `;` is optional. `file` is found as an absolute path, then relative to the file doing the import, then by bare name in the `Library` folder next to the debugger. `file` is normally a library.
 
 {% include generated/csharpblocks-import-header.html %}
 
@@ -72,7 +72,7 @@ Builds `file` as a template of its own and brings it in as `Name`; you then call
 include "file.cs";
 ```
 
-Adds a C# source file to the build, compiled together with the template so its types are in scope. The path is relative to the `.bmasm` file. It is ordinary C#, not a template: no `Name.` prefix and no `@`.
+Adds a C# source file to the build, compiled together with the template so its types are in scope. The path is relative to the `.bmasm` file, and the closing `;` is optional. It is ordinary C#, not a template: no `Name.` prefix and no `@`.
 
 ### using
 

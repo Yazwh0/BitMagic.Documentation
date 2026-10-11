@@ -2,11 +2,11 @@
 title: Debugging
 layout: page
 permalink: /debugger/debugging
-description: "What a BitMagic debug session gives you: stepping, breakpoints, disassembly, memory and goto."
+description: "What a BitMagic debug session gives you: stepping, breakpoints, hovers, disassembly, memory and goto."
 ---
 # Debugging
 
-Once you press `F5`, BitMagic behaves like any other VSCode debugger: stepping, breakpoints, disassembly, memory and jump to cursor, all covered below. Its own views, like the memory and layer viewers, are on [The Debugger](/debugger/).
+Once you press `F5`, BitMagic behaves like any other VSCode debugger: stepping, breakpoints, hovers, disassembly, memory and jump to cursor, all covered below. Its own views, like the memory and layer viewers, are on [The Debugger](/debugger/).
 
 ## Launch configuration
 
@@ -28,6 +28,42 @@ Continue, step over, step into and step out all work against your `.bmasm` sourc
 - **Instruction breakpoints**: set in the disassembly view.
 - **Exception breakpoints**: three filters in the Breakpoints panel. **Code Exception** fires when an [`.exception`](/compiler/directives#debugging-directives) directive is hit (on by default), **File IO Exception** when a `LOAD` call returns an error code (on by default), and **BRK Hit** when a `BRK` instruction executes (off by default).
 - **Startup breakpoints**: the `breakpoints` array in the [project file](/debugger/projectfile#properties) is a list of addresses to break on as soon as the machine starts.
+
+## Hovering over code
+
+Hover over a name or an operand in a `.bmasm` file to see what it is and what it works out to. This works while you're editing as well as while debugging; while a session is paused, the hover shows the machine as it is now.
+
+While you're editing, the hover comes from the last build that worked, which BitMagic makes in the background as you type:
+
+- **A name** shows its full path, its type (constant, label, procedure, `byte`, `ushort` and so on), whether it's private, and its value. Names are looked up from the line you're on, so `loop` inside a procedure finds that procedure's `loop`. Private names in other scopes still show, as in the debugger.
+- **An operand** shows the value the build used and the addressing mode, then each name in it with its value, and the expression with the values put in.
+- **A directive** such as `.const` or `.byte` shows what its expression works out to, the same way.
+- **Template code** (`@(...)`) shows the line it compiled to, and that line's value.
+- **A KERNAL routine** also shows its documentation.
+
+```bmasm
+.const COUNT $10
+    adc #COUNT+1    ; hover: `#COUNT+1` = `$11` (17), immediate
+                    ;        `COUNT` App:Main:COUNT, constant, `$10` (16)
+                    ;        `$10+1`
+```
+
+Until a broken edit builds again, the hover shows the previous build, so a name you've only just added won't have one yet.
+
+While a session is paused, the hover is the value now, and expanding it shows how it was worked out:
+
+- **A variable** shows its current value, read as its type.
+- **An indexed or indirect operand** shows the value it loads now. Expanding it shows the register, the pointer for `(ptr),y` and `(ptr,x)`, and the address it ends up at.
+- **An address from `$a000` up** is read from the current RAM or ROM bank, and says which.
+- **IO registers (`$9f00` to `$9fff`)** aren't read, as reading some of them changes the machine (`VERA_DATA0` moves VERA's address on). The hover shows the address and says so.
+
+```bmasm
+    lda (ptr),y     ; paused, Y = 3: $99 (153)
+                    ;   pointer  $4000 at $22
+                    ;   address  $4003
+```
+
+The debugger's hover uses the build being debugged, so it stays right while you edit during a session.
 
 ## Disassembly
 

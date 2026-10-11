@@ -1,0 +1,13 @@
+; music.bmasm
+file library
+
+section irq
+    jsr music:tick          ; run every frame
+
+section code
+.scope music
+    .proc tick
+        ...
+        rts
+    .endproc
+.endscope

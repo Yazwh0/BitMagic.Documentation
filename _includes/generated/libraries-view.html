@@ -1,0 +1,28 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; data.bmasm: the view behind 'file data'</span></span>
+<span class="line"><span style="color:#B5E853">library</span><span style="color:#EAEAEA"> MyGame.DataView;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> static</span><span style="color:#EAEAEA"> IEnumerable</span><span style="color:#B5E853">&#x3C;</span><span style="color:#EAEAEA">string</span><span style="color:#B5E853">></span><span style="color:#EAEAEA"> Keywords </span><span style="color:#B5E853">=></span><span style="color:#B5E853"> new</span><span style="color:#EAEAEA">[] { </span><span style="color:#E6DB74">"bank"</span><span style="color:#EAEAEA"> }</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Process(</span><span style="color:#B5E853">ViewFile</span><span style="color:#EAEAEA"> file)</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    var</span><span style="color:#EAEAEA"> bank </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> file.Arguments </span><span style="color:#B5E853">??</span><span style="color:#E6DB74"> "0"</span><span style="color:#8F8F8F;font-style:italic">;       // 'file data 3' starts in bank 3</span></span>
+<span class="line"><span style="color:#B5E853">    var</span><span style="color:#EAEAEA"> items </span><span style="color:#B5E853">=</span><span style="color:#B5E853"> new</span><span style="color:#B5E853"> List</span><span style="color:#EAEAEA">&#x3C;</span><span style="color:#B5E853">CapturedItem</span><span style="color:#EAEAEA">>()</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    foreach</span><span style="color:#EAEAEA"> (</span><span style="color:#B5E853">var</span><span style="color:#EAEAEA"> item </span><span style="color:#B5E853">in</span><span style="color:#EAEAEA"> file.Capture())</span></span>
+<span class="line"><span style="color:#EAEAEA">    {</span></span>
+<span class="line"><span style="color:#B5E853">        if</span><span style="color:#EAEAEA"> (item </span><span style="color:#B5E853">is</span><span style="color:#B5E853"> KeywordLine</span><span style="color:#EAEAEA"> { Keyword: </span><span style="color:#E6DB74">"bank"</span><span style="color:#EAEAEA"> } keyword)</span></span>
+<span class="line"><span style="color:#EAEAEA">        {</span></span>
+<span class="line"><span style="color:#EAEAEA">            bank </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> keyword.Arguments</span><span style="color:#8F8F8F;font-style:italic">;       // 'bank 4'</span></span>
+<span class="line"><span style="color:#B5E853">            continue</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">        }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">        items.Add(item)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">    }</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">    Section.Get(</span><span style="color:#E6DB74">"data"</span><span style="color:#EAEAEA">).Add(file.Owner, () </span><span style="color:#B5E853">=></span></span>
+<span class="line"><span style="color:#EAEAEA">    {</span></span>
+<span class="line"><span style="color:#B5E853">        .segment</span><span style="color:#EAEAEA"> @(</span><span style="color:#E6DB74">$"data_bank_{bank}"</span><span style="color:#EAEAEA">)</span></span>
+<span class="line"><span style="color:#EAEAEA">        Template.Write(items)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">        .endsegment</span></span>
+<span class="line"><span style="color:#EAEAEA">    })</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span></code></pre>

@@ -1,0 +1,5 @@
+; main.bmasm
+.proc irq_handler
+    place irq               ; jsr music:tick, and every other library's irq code
+    jmp (old_irq)
+.endproc

@@ -1,0 +1,18 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; irqchain.bmasm</span></span>
+<span class="line"><span style="color:#B5E853">library</span><span style="color:#EAEAEA"> MyGame.IrqChain;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">private</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> WriteIrq(</span><span style="color:#B5E853">IReadOnlyList</span><span style="color:#EAEAEA">&#x3C;</span><span style="color:#B5E853">SectionPart</span><span style="color:#EAEAEA">> parts)</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#EAEAEA"> irq_handler</span></span>
+<span class="line"><span style="color:#B5E853">    foreach</span><span style="color:#EAEAEA"> (</span><span style="color:#B5E853">var</span><span style="color:#EAEAEA"> part </span><span style="color:#B5E853">in</span><span style="color:#EAEAEA"> parts)</span></span>
+<span class="line"><span style="color:#EAEAEA">    {</span></span>
+<span class="line"><span style="color:#EAEAEA">        part.Write()</span><span style="color:#8F8F8F;font-style:italic">;       // each library's irq code, in turn</span></span>
+<span class="line"><span style="color:#EAEAEA">    }</span></span>
+<span class="line"><span style="color:#B5E853">    jmp</span><span style="color:#B5E853"> (</span><span style="color:#EAEAEA">old_irq</span><span style="color:#B5E853">)</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> override</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Initialise()</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#EAEAEA">    Section.Get(</span><span style="color:#E6DB74">"irq"</span><span style="color:#EAEAEA">).Writer </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> WriteIrq</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span></code></pre>

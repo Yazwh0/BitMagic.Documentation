@@ -1,0 +1,12 @@
+import BM="bm.bmasm";
+import Text="text.bmasm";
+
+    BM.X16Header();
+    place setup             ; every library's setup, after the BASIC stub
+
+    jsr text:print
+    rts
+
+    .segment high_code
+    place code              ; every library's code, in this segment
+    .endsegment

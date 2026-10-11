@@ -1,0 +1,18 @@
+; irqchain.bmasm
+library MyGame.IrqChain;
+
+private static void WriteIrq(IReadOnlyList<SectionPart> parts)
+{
+    .proc irq_handler
+    foreach (var part in parts)
+    {
+        part.Write();       // each library's irq code, in turn
+    }
+    jmp (old_irq)
+    .endproc
+}
+
+public override void Initialise()
+{
+    Section.Get("irq").Writer = WriteIrq;
+}

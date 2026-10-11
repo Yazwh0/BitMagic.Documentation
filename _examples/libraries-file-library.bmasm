@@ -1,0 +1,16 @@
+; text.bmasm
+file library
+
+section setup
+.scope text
+    .const RETURN 13
+.endscope
+
+section code
+.scope text
+    .proc print             ; prints the string at X (low) and Y (high)
+        ...
+        lda #RETURN
+        jmp BSOUT
+    .endproc
+.endscope

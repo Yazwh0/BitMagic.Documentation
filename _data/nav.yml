@@ -28,6 +28,8 @@
       url: /templateengine/csharp-blocks
     - title: BM Library
       url: /templateengine/bm-library
+    - title: Libraries
+      url: /templateengine/libraries
 
 - title: Debugger
   url: /debugger/

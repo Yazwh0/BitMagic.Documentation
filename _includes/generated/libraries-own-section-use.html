@@ -1,0 +1,5 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; main.bmasm</span></span>
+<span class="line"><span style="color:#B5E853">.proc</span><span style="color:#EAEAEA"> irq_handler</span></span>
+<span class="line"><span style="color:#B5E853">    place</span><span style="color:#EAEAEA"> irq               </span><span style="color:#8F8F8F;font-style:italic">; jsr music:tick, and every other library's irq code</span></span>
+<span class="line"><span style="color:#B5E853">    jmp</span><span style="color:#B5E853"> (</span><span style="color:#EAEAEA">old_irq</span><span style="color:#B5E853">)</span></span>
+<span class="line"><span style="color:#B5E853">.endproc</span></span></code></pre>

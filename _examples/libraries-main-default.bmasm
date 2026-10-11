@@ -1,0 +1,10 @@
+; main.bmasm
+import BM="bm.bmasm";
+import Text="text.bmasm";
+
+    BM.X16Header();
+
+    ldx #<hello
+    ldy #>hello
+    jsr text:print          ; text's code is written after main's
+    rts

@@ -1,0 +1,25 @@
+library MyGame.Window;
+
+private static void Setup()
+{
+    .segment window_data, scope=window
+    .padvar byte count
+    .endsegment
+}
+
+private static void Code()
+{
+    .scope window
+    .proc draw
+        ...
+    .endproc
+    .endscope
+}
+
+public static void OutputLine() { ... }     // a C# helper, as before
+
+public override void Initialise()
+{
+    Section.Get("setup").Add(Owner, Setup);
+    Section.Get("code").Add(Owner, Code);
+}

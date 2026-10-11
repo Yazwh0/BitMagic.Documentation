@@ -35,7 +35,7 @@ const examples = [
   {
     folder: "Visibility",
     slug: "visibility",
-    description: "A small text library that keeps most of itself private, showing `public`, `private` and `.export`.",
+    description: "A small text library that keeps most of itself private, and exports an operand label so `main` can change what it prints.",
   },
   {
     folder: "DataGeneration",

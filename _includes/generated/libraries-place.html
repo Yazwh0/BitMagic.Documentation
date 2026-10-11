@@ -1,0 +1,12 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> BM=</span><span style="color:#E6DB74">"bm.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> Text=</span><span style="color:#E6DB74">"text.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">    BM.X16Header()</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">    place</span><span style="color:#EAEAEA"> setup             </span><span style="color:#8F8F8F;font-style:italic">; every library's setup, after the BASIC stub</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    jsr</span><span style="color:#EAEAEA"> text:print</span></span>
+<span class="line"><span style="color:#B5E853">    rts</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .segment</span><span style="color:#EAEAEA"> high_code</span></span>
+<span class="line"><span style="color:#B5E853">    place</span><span style="color:#EAEAEA"> code              </span><span style="color:#8F8F8F;font-style:italic">; every library's code, in this segment</span></span>
+<span class="line"><span style="color:#B5E853">    .endsegment</span></span></code></pre>

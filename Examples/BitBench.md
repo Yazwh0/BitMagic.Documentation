@@ -44,7 +44,7 @@ A process can create windows, up to 16 at a time across the system.
 
 BitMagic's C# macros are effectively unlimited, so BitBench is built on a framework written in them.
 
-- **Initialisation library.** The referenced libraries call macros to define their functionality. This decides what goes into the `.prg` or `.bin` files, and sets up the segments, scopes and variables. You control this process, so there's no mystery in how it works.
+- **Library sections.** Each library splits its code into a `setup` section, for its segments, scopes and variables, and a `code` section, for its procedures. Most are plain bmasm (`file library`); the ones with C# helpers add their sections from `Initialise()`. `main.bmasm` decides where the code goes with `place code`, so there's no mystery in what ends up in the `.prg` or `.bin` files. See [Libraries](/templateengine/libraries).
 - **Typed variables.** Variables are defined with a type. The compiler doesn't use it, but the debugger does: a location defined as a `ushort` shows as a two byte value in the watch window.
 - **Source reuse instead of linking.** Functionality is included or left out at build time. For example, the window handler registers a callback for the mouse. That happens in the macro code before the assembly is generated, so if mouse support isn't needed the whole call chain is dropped from the binary. It doesn't matter much for BitBench, but it shows how source reuse can produce tighter code than a traditional linker.
 - **Scopes.** Variables are kept logically separate with scopes, which also give the calling applications an API.

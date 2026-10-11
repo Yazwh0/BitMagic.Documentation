@@ -21,7 +21,7 @@ The library's `ZSMKITLIB` segment, which holds its code, is placed in the projec
 
 <pre class="shiki"><code><span class="line"><span style="color:#EAEAEA">    CC65.Code(</span><span style="color:#E6DB74">"ZSMKITLIB"</span><span style="color:#EAEAEA">, obj)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
 <span class="line"></span>
-<span class="line"><span style="color:#EAEAEA">    CC65.Exports(obj)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">    CC65</span><span style="color:#B5E853">.Export</span><span style="color:#EAEAEA">s(obj)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
 <span class="line"></span>
 <span class="line"><span style="color:#B5E853">.segment</span><span style="color:#EAEAEA"> ZSMBANK, </span><span style="color:#FF79C6">$a000</span><span style="color:#EAEAEA">, </span><span style="color:#FF79C6">$2000</span><span style="color:#EAEAEA">, </span><span style="color:#FF79C6">_</span><span style="color:#EAEAEA">, zsm</span></span>
 <span class="line"><span style="color:#EAEAEA">    CC65.Code(</span><span style="color:#E6DB74">"ZSMKITBANK"</span><span style="color:#EAEAEA">, obj)</span><span style="color:#8F8F8F;font-style:italic">;</span></span>

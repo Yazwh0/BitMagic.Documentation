@@ -1,0 +1,12 @@
+<pre class="shiki"><code><span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> BM=</span><span style="color:#E6DB74">"bm.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> Dos=</span><span style="color:#E6DB74">"dos.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> Lz=</span><span style="color:#E6DB74">"decompress.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#EAEAEA">    BM.X16Header()</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"><span style="color:#EAEAEA">    ...</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    .segment</span><span style="color:#EAEAEA"> dos_bank       </span><span style="color:#8F8F8F;font-style:italic">; RAM bank 1</span></span>
+<span class="line"><span style="color:#B5E853">    place</span><span style="color:#EAEAEA"> Dos.code          </span><span style="color:#8F8F8F;font-style:italic">; only dos.bmasm's code</span></span>
+<span class="line"><span style="color:#B5E853">    .endsegment</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    place</span><span style="color:#EAEAEA"> code              </span><span style="color:#8F8F8F;font-style:italic">; everyone else's code, decompress.bmasm's included</span></span></code></pre>
