@@ -1,0 +1,12 @@
+; music.bmasm
+file library
+
+section code
+.segment MUSIC                          ; at $a000, as main.bmasm set it
+.scope music
+    .proc tick
+        ...
+        rts
+    .endproc
+.endscope
+.endsegment

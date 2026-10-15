@@ -31,6 +31,22 @@ Its output file is the source file's name with the extension changed to `.prg`, 
 | `filename` | string | yes | File to write for this segment. |
 | `scope` | string | yes | Default [scope](/compiler/scope) for the segment. A new one is created if not given. |
 
+## Define the memory map in one place
+
+Use `!segment` in your main `.bmasm` file to define every segment up front: where it sits, how big it can be, and the file it's written to. The whole memory map and all the output files are then in one place, rather than spread across the files that use them.
+
+The [`!` prefix](/templateengine/csharp-blocks#the--prefix) runs the line before anything else in the build, including every library's code, so each segment is set up before anything writes to it:
+
+{% include generated/segment-main-layout.html %}
+
+The rest of the program, [libraries](/templateengine/libraries) included, then opens a segment by name alone:
+
+{% include generated/segment-main-layout-library.html %}
+
+- `!` only works in the main file; in a library it does nothing.
+- `!segment` switches to the segment as well as defining it, so start the rest of the file with `.segment Main`. Otherwise your main file's code ends up in the last segment you defined.
+- Without the definition, the library's `.segment MUSIC` creates the segment straight after the current one, with no filename, and the build fails with `Segment 'MUSIC' has data, but no filename.`
+
 ## Viewing segments
 
 Set the `displaySegments` compile option to list every segment and its extent in the build output:
@@ -62,6 +78,6 @@ Define them together so the layout lives in one place:
 
 {% include generated/segment-shared-bank.html %}
 
-The [template engine](/templateengine/csharp-blocks#header-directives) `!` prefix does the same from the top of the file. A `!` line runs in the template's setup phase, before the body, so every segment exists before any code that uses one:
+To keep them with the rest of your memory map, define them with `!` in your main file instead (see [Define the memory map in one place](#define-the-memory-map-in-one-place)):
 
 {% include generated/segment-shared-bank-header.html %}

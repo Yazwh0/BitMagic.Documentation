@@ -1,0 +1,11 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; main.bmasm</span></span>
+<span class="line"><span style="color:#B5E853">import</span><span style="color:#EAEAEA"> Music=</span><span style="color:#E6DB74">"music.bmasm"</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#8F8F8F;font-style:italic">; the memory map: each segment's address, maximum size and output file</span></span>
+<span class="line"><span style="color:#B5E853">!segment</span><span style="color:#EAEAEA"> ZP </span><span style="color:#FF79C6">$22</span><span style="color:#FF79C6"> $5d</span><span style="color:#FF79C6"> _</span><span style="color:#8F8F8F;font-style:italic">                   ; zero page, no file</span></span>
+<span class="line"><span style="color:#B5E853">!segment</span><span style="color:#EAEAEA"> MUSIC </span><span style="color:#FF79C6">$a000</span><span style="color:#FF79C6"> $2000</span><span style="color:#EAEAEA"> MUSIC.BIN    </span><span style="color:#8F8F8F;font-style:italic">; RAM bank code, written to MUSIC.BIN</span></span>
+<span class="line"><span style="color:#B5E853">!segment</span><span style="color:#EAEAEA"> SNDFX </span><span style="color:#FF79C6">$a000</span><span style="color:#FF79C6"> $2000</span><span style="color:#EAEAEA"> SNDFX.BIN    </span><span style="color:#8F8F8F;font-style:italic">; another bank, written to SNDFX.BIN</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">.segment</span><span style="color:#EAEAEA"> Main                           </span><span style="color:#8F8F8F;font-style:italic">; the rest of the file goes in Main</span></span>
+<span class="line"><span style="color:#B5E853">.machine</span><span style="color:#EAEAEA"> CommanderX16R42</span></span>
+<span class="line"><span style="color:#EAEAEA">    ...</span></span></code></pre>

@@ -1,0 +1,11 @@
+; main.bmasm
+import Music="music.bmasm";
+
+; the memory map: each segment's address, maximum size and output file
+!segment ZP $22 $5d _                   ; zero page, no file
+!segment MUSIC $a000 $2000 MUSIC.BIN    ; RAM bank code, written to MUSIC.BIN
+!segment SNDFX $a000 $2000 SNDFX.BIN    ; another bank, written to SNDFX.BIN
+
+.segment Main                           ; the rest of the file goes in Main
+.machine CommanderX16R42
+    ...
