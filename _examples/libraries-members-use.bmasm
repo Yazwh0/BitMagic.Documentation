@@ -1,0 +1,4 @@
+; main.bmasm
+import Lz4="lz4.bmasm";
+
+Lz4.Create().FromSpiCard().Build();     // read from the SD card: getbyte is written with 'lda SPI_DATA'

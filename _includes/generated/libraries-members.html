@@ -1,0 +1,31 @@
+<pre class="shiki"><code><span class="line"><span style="color:#8F8F8F;font-style:italic">; lz4.bmasm</span></span>
+<span class="line"><span style="color:#B5E853">file</span><span style="color:#EAEAEA"> library</span></span>
+<span class="line"><span style="color:#B5E853">library</span><span style="color:#EAEAEA"> MyGame.Lz4;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">section</span><span style="color:#EAEAEA"> code</span></span>
+<span class="line"><span style="color:#B5E853">.scope</span><span style="color:#EAEAEA"> lz4</span></span>
+<span class="line"><span style="color:#B5E853">    .proc</span><span style="color:#EAEAEA"> getbyte</span></span>
+<span class="line"><span style="color:#B5E853">        if</span><span style="color:#EAEAEA"> (Settings.FromSpi)</span></span>
+<span class="line"><span style="color:#EAEAEA">        {</span></span>
+<span class="line"><span style="color:#B5E853">            lda</span><span style="color:#EAEAEA"> SPI_DATA</span></span>
+<span class="line"><span style="color:#EAEAEA">        }</span></span>
+<span class="line"><span style="color:#B5E853">        else</span></span>
+<span class="line"><span style="color:#EAEAEA">        {</span></span>
+<span class="line"><span style="color:#B5E853">            lda</span><span style="color:#EAEAEA"> read_pos: </span><span style="color:#FF79C6">$abcd</span></span>
+<span class="line"><span style="color:#EAEAEA">        }</span></span>
+<span class="line"><span style="color:#B5E853">        rts</span></span>
+<span class="line"><span style="color:#B5E853">    .endproc</span></span>
+<span class="line"><span style="color:#B5E853">.endscope</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">members</span></span>
+<span class="line"><span style="color:#B5E853">private</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> Options</span><span style="color:#EAEAEA"> Settings </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> new()</span><span style="color:#8F8F8F;font-style:italic">;      // the defaults, if the app doesn't change them</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> static</span><span style="color:#B5E853"> Options</span><span style="color:#EAEAEA"> Create() </span><span style="color:#B5E853">=></span><span style="color:#EAEAEA"> Settings </span><span style="color:#B5E853">=</span><span style="color:#B5E853"> new</span><span style="color:#B5E853"> Options</span><span style="color:#EAEAEA">()</span><span style="color:#8F8F8F;font-style:italic">;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">public</span><span style="color:#B5E853"> class</span><span style="color:#EAEAEA"> Options</span></span>
+<span class="line"><span style="color:#EAEAEA">{</span></span>
+<span class="line"><span style="color:#B5E853">    internal</span><span style="color:#B5E853"> bool</span><span style="color:#EAEAEA"> FromSpi;</span></span>
+<span class="line"></span>
+<span class="line"><span style="color:#B5E853">    public</span><span style="color:#B5E853"> Options</span><span style="color:#EAEAEA"> FromSpiCard() { FromSpi </span><span style="color:#B5E853">=</span><span style="color:#EAEAEA"> true</span><span style="color:#8F8F8F;font-style:italic">; return this; }</span></span>
+<span class="line"><span style="color:#B5E853">    public</span><span style="color:#B5E853"> void</span><span style="color:#EAEAEA"> Build() { }</span></span>
+<span class="line"><span style="color:#EAEAEA">}</span></span></code></pre>

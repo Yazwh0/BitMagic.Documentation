@@ -84,6 +84,18 @@ By default, placing a section writes each library's part in turn. A library can 
 
 Now any file that imports `irqchain.bmasm` gets the whole handler from a single `place irq`.
 
+## Give a library settings and C# of its own
+
+A `members` line starts C# for the library itself: fields, methods and classes, such as a builder the app uses to choose what the library includes. Everything after it, up to the next `section` line or the end of the file, is part of the library's class rather than its code:
+
+{% include generated/libraries-members.html %}
+
+{% include generated/libraries-members-use.html %}
+
+- A library's file runs once the app has run, so its sections see whatever the app set, wherever in the app it set it.
+- Methods in `members` that write assembly, such as a macro the app calls, write it into the app, where the app calls them.
+- `library Namespace.Class;`, after the `file library` line, names the library's class, so other C# can refer to its types by name. Without it, the name comes from the file's name.
+
 ## Add sections from a C# library
 
 A library with C# helpers keeps the `library Namespace.Class;` form, and adds its sections from `Initialise()`. `Owner` is the library's source file:

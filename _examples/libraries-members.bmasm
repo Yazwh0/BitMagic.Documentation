@@ -1,0 +1,31 @@
+; lz4.bmasm
+file library
+library MyGame.Lz4;
+
+section code
+.scope lz4
+    .proc getbyte
+        if (Settings.FromSpi)
+        {
+            lda SPI_DATA
+        }
+        else
+        {
+            lda read_pos: $abcd
+        }
+        rts
+    .endproc
+.endscope
+
+members
+private static Options Settings = new();      // the defaults, if the app doesn't change them
+
+public static Options Create() => Settings = new Options();
+
+public class Options
+{
+    internal bool FromSpi;
+
+    public Options FromSpiCard() { FromSpi = true; return this; }
+    public void Build() { }
+}
