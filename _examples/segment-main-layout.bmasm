@@ -6,6 +6,5 @@ import Music="music.bmasm";
 !segment MUSIC $a000 $2000 MUSIC.BIN    ; RAM bank code, written to MUSIC.BIN
 !segment SNDFX $a000 $2000 SNDFX.BIN    ; another bank, written to SNDFX.BIN
 
-.segment Main                           ; the rest of the file goes in Main
 .machine CommanderX16R42
     ...

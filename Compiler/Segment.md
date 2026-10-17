@@ -29,7 +29,7 @@ Its output file is the source file's name with the extension changed to `.prg`, 
 | `address` | number | yes | Where it sits in memory. Settable only before the segment has any code or data. If omitted, it follows on from the current segment. |
 | `maxsize` | number | yes | Maximum size. Overflowing it is an error. |
 | `filename` | string | yes | File to write for this segment. |
-| `scope` | string | yes | Default [scope](/compiler/scope) for the segment. A new one is created if not given. |
+| `scope` | string | yes | Also switches to this [scope](/compiler/scope), a shortcut for a `.segment` followed by a `.scope`. Without it, `.segment` switches to the `Main` scope. |
 
 ## Define the memory map in one place
 
@@ -44,7 +44,8 @@ The rest of the program, [libraries](/templateengine/libraries) included, then o
 {% include generated/segment-main-layout-library.html %}
 
 - `!` only works in the main file; in a library it does nothing.
-- `!segment` switches to the segment as well as defining it, so start the rest of the file with `.segment Main`. Otherwise your main file's code ends up in the last segment you defined.
+- `!segment` becomes [`.segmentdefine`](/compiler/directives#segmentdefine), so it only defines the segment and doesn't switch to it. The current segment stays as it was.
+- `!segment` doesn't take a `scope`, as it doesn't switch. Give the scope on the `.segment` that opens the segment, as the library above does with `.scope`.
 - Without the definition, the library's `.segment MUSIC` creates the segment straight after the current one, with no filename, and the build fails with `Segment 'MUSIC' has data, but no filename.`
 
 ## Viewing segments

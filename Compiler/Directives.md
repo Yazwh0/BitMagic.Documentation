@@ -46,9 +46,13 @@ See [Segment](/compiler/segment) for the full picture.
 | `address` | number | true | Start address. Only settable before the segment has data; can't be changed once set explicitly. If omitted, follows on from the current segment. |
 | `maxsize` | number | true | Maximum size. The compiler errors if the segment grows past this. No limit if omitted. |
 | `filename` | string | true | File to write for this segment. |
-| `scope` | string | true | Default scope for the segment. A new scope is created if not given. |
+| `scope` | string | true | Also switches to this scope, a shortcut for a `.segment` followed by a `.scope`. Without it, `.segment` switches to the `Main` scope. |
 
 {% include generated/directives-segment.html %}
+
+### .segmentdefine
+
+Takes the same parameters as `.segment`, apart from `scope`, and defines or updates the segment the same way, but doesn't switch to it: the current segment, scope and procedure stay as they are. Giving it a `scope` is a build error, since a scope only applies when switching; give it on the `.segment` instead. [`!segment`](/compiler/segment#define-the-memory-map-in-one-place) becomes `.segmentdefine`.
 
 ### .endsegment
 

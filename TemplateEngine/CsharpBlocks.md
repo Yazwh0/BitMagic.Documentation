@@ -112,7 +112,7 @@ Downloads a NuGet package and adds its assemblies to the build, as `assembly` do
 !directive
 ```
 
-Runs `.directive` in the setup phase, before anything the body emits. It prepends `.` to whatever follows, so any compiler directive works, from anywhere in the file. It does nothing in a `library`. Its main use is setting up [segment](/compiler/segment) layout ahead of the body.
+Runs `.directive` in the setup phase, before anything the body emits. It prepends `.` to whatever follows, so any compiler directive works, from anywhere in the file. The exception is `!segment`, which becomes [`.segmentdefine`](/compiler/directives#segmentdefine) so it defines the segment without switching to it. It does nothing in a `library`. Its main use is setting up [segment](/compiler/segment) layout ahead of the body.
 
 ## Writing a library
 
