@@ -66,6 +66,7 @@ Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC pr
 | `breakpoints` | int[] | `[]` | Addresses to break on at startup. |
 | `historySize` | int | `0x800000` | Size of the CPU history buffer. Must be a power of two. |
 | `windowScale` | float | `1` | Multiplier for the emulator display window. |
+| `windowPosition` | `{ "x": int, "y": int }` | *(last position)* | Screen position of the emulator display window's client area. If not set, the window opens where it was last closed. If the position is off screen, the window is centred on the main monitor. |
 | `muteAudio` | bool | `false` | Don't play audio. Only the output is silenced, emulation is unaffected. |
 | `basePath` | string | *(workspace folder)* | Base path that other relative paths are resolved against. |
 | `files` | [file](#files)[] | `[]` | Additional files to compile and debug. |
