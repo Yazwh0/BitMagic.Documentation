@@ -88,6 +88,20 @@ A named block with its own scope and an entry-point constant of the same name, s
 
 {% include generated/directives-proc.html %}
 
+### .entry
+
+No parameters. Moves the procedure's entry point to this line, so `jsr myproc` lands here rather than at the `.proc`. Useful for declaring `.padvar`s at the top of a procedure without calling into them. Any code above `.entry` is still part of the procedure, but can only be reached by falling into it. Only allowed once per procedure, and only inside a `.proc`.
+
+```
+.proc decompress_loop
+.padvar byte low_count
+.padvar byte high_count
+
+.entry
+    sty high_count
+    stx low_count
+```
+
 ### .endproc
 
 No parameters. Closes the current procedure and adds an `endproc` constant pointing just past its code, useful for placing data after it.
