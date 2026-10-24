@@ -63,11 +63,10 @@ Known limitations:
 
 | Argument | Description |
 | -------- | ---------- |
-| `-p`<br>`--prg` | `.prg` file to load. |
+| `-p`<br>`--prg` | `.prg` file to run. It's copied to the root of the [SD card](/emulator/sdcard#populating-it) with an `AUTOBOOT.X16` that loads and runs it, so the X16 boots normally first. An existing `AUTOBOOT.X16` on the card is left alone. |
 | `-r`<br>`--rom` | ROM file to load. Falls back to `rom.bin` in the current folder, then the `BITMAGIC_ROM` environment variable, then the folder `--fetch-rom` saves to. |
 | `--fetch-rom` | Download the latest [ROM](/emulator/rom) into your BitMagic folder, then exit. |
-| `-a`<br>`--address` | Start address, default `0x810`. Only used when a `.prg` or `--code` file is loaded; otherwise the ROM boots from its own reset vector. |
-| `-c`<br>`--code` | Code file to compile. The result is loaded at `0x801`. |
+| `-c`<br>`--code` | Code file to compile. The result is loaded at `0x801` and run from `0x810`. |
 | `-w`<br>`--write` | Write the result of the compilation. Requires `--code`. |
 | `--warp` | Run as fast as possible. |
 | `--scale` | Window scale, e.g. `2` for double size. Default `1`. |

@@ -32,6 +32,9 @@ With no `--sdcard`, a fresh card of `--sdcard-size` MB is created in memory for 
 | ------ | ------ |
 | `--sdcard-folder <dir>` | Mount a host folder as the card's contents. |
 | `--sdcard-file <path>` | Copy a file (or wildcard match) into the card root. Repeatable. |
+| `--prg <file>` | Copy a `.prg` into the card root, upper-cased, with an `AUTOBOOT.X16` that runs it. An existing `AUTOBOOT.X16` is left alone. |
+
+`--prg` is applied after the folder and files, so it replaces a file of the same name. If you write the card back, the `.prg` and `AUTOBOOT.X16` are saved with it.
 
 ## Syncing with a host folder
 
