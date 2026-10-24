@@ -12,13 +12,41 @@ BitMagic emulates the Commander X16 for general use. The same core also drives t
 
 ## Download
 
-The best way to get the emulator is the latest build: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Linux.tar.gz). There is no automatic update, so check back for newer builds.
+There are two ways to get the emulator, on Windows or Linux.
 
-Alternatively, clone the repository and build the emulator project.
+### Install as a .NET tool
+
+If you have the [.NET SDK](https://dotnet.microsoft.com/download) installed, this is the simplest route:
+
+```bash
+dotnet tool install -g BitMagic.X16E
+```
+
+This puts `x16e` on your PATH, so you can run it from any folder. For a development build, add `--prerelease`.
+
+A .NET tool doesn't auto-update. To pick up a newer version later, run `dotnet tool update -g BitMagic.X16E`.
+
+### Download a build
+
+Alternatively, grab the latest build: [Windows](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Windows.zip) or [Linux](https://github.com/Yazwh0/BitMagic/releases/download/latest/BitMagic-TheEmulator.Linux.tar.gz). There is no automatic update, so check back for newer builds.
+
+You can also clone the repository and build the emulator project.
 
 ## Prerequisites
 
-Before you can run the emulator, you'll need a copy of the [ROM](/emulator/rom).
+Before you can run the emulator, you'll need a copy of the [ROM](/emulator/rom). The quickest way is to let the emulator fetch it:
+
+```bash
+x16e --fetch-rom
+```
+
+On Linux the emulator also needs SDL2, OpenGL and OpenAL, and `--fetch-rom` needs `curl` and `unzip`. On Debian or Ubuntu:
+
+```bash
+sudo apt install libsdl2-2.0-0 libgl1 libopenal1 curl unzip
+```
+
+If you downloaded a build, `check-prerequisites.sh` in its folder checks all of these for you.
 
 ## Emulator state
 
@@ -36,7 +64,8 @@ Known limitations:
 | Argument | Description |
 | -------- | ---------- |
 | `-p`<br>`--prg` | `.prg` file to load. |
-| `-r`<br>`--rom` | ROM file to load. Falls back to `rom.bin` in the current folder, then the `BITMAGIC_ROM` environment variable. |
+| `-r`<br>`--rom` | ROM file to load. Falls back to `rom.bin` in the current folder, then the `BITMAGIC_ROM` environment variable, then the folder `--fetch-rom` saves to. |
+| `--fetch-rom` | Download the latest [ROM](/emulator/rom) into your BitMagic folder, then exit. |
 | `-a`<br>`--address` | Start address, default `0x810`. Only used when a `.prg` or `--code` file is loaded; otherwise the ROM boots from its own reset vector. |
 | `-c`<br>`--code` | Code file to compile. The result is loaded at `0x801`. |
 | `-w`<br>`--write` | Write the result of the compilation. Requires `--code`. |
