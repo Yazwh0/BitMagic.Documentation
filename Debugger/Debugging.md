@@ -29,6 +29,20 @@ Continue, step over, step into and step out all work against your `.bmasm` sourc
 - **Exception breakpoints**: three filters in the Breakpoints panel. **Code Exception** fires when an [`.exception`](/compiler/directives#debugging-directives) directive is hit (on by default), **File IO Exception** when a `LOAD` call returns an error code (on by default), and **BRK Hit** when a `BRK` instruction executes (off by default).
 - **Startup breakpoints**: the `breakpoints` array in the [project file](/debugger/projectfile#properties) is a list of addresses to break on as soon as the machine starts.
 
+## Frame Control
+
+Run **BitMagic: Open The Frame Control View** from the command palette. It shows the screen across the full 800x525 scan, so you can see the blanking area as well as the visible 640x480 (shown brighter, with a dotted edge). A red cross marks how far the beam has drawn.
+
+The buttons underneath step the program a frame at a time:
+
+- **Pause**: stops at the next vsync.
+- **Step**: runs to the next vsync and stops again.
+- **Run**: carries on as normal.
+
+These use a `vsync()` function breakpoint, which shows in the Breakpoints panel while you're stepping and is removed when you press Run. If you already have a `vsync()` breakpoint, that one is used and left alone. The image updates every time the debugger stops; tick **Automatically Update** to keep it streaming while the program runs.
+
+Click the image to run until the beam reaches that point; a green cross marks the target. It's a one-off `beam(x, y)` breakpoint, removed when the emulator next stops for any reason. Hold the mouse button down and move it to keep running on to wherever the mouse is, so you can scrub through the frame. The position under the mouse is shown next to the buttons.
+
 ## Hovering over code
 
 Hover over a name or an operand in a `.bmasm` file to see what it is and what it works out to. This works while you're editing as well as while debugging; while a session is paused, the hover shows the machine as it is now.
