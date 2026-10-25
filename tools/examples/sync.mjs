@@ -45,7 +45,7 @@ const examples = [
   {
     folder: "NuGet",
     slug: "nuget",
-    description: "References a NuGet package from a `.bmasm` file, using ImageSharp to convert an image to the X16 palette as part of the build.",
+    description: "References a NuGet package from a `.bmasm` file, using StbImageSharp to load an image and convert it to the X16 palette as part of the build.",
   },
   {
     folder: "FX/Cache",
