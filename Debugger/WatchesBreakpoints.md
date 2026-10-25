@@ -7,7 +7,7 @@ image: /Images/Variables-Cpu.png
 ---
 # Watches and Breakpoints
 
-Expressions are used while debugging to show the state of the machine in the Watch window, to set [conditional and hit-count breakpoints](https://code.visualstudio.com/docs/editor/debugging#_conditional-breakpoints), to set [logpoints](https://code.visualstudio.com/docs/editor/debugging#_logpoints), and to write [function breakpoints](/debugger/debugging#breakpoints) like `vram(...)` and `vsync(...)`.
+Expressions are used while debugging to show the state of the machine in the Watch window, to set [conditional and hit-count breakpoints](https://code.visualstudio.com/docs/editor/debugging#_conditional-breakpoints), to set [logpoints](https://code.visualstudio.com/docs/editor/debugging#_logpoints), and to write [function breakpoints](/debugger/debugging#breakpoints) like `vram(...)`, `vsync(...)`, `beam(...)` and `line(...)`.
 
 The expressions are C#, and are based on the variables shown in the debugger. The roots match the sections in the Variables window with any spaces removed: `CPU`, `VERA`, `Kernal`, `Display`, `I2C`, `SMC`, `RTC`, `VIA`, `SDCard` and more.
 
