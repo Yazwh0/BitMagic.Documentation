@@ -43,6 +43,18 @@ These use a `vsync()` function breakpoint, which shows in the Breakpoints panel 
 
 Click the image to run until the beam reaches that point; a green cross marks the target. It's a one-off `beam(x, y)` breakpoint, removed when the emulator next stops for any reason. Hold the mouse button down and move it to keep running on to wherever the mouse is, so you can scrub through the frame. The position under the mouse is shown next to the buttons.
 
+### Snapshots
+
+The camera button takes a snapshot of the machine: the CPU, RAM and banked RAM, VERA (including what's on screen), the other chips and the call stack. It works while the program is running as well as when it's paused, and running carries on afterwards. Snapshots are listed under the image, newest first, with a picture of the screen, the frame, where the beam was and where the program was.
+
+Double click a snapshot to go back to it. If the program is running it's paused first, then the debugger stops at the restored point as if it had been stepped there, so you can carry on stepping, run, or restore again. Your breakpoints aren't part of a snapshot, so whatever's set now is what's used after restoring. Snapshots can be renamed and deleted, and are only kept for the debug session.
+
+Some things aren't included:
+
+- **The SD card**: restoring won't undo anything written to it since the snapshot, so a program that writes to the SD card could leave it out of step with the restored machine, or corrupt it.
+- **The modem**: it carries on as it was, along with any connection. You're warned when you restore with the modem running.
+- **The YM2151**: its state isn't saved, so FM sound may be wrong until the program next sets it up.
+
 ## Hovering over code
 
 Hover over a name or an operand in a `.bmasm` file to see what it is and what it works out to. This works while you're editing as well as while debugging; while a session is paused, the hover shows the machine as it is now.
