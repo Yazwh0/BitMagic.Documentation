@@ -40,3 +40,20 @@ dotnet tool install -g BitMagic.ClaudeBox.Cli
 ```
 
 Then just run `cb` in a folder to start a session there. The source and full command reference are on [GitHub](https://github.com/Yazwh0/ClaudeBox).
+
+## Benny Box
+
+Benny Box is an IPTV player for Windows and Android. Point it at an Xtream Codes or M3U source, a local folder or an SFTP site, and you can browse everything from one app. It's only a player, so you'll need your own source:
+
+- Live TV and a full EPG guide, with reminders and catch-up
+- Series, Movies and Clips, with resumable playback and favourites
+- downloads for offline viewing, which resume after a dropped connection (except from SFTP, which restarts the file)
+- movie and TV details from NFO files and [TMDb](https://www.themoviedb.org/) for local folder and SFTP sources
+- on Windows, a remote control from your phone by scanning a QR code
+
+Every [release](https://github.com/Yazwh0/bennybox/releases/latest) includes a Windows installer and an Android APK:
+
+- *Windows:* download and run `BennyBoxSetup-<version>.exe`, then launch Benny Box from the Start menu.
+- *Android:* download `BennyBox-<version>.apk` on your phone and open it. There's no Play Store listing, so you'll need to allow "Install unknown apps" for the app you downloaded it with.
+
+Then open *Settings*, choose *Add Profile* and fill in your source's details. The source and full feature list are on [GitHub](https://github.com/Yazwh0/bennybox).

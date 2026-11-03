@@ -41,7 +41,17 @@ The buttons underneath step the program a frame at a time:
 
 These use a `vsync()` function breakpoint, which shows in the Breakpoints panel while you're stepping and is removed when you press Run. If you already have a `vsync()` breakpoint, that one is used and left alone. The image updates every time the debugger stops; tick **Automatically Update** to keep it streaming while the program runs.
 
-Click the image to run until the beam reaches that point; a green cross marks the target. It's a one-off `beam(x, y)` breakpoint, removed when the emulator next stops for any reason. Hold the mouse button down and move it to keep running on to wherever the mouse is, so you can scrub through the frame. The position under the mouse is shown next to the buttons.
+Click the image to run until the beam reaches that point; a green cross marks the target. It works like a one-off `beam(x, y)` breakpoint that doesn't appear in the Breakpoints panel, and is forgotten when the emulator next stops for any reason. Every click runs from the same place: the first click after the program stops for any other reason saves the machine, and each click after that puts it back before running, so clicking further up the screen shows the same frame drawn to that point rather than the next one. Running, stepping or restoring a snapshot starts this again from wherever it then stops. Hold the mouse button down and move it to keep running on to wherever the mouse is, so you can scrub through the frame. The frame, beam and position under the mouse are shown under the image.
+
+When the program is stopped part way through a frame, the dropdown next to the buttons chooses what the image shows:
+
+- **Stop at beam**: the screen as drawn so far. Below the beam is still the previous frame.
+- **Stop at beam, finish the frame**: the rest of the frame drawn down to vsync, using VERA as it is now.
+- **Stop at beam, render from state**: the whole frame drawn from VERA as it is now. Changes you make to VRAM or the VERA registers while paused show straight away.
+
+Only the display is run for these. The CPU doesn't move, nothing else is clocked and no sound is made, so carrying on afterwards is exactly as if you hadn't looked. Anything the program would change later in the frame, such as raster effects from a line interrupt, isn't drawn. While the program is running the image is always the screen as it is.
+
+Running the same stretch over and over doesn't sound good, so clicking or dragging on the image turns on the **Mute** button, and Run turns it off again. You can also toggle it yourself. It only silences the output, the emulation and any audio recording are unaffected, and it doesn't unmute a project that has `muteAudio` set.
 
 ### Snapshots
 
