@@ -229,6 +229,7 @@ body {
 #main_content a:hover { text-decoration: underline; }
 #main_content code {
   padding: .1em .35em;
+  margin: 0 .2em; /* keep neighbouring punctuation outside the box */
   border-radius: 3px;
   background: var(--code-bg);
   font-family: var(--mono);
@@ -242,7 +243,7 @@ body {
   background: var(--bg-alt);
   overflow-x: auto;
 }
-#main_content pre code { padding: 0; background: none; color: inherit; }
+#main_content pre code { padding: 0; margin: 0; background: none; color: inherit; }
 
 /* Rouge syntax highlighting, scoped so it only touches fenced code blocks
    the highlighter recognises the language of. Background/border come from
