@@ -17,6 +17,8 @@ Normally you run the debugger and describe what you see to an agent. X16M lets t
 
 X16M doesn't modify or depend on the debugger's internals. It speaks the Debug Adapter Protocol (DAP) to `X16D`, either spawning it as a child process (stdin/stdout, exactly as VSCode does) or connecting over TCP to one already running with `--dapport`, and re-exposes a subset of DAP as MCP tools.
 
+If you use GitHub Copilot Chat in VSCode, the extension already has its own [Copilot Tools](/mcpagent/copilottools) built in. They need no setup and let Copilot read and amend a session you've started yourself, but they can't launch it or control execution the way X16M can.
+
 ## Getting started
 
 There are two ways to get X16M, and each registers with an MCP client slightly differently.
@@ -156,4 +158,4 @@ Once X16M is registered, you don't call its tools directly. You ask your agent i
 
 Under the hood that's a single `launch_project` call with its `breakpoints` argument set, rather than a separate `set_breakpoints` afterward, since this program is short enough to run to completion before a follow-up call could land. From there it's `continue_execution` and `evaluate("counter")` repeated until the target reports terminated. If a breakpoint sits in a file that hasn't loaded yet, `get_breakpoints` reports it as unverified until it does.
 
-The `BitMagic.X16MCP` repository has a [worked example](https://github.com/Yazwh0/BitMagic/tree/main/BitMagic.X16MCP/example) with a minimal project and a full walkthrough, a good first thing to try after registering X16M.
+The `BitMagic.X16MCP` repository has a [worked example](https://github.com/Yazwh0/BitMagic.X16MCP/tree/main/example) with a minimal project and a full walkthrough, a good first thing to try after registering X16M.

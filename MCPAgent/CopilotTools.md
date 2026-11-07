@@ -1,7 +1,7 @@
 ---
 layout: page
 title: Copilot Tools
-permalink: /debugger/copilottools
+permalink: /mcpagent/copilottools
 description: Let GitHub Copilot Chat read and amend X16 state, send input and record audio in an active BitMagic debug session.
 ---
 # Copilot Tools

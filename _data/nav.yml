@@ -42,8 +42,8 @@
       url: /debugger/watchesandbreakpoints
     - title: CPU History
       url: /debugger/cpuhistory
-    - title: Memory Viewer
-      url: /debugger/memoryview
+    - title: Memory Access View
+      url: /debugger/memoryaccessview
     - title: Layer Viewer
       url: /debugger/layerviewer
     - title: Sprite Viewer
@@ -67,6 +67,9 @@
 
 - title: MCP Agent
   url: /mcpagent
+  children:
+    - title: Copilot Tools
+      url: /mcpagent/copilottools
 
 - title: Settings
   url: /settings

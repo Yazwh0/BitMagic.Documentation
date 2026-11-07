@@ -45,6 +45,17 @@ node tools/examples/sync.mjs
 and commit the regenerated `Examples/*.md`, `Images/examples/` and `_data/examples.yml`.
 New examples are added to the list at the top of the script.
 
+## Broken links
+
+To crawl the site and list any broken links (no `npm install` needed, Node 18+):
+
+```sh
+node tools/linkcheck/linkcheck.mjs                         # the live site
+node tools/linkcheck/linkcheck.mjs http://127.0.0.1:4000/  # a local `jekyll serve`
+```
+
+A 403 from cx16forum.com or commanderx16.com is bot blocking, not a dead link.
+
 ## Style
 
 `STYLE.md` defines the voice, page structure and conventions for the docs. Read it

@@ -69,6 +69,6 @@ Two related topics are not separate views:
 
 - [Watches and Breakpoints](/debugger/watchesandbreakpoints): expressions, conditional and hit-count breakpoints, and logpoints, in the standard VSCode debug panels.
 - [Multiline Template Code](/debugger/multiline-template-code): stepping through code generated from a macro string.
-- [Copilot Tools](/debugger/copilottools): let GitHub Copilot Chat read sprites, layers, palette and memory from your running session.
+- [Copilot Tools](/mcpagent/copilottools): let GitHub Copilot Chat read sprites, layers, palette and memory from your running session.
 
 For a ca65 program instead of `.bmasm` source, see [ca65 Projects](/debugger/ca65).
