@@ -31,6 +31,15 @@ Its output file is the source file's name with the extension changed to `.prg`, 
 | `filename` | string | yes | File to write for this segment. |
 | `scope` | string | yes | Also switches to this [scope](/compiler/scope), a shortcut for a `.segment` followed by a `.scope`. Without it, `.segment` switches to the `Main` scope. |
 
+Positional values go in that order, so the third is always `maxsize`. To give a filename without a maximum size, skip `maxsize` with `_`, or name the filename:
+
+```
+.segment ROM $a000 _ ROMTEST.BIN
+.segment ROM $a000 filename=ROMTEST.BIN
+```
+
+`.segment ROM $a000 ROMTEST.BIN` is an error, as `ROMTEST.BIN` is in the `maxsize` place. See [Directives](/compiler/directives) for how parameters are written.
+
 ## Define the memory map in one place
 
 Use `!segment` in your main `.bmasm` file to define every segment up front: where it sits, how big it can be, and the file it's written to. The whole memory map and all the output files are then in one place, rather than spread across the files that use them.

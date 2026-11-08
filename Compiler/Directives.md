@@ -10,6 +10,20 @@ Every directive starts with a `.`. Parameters are positional in the order shown,
 
 {% include generated/directives-segment-forms.html %}
 
+- Separate parameters with spaces, commas or both.
+- Quote a value that has a space or a comma in it, eg `filename="ROM TEST.BIN"`.
+- `name = value` with spaces works as well as `name=value`.
+- Named parameters can go anywhere, but each parameter can only be given once. A positional value fills the next position, even if that parameter was already given by name, so `.segment ROM address=$a000 $b000` is an error.
+
+Mistakes are reported at the line, naming the parameter:
+
+| Mistake | Error |
+| --- | --- |
+| A value in the wrong place | `'.segment' maxsize must be a number, but is 'ROMTEST.BIN'. Parameters go name, address, maxsize, filename, scope: use '_' to skip one, or give it by name, eg 'filename=ROMTEST.BIN'.` |
+| A misspelt name | `'.segment' has no parameter 'fliename'. It takes name, address, maxsize, filename, scope.` |
+| A parameter given twice | `'.segment' has 'address' twice.` |
+| Too many values | `'.segment' takes name, address, maxsize, filename, scope, so 'extra' is one too many.` |
+
 ## Types
 
 The type is not a type in any real sense. The compiler never checks it, and it plays no part in expressions, where a name always resolves to a plain address or value. It is used for two things only: reserving the right number of bytes, and telling the debugger how to show the variable (its size, whether it is an array, whether it is a pointer).

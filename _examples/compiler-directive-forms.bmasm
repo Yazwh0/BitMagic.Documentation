@@ -1,2 +1,2 @@
-.const name=example, value=$1234
-.const example $1234
+.segment ZP $02 $fd
+.segment name=ZP, address=$02, maxsize=$fd

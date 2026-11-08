@@ -94,7 +94,7 @@ A `members` line starts C# for the library itself: fields, methods and classes, 
 
 - A library's file runs once the app has run, so its sections see whatever the app set, wherever in the app it set it.
 - Methods in `members` that write assembly, such as a macro the app calls, write it into the app, where the app calls them.
-- `library Namespace.Class;`, after the `file library` line, names the library's class, so other C# can refer to its types by name. Without it, the name comes from the file's name.
+- `library Namespace.Class;`, after the `file library` line, names the library's class, so other C# can refer to its types by name. Without it, the name comes from the file's name. Each name can only be used by one file in a build, so two files with the same name in different folders, such as `a/globals.bmasm` and `b/globals.bmasm`, need a `library` name in at least one of them.
 
 ## Add sections from a C# library
 
@@ -131,6 +131,7 @@ Every part of every section is tracked, so code is never written twice and never
 | A section the library doesn't have | `'dos.bmasm' has no 'cod' section.` |
 | A section nothing places | `Section 'irq' has code from 'music.bmasm' that is never placed. ...` |
 | A `file` file listed as the program | `A 'file library' file can't be built on its own. Import it from the main file.` |
+| Two files with the same name, or the same `library` name | `'a\globals.bmasm' and 'b\globals.bmasm' both build as 'BitMagic.App.globals.Template'. Rename one, or give it a 'library' name.` |
 
 ## The section API
 
