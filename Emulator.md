@@ -40,10 +40,10 @@ Before you can run the emulator, you'll need a copy of the [ROM](/emulator/rom).
 x16e --fetch-rom
 ```
 
-On Linux the emulator also needs SDL2, OpenGL and OpenAL, and `--fetch-rom` needs `curl` and `unzip`. On Debian or Ubuntu:
+On Linux the emulator needs glibc 2.34 or later (Ubuntu 22.04, Debian 12 or newer), OpenGL, OpenAL and an X11 or Wayland display, and `--fetch-rom` needs `curl` and `unzip`. SDL2 and GLFW come bundled. The [debugger's Linux prerequisites](/debugger/#linux-prerequisites) have the full list, as the two share the same native code. On Debian or Ubuntu:
 
 ```bash
-sudo apt install libsdl2-2.0-0 libgl1 libopenal1 curl unzip
+sudo apt install libopenal1 libgl1 libgl1-mesa-dri curl unzip
 ```
 
 If you downloaded a build, `check-prerequisites.sh` in its folder checks all of these for you.

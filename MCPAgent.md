@@ -54,7 +54,15 @@ claude mcp add x16m --scope user -- "$PWD\X16M.exe"
 claude mcp add x16m --scope user -- "$(pwd)/X16M"
 ```
 
-Either way it bundles a copy of `X16D` alongside it, so there's nothing else to configure beyond a [ROM](/emulator/rom), and the registration lives in your own `~/.claude.json`, never in a project file.
+Either way it bundles a copy of `X16D` alongside it, so there's nothing else to configure beyond a ROM (see [below](#a-rom)), and the registration lives in your own `~/.claude.json`, never in a project file. On Linux, the bundled `X16D` has the same [prerequisites](/debugger/#linux-prerequisites) as the debugger: glibc 2.34 or later, OpenAL, OpenGL and an X11 or Wayland display.
+
+### A ROM
+
+The X16 ROM contains licensed code, so it isn't bundled, but X16M can fetch one itself: ask your agent to call `fetch_rom`. It downloads the latest release from the official [x16-rom repository](https://github.com/X16Community/x16-rom) and saves `rom.bin` to your BitMagic folder (`%LOCALAPPDATA%\BitMagic` on Windows, `~/.local/share/BitMagic` on Linux), the same folder [`x16e --fetch-rom`](/emulator/rom) uses. `launch_project` picks a ROM up from there automatically. If `launch_project` can't find a ROM, its warning tells the agent to call `fetch_rom`, so in practice an agent usually sorts this out on its own.
+
+It needs `curl` and `tar` on Windows (both ship with Windows 10 1803 and later), or `curl` and `unzip` on Linux. The scripts it runs are next to `X16M` as `fetch-rom.bat` and `fetch-rom.sh`, if you'd rather run them yourself.
+
+`launch_project` looks for a ROM in this order: a `romFile` in the [project file](/debugger/projectfile#properties), `rom.bin` next to the bundled `X16D`, the `BITMAGIC_ROM` environment variable (the file, or the folder containing it), then your BitMagic folder.
 
 ### Scopes
 
@@ -87,11 +95,11 @@ Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette
 
 | Tool | Description |
 | ---- | ----------- |
-| `launch_project(projectPath, breakpoints?, stopOnEntry?, muteAudio?)` | Launches a project's `.json` file, or a `.bmasm` file directly. Stops the target at its very first instruction by default (`stopOnEntry: true`) - the recommended flow from here is `set_breakpoints`, then `continue_execution`. Pass `stopOnEntry: false` to let it start running immediately instead, in which case strongly prefer passing `breakpoints` here too rather than a follow-up `set_breakpoints` call: some targets finish in well under a second, faster than a separate tool call can land. Audio is muted by default (`muteAudio: true`), overriding the project file's `muteAudio`; this only silences the output, emulation is unaffected. |
+| `launch_project(projectPath, breakpoints?, stopOnEntry?, muteAudio?, workspaceFolder?)` | Launches a project's `.json` file, or a `.bmasm` file directly. Stops the target at its very first instruction by default (`stopOnEntry: true`) - the recommended flow from here is `set_breakpoints`, then `continue_execution`. Pass `stopOnEntry: false` to let it start running immediately instead, in which case strongly prefer passing `breakpoints` here too rather than a follow-up `set_breakpoints` call: some targets finish in well under a second, faster than a separate tool call can land. Audio is muted by default (`muteAudio: true`), overriding the project file's `muteAudio`; this only silences the output, emulation is unaffected. Relative paths in the project file resolve just as they do in VSCode: `workspaceFolder` defaults to the nearest folder at or above the project file with a `.vscode` folder, else the project file's own folder (see [Paths](/debugger/projectfile#paths)). Pass it only if the project's paths are relative to some other folder. |
 | `attach_to_session(workspacePath?)` | Attaches to a debug session VSCode already launched and owns, to view and amend its state rather than control it. Every other tool attaches automatically on first use, so this is only needed to check the connection up front or to re-attach after a disconnect. It needs the extension's *Run debug sessions through the same background process* setting on and a session running there. Stepping, breakpoints, continuing and disconnecting stay with VSCode; X16M's tools are for reading and amending X16 state (memory, sprites, palette, layers, CPU history, audio recording, taking snapshots). `workspacePath` is the project folder to find the session in, and defaults to the current directory. |
 | `set_breakpoints(file, lines[])` | Sets the full set of source breakpoints for a file, replacing any previously set there. |
-| `get_breakpoints()` | Reports the current verification state of every breakpoint set so far. X16D verifies a breakpoint once its file actually loads, which can happen after `set_breakpoints` or `launch_project` already returned. |
-| `set_instruction_breakpoints(addresses[])` | Sets the full set of breakpoints by raw CPU address, replacing any previously set this way - independent of `set_breakpoints`' source lines. Useful for code with no source mapping, or an address reached from more than one line. |
+| `get_breakpoints()` | Reports every breakpoint set this session, source, instruction and hardware, and whether each is verified. X16D verifies a breakpoint once the code it's for loads, which can happen after `set_breakpoints` or `launch_project` already returned. |
+| `set_instruction_breakpoints(addresses[])` | Sets the full set of breakpoints by raw CPU address, replacing any previously set this way - independent of `set_breakpoints`' source lines. Useful for code with no source mapping, or an address reached from more than one line. They're kept by address, so one set before a program loads (for example at the entry stop) stays armed when the program loads over it, and is verified once an instruction starts there. |
 | `set_hardware_breakpoints(expressions[])` | Sets X16 hardware breakpoints, replacing any previously set this way: `vram(address)` breaks on any VRAM read or write at that address (optionally a range, and/or restricted to reads or writes only); `vsync()`/`vsync(frameNumber)` breaks on every frame's vertical sync, or once on a specific frame; `beam(x, y)`/`line(y)` breaks every frame when the beam reaches that point in the full 800x525 scan (visible area 640x480), up to 32 positions. Not "break when this function is called" despite the name - `set_breakpoints` already covers that better. |
 | `set_exception_breakpoints(filters[])` | Sets which exception conditions stop the target: `BRK` (a BRK instruction executes, off by default), `EXP` (an exception raised within code, on by default), `FIO` (a LOAD returned an error code, on by default). |
 | `get_exception_info()` | Reports which exception breakpoint caused the current stop, and why - call after a stop with reason "exception". |
@@ -124,12 +132,13 @@ Standard DAP is covered, plus X16-specific tools for VERA layers/sprites/palette
 | `rename_snapshot(id, name)` | Renames a snapshot. |
 | `delete_snapshot(id)` | Deletes a snapshot, freeing its memory (about 17MB each). |
 | `disconnect()` | Ends the debug session. |
+| `fetch_rom(destinationFolder?)` | Downloads the latest X16 ROM from the official x16-rom releases and saves `rom.bin` to your BitMagic folder, where `launch_project` finds it, or to `destinationFolder` if given. Overwrites any `rom.bin` already there, so it also updates to the latest ROM. Doesn't need a debug session. See [A ROM](#a-rom). |
 
 ## Compiling without a session
 
 `build_project(target, buildFolder?, outputFolder?, binFolder?)` is the one tool above that isn't about a debug session at all: it compiles a project's `.json` file, or a single `.bmasm`/`.asm` file directly, and reports any errors - no session, no ROM, nothing run. It's independent of whatever `launch_project`/`attach_to_session` state exists, so it's safe to call at any time, including mid-session, and doesn't need one to exist first. Use it as a fast compile-check loop while an agent is writing or editing `.bmasm`: point it at the file, fix whatever it reports, repeat.
 
-`outputFolder` is where the compiled program (`.prg` etc) is written - worth setting explicitly when `target` is a bare source file, since there's no project file to carry an `outputFolder` of its own otherwise. `binFolder` is just the template engine's own intermediate artifacts (its compiled C#, generated `.bmasm`), not the compiled program - it rarely needs setting. Both default to a `bin` folder under `buildFolder` if omitted.
+`outputFolder` is where the compiled program (`.prg` etc) is written - worth setting explicitly when `target` is a bare source file, since there's no project file to carry an `outputFolder` of its own otherwise. `binFolder` is just the template engine's own intermediate artifacts (its compiled C#, generated `.bmasm`), not the compiled program - it rarely needs setting. Both default to a `bin` folder under `buildFolder` if omitted. `buildFolder` defaults to the same workspace folder `launch_project` uses for a `.json` project, so its [paths](/debugger/projectfile#paths) resolve the same way in both, and to the file's own folder for a bare source file.
 
 Each call spawns its own short-lived copy of `X16D`, separate from any `X16D` a live session owns.
 

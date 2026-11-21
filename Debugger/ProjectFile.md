@@ -11,6 +11,15 @@ A project file is the easiest way to control a debug session. It is a JSON file;
 
 Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC prompt.
 
+## Paths
+
+Relative paths in a project file are resolved against one of two folders:
+
+- **The workspace folder.** In VSCode, that's the folder you have open. Through the [MCP server](/mcpagent) it's the nearest folder at or above the project file that has a `.vscode` folder, or the project file's own folder if there isn't one, so the same project file works in both.
+- **`basePath`.** It defaults to the workspace folder. If you set it to a relative path, that's relative to the workspace folder too.
+
+`source`, `files`, `romFile`, `sdCard`, `sdCardOutput` and the `sdCardFiles` sources are relative to `basePath`. `outputFolder` is relative to the workspace folder. Absolute paths always work as they are.
+
 ## Example
 
 ```json
@@ -68,7 +77,7 @@ Property names are `camelCase`. An empty `{}` is valid and boots to the BASIC pr
 | `windowScale` | float | `1` | Multiplier for the emulator display window. |
 | `windowPosition` | `{ "x": int, "y": int }` | *(last position)* | Screen position of the emulator display window's client area. If not set, the window opens where it was last closed. If the position is off screen, the window is centred on the main monitor. |
 | `muteAudio` | bool | `false` | Don't play audio. Only the output is silenced, emulation is unaffected. |
-| `basePath` | string | *(workspace folder)* | Base path that other relative paths are resolved against. |
+| `basePath` | string | *(workspace folder)* | Base path that other relative paths are resolved against. A relative `basePath` is itself relative to the workspace folder. See [Paths](#paths). |
 | `files` | [file](#files)[] | `[]` | Additional files to compile and debug. |
 
 ## files

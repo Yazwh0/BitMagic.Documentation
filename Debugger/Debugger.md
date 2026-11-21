@@ -17,6 +17,24 @@ The machine must have a x64 CPU, as the underlying emulator is written in x64 as
 
 Windows and Linux are both supported. Linux is tested on Ubuntu.
 
+### Linux prerequisites
+
+The Linux build needs a reasonably recent distro, plus a few libraries that aren't always installed:
+
+- **glibc 2.34 or later** and **libstdc++ from GCC 11 or later**. In practice that's Ubuntu 22.04, Debian 12, Fedora 35, RHEL 9 or later. Older distros, such as Ubuntu 20.04 or Debian 11, won't load the emulator's native libraries.
+- **The .NET 10 runtime.** The extension downloads its own copy by default (the `useBundledDotnet` setting); otherwise [install it](https://learn.microsoft.com/dotnet/core/install/linux) yourself.
+- **OpenAL** for audio (`libopenal1`).
+- **OpenGL**, with a working driver (`libgl1` and Mesa's `libgl1-mesa-dri`, or your GPU vendor's driver).
+- **An X11 or Wayland display.** The window is drawn with GLFW, which needs the usual X11 libraries (`libx11-6`, `libxcursor1`, `libxrandr2`, `libxi6`, `libxinerama1`) or Wayland ones (`libwayland-client0`, `libwayland-cursor0`, `libwayland-egl1`, `libxkbcommon0`). A desktop install will already have these.
+
+SDL2 and GLFW themselves are bundled, so you don't need to install them. On Debian or Ubuntu, this covers everything except .NET:
+
+```bash
+sudo apt install libopenal1 libgl1 libgl1-mesa-dri libx11-6 libxcursor1 libxrandr2 libxi6 libxinerama1
+```
+
+Under WSL you'll need WSLg for the emulator window, which Windows 11 has by default. A fresh WSL Ubuntu often lacks OpenAL and Mesa, so run the line above there too.
+
 Apple devices are not supported, but if it's x64 based it *might* work. Try overriding the system check via VSCode's settings menu and let me know!
 
 ## Installation
