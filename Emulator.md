@@ -83,6 +83,7 @@ Known limitations:
 | `-u`<br>`--sdcard-update` | Sets `--sdcard-write` to the `--sdcard` value and enables overwrite. Requires `--sdcard`. |
 | `--cart` | Cartridge file to load as a plain binary. `.zip` / `.gz`, in the form `name.cart.zip`. |
 | `--wifi` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
+| `--rtc` | What the RTC starts at: `host` (the default, the host's local date and time), `stopped`, or a date and time, eg `2026-01-01T12:00:00`. Setting the time from the X16 never changes the host's. |
 | `--fxfixed` | Make VERA FX behave like the official emulator where it differs from the hardware. See [FX fixed mode](/debugger/projectfile#fx-fixed-mode). |
 | `--dump` | Start from the state in a dump file. |
 | `--dump-folder` | Folder to write dump files to (Menu + Left Ctrl + S). |
