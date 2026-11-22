@@ -83,6 +83,7 @@ Known limitations:
 | `-u`<br>`--sdcard-update` | Sets `--sdcard-write` to the `--sdcard` value and enables overwrite. Requires `--sdcard`. |
 | `--cart` | Cartridge file to load as a plain binary. `.zip` / `.gz`, in the form `name.cart.zip`. |
 | `--wifi` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
+| `--fixedfxlinedraw` | Draw steep 4bpp lines with the VERA FX line helper properly, which the hardware doesn't. See [Fixed FX line draw](/debugger/projectfile#fixed-fx-line-draw). |
 | `--dump` | Start from the state in a dump file. |
 | `--dump-folder` | Folder to write dump files to (Menu + Left Ctrl + S). |
 | `--help` | Display the help screen. |

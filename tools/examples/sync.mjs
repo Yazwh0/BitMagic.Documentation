@@ -53,6 +53,11 @@ const examples = [
     description: "How to use VERA's FX cache to copy VRAM four bytes at a time.",
   },
   {
+    folder: "FX/LineDraw4bpp",
+    slug: "fx-line-draw-4bpp",
+    description: "Draws a line in each direction with VERA FX's line draw helper, in 4bpp and 8bpp, to compare against hardware.",
+  },
+  {
     folder: "CommandLinePoc",
     slug: "command-line-poc",
     description: "A proof of concept for passing parameters to a machine code program from the BASIC prompt, demonstrated with a minimal `cat`.",
