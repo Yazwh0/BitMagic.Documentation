@@ -69,6 +69,7 @@ Relative paths in a project file are resolved against one of two folders:
 | `sdCardFiles` | [SdCardFile](#sdcardfiles)[] | `[]` | Files to add to the SD card. Wildcards accepted. Added in the order listed. |
 | `cartridge` | string | `""` | Cartridge file to load. |
 | `wifi` | bool | `false` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
+| `fxFixed` | bool | `false` | Make VERA FX behave like the official emulator where it differs from the hardware. Off matches the hardware. See [FX fixed mode](#fx-fixed-mode). |
 | `romSource` | [RomSource](#romsource)[] | `[]` | Files to load into ROM banks. |
 | `compileOptions` | [CompileOptions](#compileoptions) | `null` | Compilation options. |
 | `memoryFillValue` | byte | `0` | Value to fill CPU RAM and VRAM with at startup. |
@@ -79,6 +80,20 @@ Relative paths in a project file are resolved against one of two folders:
 | `muteAudio` | bool | `false` | Don't play audio. Only the output is silenced, emulation is unaffected. |
 | `basePath` | string | *(workspace folder)* | Base path that other relative paths are resolved against. A relative `basePath` is itself relative to the workspace folder. See [Paths](#paths). |
 | `files` | [file](#files)[] | `[]` | Additional files to compile and debug. |
+
+## FX fixed mode
+
+The emulator's VERA FX follows the VERA Verilog ([`addr_data.v`](https://github.com/X16Community/vera-module/blob/main/fpga/source/addr_data.v) and [`mult_accum.v`](https://github.com/X16Community/vera-module/blob/main/fpga/source/mult_accum.v)), so it does what a real X16 does. In a few places that differs from the official emulator, and from the [VERA FX reference](https://github.com/X16Community/x16-docs/blob/master/X16%20Reference%20-%2010%20-%20VERA%20FX%20Reference.md). `fxFixed` switches those to the official emulator's behaviour:
+
+| | Hardware (`fxFixed` off) | `fxFixed` on |
+| --- | --- | --- |
+| Steep 4bpp lines with the line helper | ADDR0's nibble increment doesn't change ADDR1's nibble. With ADDR0 on nibble 0 that adds nothing going forwards and a byte (two pixels) going backwards, so they don't draw properly. | ADDR1's nibble steps in ADDR0's direction, so they draw properly. |
+| Accumulating with the multiplier off | The accumulator loads the cache. This is from `mult_accum.v` and hasn't been checked on hardware. | Adds (or subtracts) the product. |
+| Polygon filler DATA0 reads with one-byte cycling | The cache moves on as set by the two-byte increment mode. | The cache always moves on a byte. |
+
+A program that relies on `fxFixed` won't behave the same on a real X16, so leave it off to see what the hardware does.
+
+The [FX Line Draw 4bpp](/examples/fx-line-draw-4bpp) example draws a line in each direction to compare the two line draw behaviours.
 
 ## files
 
