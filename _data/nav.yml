@@ -55,6 +55,18 @@
     - title: ca65 Projects
       url: /debugger/ca65
 
+- title: BASIC
+  url: /basic/
+  children:
+    - title: Debugging
+      url: /basic/debugging
+    - title: Screen and Live View
+      url: /basic/screen
+    - title: Settings
+      url: /basic/settings
+    - title: Project Files
+      url: /basic/projectfile
+
 - title: Emulator
   url: /emulator
   children:
