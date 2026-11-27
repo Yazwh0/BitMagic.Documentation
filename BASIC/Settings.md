@@ -46,6 +46,7 @@ To keep a configuration, add one to `.vscode/launch.json`:
 | Name | Type | Optional | Description |
 | ---- | ---- | -------- | ----------- |
 | `bitMagicX16Basic.openScreen` | bool | Yes | Open the [X16 Screen](/basic/screen) tab when debugging starts. `true` by default. |
+| `bitMagicX16Basic.charset` | string | Yes | `upper` (the default) or `mixed`: the character set used when [saving or opening a PRG](/basic/prg). |
 | `bitMagicX16Basic.debugModePath` | string | Yes | Use this `BitMagic.X16Basic.Debugger.dll` instead of the one that comes with the extension. Only for working on the debugger itself. |
 
 The emulator and debugger are the BitMagic extension's, so its [settings](/settings) apply too.

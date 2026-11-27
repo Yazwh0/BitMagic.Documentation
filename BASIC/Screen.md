@@ -16,6 +16,16 @@ If you close it, *X16 BASIC: Show the X16 Screen* from the command palette opens
 
 The emulator's own window still opens as well, as it does for any BitMagic session.
 
+### The toolbar
+
+Across the top of the tab:
+
+- a light that's green while the program is *Running*, amber when it's *Paused* in the debugger, and grey when nothing is being debugged;
+- *Open as BASIC*, which opens the program in the emulator's memory in a new editor;
+- *Save as PRG*, which saves it as a `.prg`.
+
+The buttons work on the program as BASIC has it now, including lines typed at `READY`. See [Saving and Opening PRGs](/basic/prg).
+
 ### Typing
 
 Click the screen and type: the keys go to the X16, as they would from its keyboard. That's how you answer an `INPUT` or `GET`, or type at `READY` once the program has finished.
