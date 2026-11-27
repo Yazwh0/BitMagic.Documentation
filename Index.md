@@ -27,6 +27,7 @@ Install it from the [VSCode marketplace](vscode:extension/yazwh0.bitmagic) or [O
 - [The Debugger](/debugger/): debugging the X16 inside VSCode.
 - [ca65 Projects](/debugger/ca65): debugging a ca65 assembly program instead of `.bmasm`.
 - [BASIC](/basic/): debugging X16 BASIC programs, with the X16 BASIC extension.
+- [C with Oscar64](/oscar64/): debugging C compiled with Oscar64, with the X16 Oscar64 extension.
 - [The Emulator](/emulator): running the X16 standalone.
 - [MCP Agent](/mcpagent): letting an AI agent drive a debug session, or just compile `.bmasm`, for you.
 

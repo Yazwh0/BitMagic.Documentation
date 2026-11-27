@@ -76,6 +76,15 @@ When the program hits an error, the debugger stops on the statement that caused 
 
 `STOP` and `END` behave as they do on the X16. When the program ends it's left at `READY`, so you can type at it in the [screen](/basic/screen) or `RUN` it again; set `onProgramEnd` to `terminate` to end the session instead (see [Settings](/basic/settings)).
 
+## Running it again
+
+*Re-run*, on the [X16 Screen](/basic/screen) toolbar and on VSCode's debug toolbar while a BASIC program is being debugged, runs the program again from the start without restarting the emulator. Your file is saved and tokenised again first, so any edits are included, and your breakpoints move with the lines.
+
+It works like typing `RUN`: variables are cleared and any GOSUBs and FOR loops are forgotten. If the program is running it restarts at its next statement, and if it's at `READY` it starts straight away. Two things to know:
+
+- if the program is waiting at an `INPUT`, it restarts once you've pressed Return;
+- if your file has errors, nothing changes and the errors are shown in the *Debug Console*.
+
 ## When the program changes
 
 The debugger shows your source file while that's what's in memory. If the program in memory changes (you edit it at `READY`, `LOAD` another, or a `POKE` alters it), it shows a listing of what's actually there instead, so the lines you step through are always the real ones.
