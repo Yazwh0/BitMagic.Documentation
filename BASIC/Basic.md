@@ -53,6 +53,7 @@ The program is written as you'd type it at the X16: upper case keywords, and con
 
 - [Debugging](/basic/debugging): breakpoints, stepping, variables, watches and errors.
 - [Screen and Live View](/basic/screen): the X16's display in a tab, typing, and watching a program while it runs.
+- [Saving and Opening PRGs](/basic/prg): saving BASIC as a `.prg` the X16 can `LOAD`, and opening one as BASIC.
 - [Settings](/basic/settings): the `launch.json` settings and the extension's own.
 - [Project Files](/basic/projectfile): using a BitMagic `project.json` with BASIC, and debugging BASIC without the extension.
 

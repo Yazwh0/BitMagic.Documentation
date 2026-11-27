@@ -62,6 +62,8 @@
       url: /basic/debugging
     - title: Screen and Live View
       url: /basic/screen
+    - title: Saving and Opening PRGs
+      url: /basic/prg
     - title: Settings
       url: /basic/settings
     - title: Project Files
