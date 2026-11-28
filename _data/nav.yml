@@ -69,6 +69,14 @@
     - title: Project Files
       url: /basic/projectfile
 
+- title: C with Oscar64
+  url: /oscar64/
+  children:
+    - title: Debugging
+      url: /oscar64/debugging
+    - title: Settings
+      url: /oscar64/settings
+
 - title: Emulator
   url: /emulator
   children:

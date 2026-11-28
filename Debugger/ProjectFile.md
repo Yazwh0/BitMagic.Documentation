@@ -71,7 +71,7 @@ Relative paths in a project file are resolved against one of two folders:
 | `wifi` | bool | `false` | Enable the [WiFi card](/emulator/wificard) at `$9fe0`. |
 | `rtc` | string | `"host"` | What the RTC starts at: `"host"` (the host's local date and time), `"stopped"` (stopped at 2000-01-01, as the chip is at power on) or a date and time, eg `"2026-01-01T12:00:00"`. The clock then runs with the emulated CPU, so it stops while the debugger is paused. Setting the time from the X16 never changes the host's. |
 | `fxFixed` | bool | `false` | Make VERA FX behave like the official emulator where it differs from the hardware. Off matches the hardware. See [FX fixed mode](#fx-fixed-mode). |
-| `debugMode` | [DebugMode](/basic/projectfile#debugging-basic-without-the-extension) | `null` | Debug something other than the 6502 code with a plug-in, eg BASIC. See [BASIC Project Files](/basic/projectfile#debugging-basic-without-the-extension). |
+| `debugMode` | [DebugMode](/basic/projectfile#debugging-basic-without-the-extension) | `null` | Debug something other than the 6502 code with a plug-in, eg BASIC or C. See [BASIC Project Files](/basic/projectfile#debugging-basic-without-the-extension) and [Oscar64 Settings](/oscar64/settings#using-it-without-the-extension). |
 | `romSource` | [RomSource](#romsource)[] | `[]` | Files to load into ROM banks. |
 | `compileOptions` | [CompileOptions](#compileoptions) | `null` | Compilation options. |
 | `memoryFillValue` | byte | `0` | Value to fill CPU RAM and VRAM with at startup. |

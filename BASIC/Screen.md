@@ -21,6 +21,7 @@ The emulator's own window still opens as well, as it does for any BitMagic sessi
 Across the top of the tab:
 
 - a light that's green while the program is *Running*, amber when it's *Paused* in the debugger, and grey when nothing is being debugged;
+- *Re-run*, which runs your program again from the start without restarting the emulator (see [Debugging](/basic/debugging#running-it-again));
 - *Open as BASIC*, which opens the program in the emulator's memory in a new editor;
 - *Save as PRG*, which saves it as a `.prg`.
 
