@@ -56,7 +56,7 @@ int main(void)
 
 Put a breakpoint on the `total += square(i);` line, press `F5`, and you'll stop with `total` and `i` in the *Variables* pane. Press `F11` to step into `square`, and the call stack shows it called from `main`.
 
-*X16 Oscar64: Create X16 Oscar64 Project* in the command palette writes a slightly bigger example, with a `launch.json`.
+*X16 Oscar64: Create X16 Oscar64 Project* in the command palette (or the button in the Explorer when no folder is open) writes a slightly bigger example, with a `launch.json`.
 
 ## Find out more
 
